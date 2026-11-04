@@ -166,18 +166,32 @@ AquaPulse underwent an empirical model audit to verify generalization without ov
 
 ## Quick Start (Local Development)
 
-### Prerequisites
-* Python 3.11+ (Python 3.14 compatible)
-* Node.js 18+ (Node 20 recommended)
+### 🚀 One-Click Run (Recommended for Windows)
 
-### 1. Launch Backend API
+Simply double-click **`run.bat`** (or **`start.bat`**) in the project folder!
+
+It automatically:
+1. Detects Python and Node.js environments.
+2. Clears any zombie port conflicts on `8000` and `5173`.
+3. Launches the **FastAPI + ML Engine Backend** (`http://127.0.0.1:8000`).
+4. Launches the **React + Vite Frontend** (`http://localhost:5173`).
+5. Waits for health check readiness and **automatically opens the website in your default browser**.
+
+> **💡 Desktop Shortcut:** Double-click [`create_desktop_shortcut.bat`](file:///create_desktop_shortcut.bat) once to put a direct 1-click **AquaPulse** icon on your Windows Desktop!  
+> **🛑 Stop Servers:** Press `Q` in the launcher window or double-click [`stop.bat`](file:///stop.bat).
+
+---
+
+### Manual Launch (Separate Terminals)
+
+#### 1. Launch Backend API
 ```powershell
 # From project root:
 run-backend.bat
 ```
 *API Swagger Documentation will be available at:* `http://localhost:8000/docs`
 
-### 2. Launch Frontend Dev Server
+#### 2. Launch Frontend Dev Server
 ```powershell
 # In a separate terminal:
 run-frontend.bat
