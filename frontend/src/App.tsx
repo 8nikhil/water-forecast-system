@@ -33,8 +33,20 @@ import {
 import { Droplets, Sparkles, Heart } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<string>('landing');
+  const [currentView, setCurrentView] = useState<string>(() => {
+    const hash = window.location.hash.replace('#', '');
+    return hash || 'landing';
+  });
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) setCurrentView(hash);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = localStorage.getItem('aquapulse_theme');
     return saved === 'dark' ? 'dark' : 'light';
