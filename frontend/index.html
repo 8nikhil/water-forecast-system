@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" class="light theme-light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230ea5e9'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intelligent Water Consumption Forecasting and Conservation System | AquaPulse</title>
+    <meta name="description" content="AI platform for time-series water consumption forecasting, abnormal leak detection, wastage estimation, and personalized conservation recommendations." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('aquapulse_theme');
+          var isDark = saved === 'dark';
+          var root = document.documentElement;
+          if (isDark) {
+            root.classList.remove('light', 'theme-light');
+            root.classList.add('dark', 'theme-dark');
+          } else {
+            root.classList.remove('dark', 'theme-dark');
+            root.classList.add('light', 'theme-light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen antialiased bg-slate-50 text-slate-900 selection:bg-cyan-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+tier_id,tier_name,min_volume_kl,max_volume_kl,rate_inr_per_kl,purpose
+1,Lifeline Slab,0,8,7.0,Basic drinking & cooking needs
+2,Normal Domestic,8,25,11.5,Standard urban consumption
+3,High Consumption,25,50,26.0,Moderate disincentive slab
+4,Penal / Luxury Slab,50,9999,48.0,Heavy wastage & luxury swimming/gardens

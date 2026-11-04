@@ -1,0 +1,74 @@
+================================================================================
+AQUAPULSE: MACHINE LEARNING MODEL SUMMARY & TECHNICAL METADATA
+File: best_water_consumption_model.pkl
+================================================================================
+
+1. MODEL OVERVIEW
+-----------------
+Model Name          : Random Forest Regressor
+Object Class        : sklearn.ensemble._forest.RandomForestRegressor
+File Size           : 69.59 MB (72,968,200 bytes)
+Target Variable     : actual_demand_mld (Actual Daily Water Demand in Million Litres/Day)
+Trained Samples     : 12,033 daily records (Chronological 80% split)
+Holdout Test Samples: 3,024 daily records (Chronological 20% holdout split)
+Training Date       : 2026-11-04 21:49:18
+
+2. HYPERPARAMETERS
+------------------
+n_estimators        : 200 trees
+max_depth           : 16
+min_samples_split   : 4
+min_samples_leaf    : 2
+random_state        : 42
+n_jobs              : -1 (All CPU cores utilized)
+
+3. HOLDOUT TEST PERFORMANCE METRICS (N=3,024 Unseen Observations)
+-----------------------------------------------------------------
+Mean Absolute Error (MAE)       : 20.788 MLD
+Root Mean Squared Error (RMSE)  : 40.471 MLD
+Mean Squared Error (MSE)        : 1,637.893
+Coefficient of Determination (R²): 99.833% (0.998327)
+Mean Absolute Percentage Error  : 2.00%
+Training Fit Time               : 3.14 seconds
+
+4. BENCHMARK COMPARISON MATRIX
+------------------------------
+Algorithm Name         | MAE (MLD) | RMSE (MLD) | MSE      | R² Score (%) | MAPE (%)
+------------------------------------------------------------------------------------
+Random Forest [BEST]   | 20.788    | 40.471     | 1,637.89 | 99.833%      | 2.00%
+Gradient Boosting      | 22.377    | 40.273     | 1,621.92 | 99.834%      | 2.46%
+XGBoost Regressor      | 23.195    | 41.374     | 1,711.82 | 99.825%      | 2.64%
+Linear Regression      | 40.398    | 70.957     | 5,034.94 | 99.486%      | 6.39%
+Ridge Regression       | 40.365    | 71.132     | 5,059.83 | 99.483%      | 6.29%
+
+5. INPUT FEATURES (52 TOTAL ENCODED DIMENSIONS)
+-----------------------------------------------
+Raw Features (28):
+  - Weather: max_temp_c, min_temp_c, mean_temp_c, temp_range_c, precipitation_mm, solar_radiation_mj, heat_index_proxy
+  - Calendar: is_weekend, is_festival, sin_month, cos_month, sin_dow, cos_dow
+  - Demographics: water_stress_score, cpheeo_target_lpcd, city_id, zone
+  - Autoregressive Lags: demand_lag_1, demand_lag_2, demand_lag_3, demand_lag_7, demand_lag_14
+  - Trailing Rolling Statistics: rolling_mean_7, rolling_std_7, rolling_min_7, rolling_max_7, rolling_mean_14, ratio_to_7d_mean
+
+6. 21 COVERED INDIAN MUNICIPALITIES
+------------------------------------
+Ahmedabad (AMD), Bhubaneswar (BBI), Bhopal (BHO), Bengaluru (BLR), Mumbai (BOM),
+Kolkata (CCU), Kochi (COK), Dehradun (DED), Delhi (DEL), Guwahati (GAU),
+Gurugram (GGN), Hyderabad (HYD), Indore (IDR), Jaipur (JAI), Lucknow (LKO),
+Ludhiana (LUH), Chennai (MAA), Patna (PAT), Pune (PNQ), Surat (STV), Visakhapatnam (VTZ)
+
+7. HOW TO USE IN PYTHON
+-----------------------
+from ml_pipeline.predict import WaterDemandForecaster
+
+forecaster = WaterDemandForecaster()
+forecast = forecaster.predict_single({
+    "city_id": "BLR",
+    "date": "2025-06-01",
+    "max_temp_c": 32.5,
+    "min_temp_c": 21.0,
+    "demand_lag_1": 1540.0
+})
+print("Forecast (MLD):", forecast["predicted_demand_mld"])
+================================================================================
+

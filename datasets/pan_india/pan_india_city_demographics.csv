@@ -1,0 +1,22 @@
+city_id,city_name,state,zone,water_board,population_2024,area_sq_km,households,avg_household_size,slum_population_pct,piped_coverage_pct,design_capacity_mld,cpheeo_target_lpcd,actual_avg_lpcd,baseline_nrw_pct,storage_capacity_mcm,primary_source,population_density_per_sq_km
+BLR,Bengaluru,Karnataka,South,BWSSB,13600000,741,3400000,4.0,10.5,68.0,1450,135,106.6,32.5,150.0,"Cauvery River (Phase I-V), Arkavathi, Borewells",18353.6
+MAA,Chennai,Tamil Nadu,South,CMWSSB,11500000,426,2875000,4.0,28.5,74.0,1000,135,87.0,27.0,320.0,"Chembarambakkam, Poondi, Red Hills, Desalination Plants",26995.3
+HYD,Hyderabad,Telangana,South,HMWSSB,10800000,650,2570000,4.2,22.8,82.0,2100,150,145.0,34.0,450.0,"Krishna Phase I-III, Godavari, Singur, Manjeera",16615.4
+VTZ,Visakhapatnam,Andhra Pradesh,South,GVMC,2300000,681,560000,4.1,19.5,76.0,420,135,128.0,25.5,180.0,"Yeleru Reservoir, Raiwada, Gosthani Canal",3377.4
+COK,Kochi,Kerala,South,KWA,2400000,440,600000,4.0,6.5,83.0,360,135,132.0,29.0,250.0,"Periyar River (Aluva WTP), Muvattupuzha River",5454.5
+BOM,Mumbai,Maharashtra,West,MCGM,21300000,603,4530000,4.7,41.8,88.0,3900,150,183.0,28.5,1447.0,"Bhatsa, Upper Vaitarna, Middle Vaitarna, Tansa, Modak Sagar",35323.4
+PNQ,Pune,Maharashtra,West,PMC,7200000,516,1714000,4.2,21.0,85.0,1650,150,160.0,24.0,820.0,"Khadakwasla, Panshet, Varasgaon, Temghar Dam Chain",13953.5
+AMD,Ahmedabad,Gujarat,West,AMC,8600000,464,1910000,4.5,14.5,84.0,1350,140,142.0,26.0,310.0,"Narmada Main Canal, Kotarpur WTP, French Wells",18534.5
+STV,Surat,Gujarat,West,SMC,6800000,474,1510000,4.5,18.0,92.0,1400,140,146.0,19.5,600.0,"Tapi River, Ukai Dam, Model Tertiary Wastewater Recycling",14346.0
+DEL,Delhi,NCT Delhi,North,DJB,21000000,1484,4660000,4.5,18.2,81.0,1000,150,132.0,38.0,280.0,"Yamuna River, Munak Canal, Ganga (Bhagirathi/Sonia Vihar)",14150.9
+JAI,Jaipur,Rajasthan,North,PHED Rajasthan,4100000,467,820000,5.0,15.6,72.0,520,135,112.0,29.5,110.0,"Bisalpur Dam, Tube Wells",8779.4
+LKO,Lucknow,Uttar Pradesh,North,LMC / Jal Sansthan,3800000,631,790000,4.8,14.2,77.0,650,135,135.0,33.0,190.0,"Gomti River (Aishbagh WTP), Sharda Canal, Deep Tubewells",6022.2
+LUH,Ludhiana,Punjab,North,MCL Punjab,1900000,310,395000,4.8,16.0,80.0,380,135,148.0,31.0,90.0,"Groundwater Tubewells (Heavy overdraft), Sirhind Canal",6129.0
+GGN,Gurugram,Haryana,North,GMDA,1800000,232,420000,4.3,11.0,82.0,450,150,152.0,27.5,85.0,"Gurgaon Water Channel (Yamuna via Kakroi), Basai WTP",7758.6
+IDR,Indore,Madhya Pradesh,Central,IMC,3300000,530,717000,4.6,16.0,86.0,540,135,138.0,22.0,95.0,"Narmada Phase I-IV Lift Pipeline, Yashwant Sagar",6226.4
+BHO,Bhopal,Madhya Pradesh,Central,BMC MP,2600000,463,565000,4.6,23.5,79.0,430,135,130.0,28.0,280.0,"Upper Lake (Bada Talab), Kolar Dam, Narmada Pipeline",5615.6
+CCU,Kolkata,West Bengal,East,KMC,15100000,206,3430000,4.4,31.4,79.0,1800,150,155.0,36.5,500.0,Hooghly River (Palta & Garden Reach WTPs),73301.0
+BBI,Bhubaneswar,Odisha,East,WATCO Odisha,1200000,161,280000,4.3,17.5,89.0,280,135,140.0,21.0,150.0,"Mahanadi River (Mundali WTP), Kuakhai River, Daya River",7453.4
+PAT,Patna,Bihar,East,PMC Bihar / BUIDCO,2700000,250,530000,5.1,21.0,69.0,410,135,125.0,35.0,120.0,"Deep Aquifer Tubewells, Ganga Surface Water Projects",10800.0
+GAU,Guwahati,Assam,North-East,GMDW&SB,1400000,216,320000,4.4,14.0,62.0,220,135,118.0,30.0,110.0,Brahmaputra River (Panbazar & Satpukhuri WTPs),6481.5
+DED,Dehradun,Uttarakhand,Himalayan,Uttarakhand Jal Sansthan,1000000,196,220000,4.5,9.5,84.0,180,135,136.0,24.5,75.0,"Song River, Bindal Springs, Tube Wells",5102.0

@@ -1,0 +1,58 @@
+version: '3.8'
+
+# ==============================================================================
+# AquaPulse Local Production Stack (Docker Compose)
+# Runs MySQL 8.0 Database + Multi-Stage AquaPulse Application Container
+# ==============================================================================
+
+services:
+  # MySQL 8.0 Database Service with InnoDB Engine
+  mysql_db:
+    image: mysql:8.0
+    container_name: aquapulse_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_production_password_2026
+      MYSQL_DATABASE: aquapulse_water_db
+      MYSQL_USER: aquapulse_user
+      MYSQL_PASSWORD: aquapulse_secure_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/database/schema_mysql.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_production_password_2026"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # AquaPulse Full Application: FastAPI Backend + Bundled React Frontend + ML Model
+  aquapulse_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aquapulse_app
+    restart: always
+    environment:
+      ENVIRONMENT: production
+      DB_ENGINE: mysql
+      DATABASE_URL: "mysql+pymysql://aquapulse_user:aquapulse_secure_password@mysql_db:3306/aquapulse_water_db?charset=utf8mb4"
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+      MYSQL_USER: aquapulse_user
+      MYSQL_PASSWORD: aquapulse_secure_password
+      MYSQL_DATABASE: aquapulse_water_db
+      SECRET_KEY: "production-water-forecasting-secret-key-change-in-prod"
+      WATER_RATE_PER_CUBIC_METER: 3.65
+      LOG_LEVEL: INFO
+      CORS_ORIGINS: "http://localhost:8000,http://localhost:5173"
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:

@@ -1,0 +1,22 @@
+city_id,city_name,state,zone,water_board,lat,lon,elevation_m,climate_type,primary_source
+BLR,Bengaluru,Karnataka,South,BWSSB,12.9716,77.5946,920,Tropical Savanna / Semi-Arid Plateau,"Cauvery River (Phase I-V), Arkavathi, Borewells"
+MAA,Chennai,Tamil Nadu,South,CMWSSB,13.0827,80.2707,6,Tropical Wet-and-Dry / Coastal,"Chembarambakkam, Poondi, Red Hills, Desalination Plants"
+HYD,Hyderabad,Telangana,South,HMWSSB,17.385,78.4867,542,Tropical Wet-and-Dry / Semi-Arid,"Krishna Phase I-III, Godavari, Singur, Manjeera"
+VTZ,Visakhapatnam,Andhra Pradesh,South,GVMC,17.6868,83.2185,45,Tropical Wet-and-Dry / Coastal Port,"Yeleru Reservoir, Raiwada, Gosthani Canal"
+COK,Kochi,Kerala,South,KWA,9.9312,76.2673,4,Tropical Monsoon / Coastal Wet,"Periyar River (Aluva WTP), Muvattupuzha River"
+BOM,Mumbai,Maharashtra,West,MCGM,19.076,72.8777,14,Tropical Wet-and-Dry / Coastal Monsoon,"Bhatsa, Upper Vaitarna, Middle Vaitarna, Tansa, Modak Sagar"
+PNQ,Pune,Maharashtra,West,PMC,18.5204,73.8567,560,Hot Semi-Arid / Western Ghats Rain Shadow,"Khadakwasla, Panshet, Varasgaon, Temghar Dam Chain"
+AMD,Ahmedabad,Gujarat,West,AMC,23.0225,72.5714,53,Hot Semi-Arid,"Narmada Main Canal, Kotarpur WTP, French Wells"
+STV,Surat,Gujarat,West,SMC,21.1702,72.8311,13,Tropical Wet-and-Dry / Tapi Delta,"Tapi River, Ukai Dam, Model Tertiary Wastewater Recycling"
+DEL,Delhi,NCT Delhi,North,DJB,28.6139,77.209,216,Humid Subtropical / Extreme Continental,"Yamuna River, Munak Canal, Ganga (Bhagirathi/Sonia Vihar)"
+JAI,Jaipur,Rajasthan,North,PHED Rajasthan,26.9124,75.7873,431,Hot Semi-Arid / Desert Fringe,"Bisalpur Dam, Tube Wells"
+LKO,Lucknow,Uttar Pradesh,North,LMC / Jal Sansthan,26.8467,80.9462,123,Humid Subtropical / Gangetic Plain,"Gomti River (Aishbagh WTP), Sharda Canal, Deep Tubewells"
+LUH,Ludhiana,Punjab,North,MCL Punjab,30.901,75.8573,244,Semi-Arid / Punjab Plain,"Groundwater Tubewells (Heavy overdraft), Sirhind Canal"
+GGN,Gurugram,Haryana,North,GMDA,28.4595,77.0266,217,Semi-Arid Subtropical,"Gurgaon Water Channel (Yamuna via Kakroi), Basai WTP, Chandu Budhera WTP"
+IDR,Indore,Madhya Pradesh,Central,IMC,22.7196,75.8577,553,Humid Subtropical / Malwa Plateau,"Narmada Phase I-IV Lift Pipeline (70km lift), Yashwant Sagar"
+BHO,Bhopal,Madhya Pradesh,Central,BMC MP,23.2599,77.4126,527,Humid Subtropical / Lake Basin,"Upper Lake (Bada Talab), Kolar Dam, Narmada Pipeline"
+CCU,Kolkata,West Bengal,East,KMC,22.5726,88.3639,9,Tropical Wet-and-Dry / Ganga Delta,Hooghly River (Palta & Garden Reach WTPs)
+BBI,Bhubaneswar,Odisha,East,WATCO Odisha,20.2961,85.8245,45,Tropical Wet-and-Dry / Coastal Plain,"Mahanadi River (Mundali WTP), Kuakhai River, Daya River"
+PAT,Patna,Bihar,East,PMC Bihar / BUIDCO,25.5941,85.1376,53,Humid Subtropical / Ganga Riverfront,"Deep Aquifer Tubewells, Ganga Surface Water Treatment Projects"
+GAU,Guwahati,Assam,North-East,GMDW&SB,26.1445,91.7362,55,Humid Subtropical / Brahmaputra Valley,Brahmaputra River (Panbazar & Satpukhuri WTPs)
+DED,Dehradun,Uttarakhand,Himalayan,Uttarakhand Jal Sansthan,30.3165,78.0322,640,Subtropical Montane / Doon Valley,"Song River, Bindal Springs, Tube Wells"

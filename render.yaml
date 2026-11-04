@@ -1,0 +1,34 @@
+# ==============================================================================
+# AquaPulse Render Blueprint (render.yaml)
+# Single-Click Infrastructure-as-Code for Render Cloud Platform
+# ==============================================================================
+
+services:
+  - type: web
+    name: aquapulse-water-forecaster
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: DB_ENGINE
+        value: sqlite
+      - key: DATABASE_URL
+        value: sqlite:///./water_system.db
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WATER_RATE_PER_CUBIC_METER
+        value: "3.65"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: CORS_ORIGINS
+        value: "https://aquapulse-water-forecaster.onrender.com"
+

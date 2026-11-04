@@ -1,0 +1,371 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased min-h-screen selection:bg-cyan-500 selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Base theme styles */
+html.light,
+html.theme-light,
+body.theme-light,
+.theme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+  color-scheme: light;
+}
+
+html.dark,
+body.dark,
+.theme-dark {
+  background-color: #020617;
+  color: #f8fafc;
+  color-scheme: dark;
+}
+
+/* ========================================================
+   LIGHT THEME OVERRIDES (AquaPulse Clean Modern Light Theme)
+   ======================================================== */
+.theme-light {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --border-card: #e2e8f0;
+}
+
+/* Background mappings */
+.theme-light .bg-slate-950,
+.theme-light [class*="bg-slate-950/"] {
+  background-color: #f8fafc !important;
+}
+
+.theme-light .bg-slate-900,
+.theme-light [class*="bg-slate-900/"] {
+  background-color: #ffffff !important;
+}
+
+.theme-light .bg-slate-850,
+.theme-light [class*="bg-slate-850/"] {
+  background-color: #f8fafc !important;
+}
+
+.theme-light .bg-slate-800,
+.theme-light [class*="bg-slate-800/"] {
+  background-color: #f1f5f9 !important;
+}
+
+.theme-light .bg-slate-700,
+.theme-light [class*="bg-slate-700/"] {
+  background-color: #e2e8f0 !important;
+}
+
+/* Navbar & Footer in Light Theme */
+.theme-light header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+}
+
+.theme-light footer {
+  background-color: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+/* Button & interactive states */
+.theme-light button.bg-slate-800,
+.theme-light button[class*="bg-slate-800"],
+.theme-light button.bg-slate-900,
+.theme-light button.bg-slate-950 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+.theme-light button.bg-slate-800:hover,
+.theme-light button[class*="bg-slate-800"]:hover,
+.theme-light button.bg-slate-900:hover,
+.theme-light button.bg-slate-950:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.theme-light .hover\:bg-slate-800:hover,
+.theme-light [class*="hover:bg-slate-800"]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.theme-light .hover\:bg-slate-750:hover,
+.theme-light .hover\:bg-slate-700:hover {
+  background-color: #e2e8f0 !important;
+}
+
+.theme-light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Borders & Dividers */
+.theme-light .border-slate-950,
+.theme-light .border-slate-900,
+.theme-light .border-slate-850,
+.theme-light .border-slate-800,
+.theme-light [class*="border-slate-800"],
+.theme-light [class*="border-slate-900"] {
+  border-color: #e2e8f0 !important;
+}
+
+.theme-light .border-slate-700,
+.theme-light .border-slate-600,
+.theme-light [class*="border-slate-700"] {
+  border-color: #cbd5e1 !important;
+}
+
+.theme-light .divide-slate-800 > * + *,
+.theme-light .divide-slate-900 > * + * {
+  border-color: #e2e8f0 !important;
+}
+
+.theme-light .divide-slate-700 > * + * {
+  border-color: #cbd5e1 !important;
+}
+
+/* Text & Headings */
+.theme-light h1:not(.text-white):not([class*="text-white"]),
+.theme-light h2:not(.text-white):not([class*="text-white"]),
+.theme-light h3:not(.text-white):not([class*="text-white"]),
+.theme-light h4:not(.text-white):not([class*="text-white"]),
+.theme-light h5:not(.text-white):not([class*="text-white"]),
+.theme-light h6:not(.text-white):not([class*="text-white"]) {
+  color: #0f172a !important;
+}
+
+.theme-light .cta-white-heading,
+.theme-light h2.cta-white-heading,
+.cta-white-heading {
+  color: #ffffff !important;
+}
+
+.theme-light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+.theme-light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.theme-light .text-slate-300 {
+  color: #334155 !important;
+}
+
+.theme-light .text-slate-400 {
+  color: #64748b !important;
+}
+
+.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Preserve white text on solid colored buttons & badges, while making standalone text-white dark */
+.theme-light .text-white:not(button):not(button *):not(a):not([class*="bg-cyan-6"]):not([class*="bg-blue-6"]):not([class*="bg-rose-"]):not([class*="bg-emerald-6"]):not([class*="bg-purple-6"]):not([class*="bg-amber-6"]):not([class*="bg-red-"]):not([role="button"]):not([class*="badge-white"]):not([class*="bg-gradient-to"]):not([class*="bg-emerald-500"]):not([class*="bg-rose-500"]) {
+  color: #0f172a !important;
+}
+
+/* Colored text contrast adjustments for light backgrounds */
+.theme-light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+.theme-light .text-cyan-300 {
+  color: #0369a1 !important;
+}
+.theme-light .text-blue-400 {
+  color: #0284c7 !important;
+}
+.theme-light .text-blue-300 {
+  color: #0369a1 !important;
+}
+.theme-light .text-purple-400 {
+  color: #9333ea !important;
+}
+.theme-light .text-purple-300 {
+  color: #7e22ce !important;
+}
+.theme-light .text-amber-400 {
+  color: #d97706 !important;
+}
+.theme-light .text-amber-300 {
+  color: #b45309 !important;
+}
+.theme-light .text-emerald-400 {
+  color: #059669 !important;
+}
+.theme-light .text-emerald-300 {
+  color: #047857 !important;
+}
+.theme-light .text-rose-400 {
+  color: #e11d48 !important;
+}
+.theme-light .text-rose-300 {
+  color: #be123c !important;
+}
+
+/* Gradients with deep dark 950 stops -> clean pastel gradients */
+.theme-light [class*="from-cyan-950"],
+.theme-light [class*="from-blue-950"] {
+  background-image: linear-gradient(to right, #f0fdf4, #e0f2fe, #f8fafc) !important;
+}
+.theme-light [class*="from-rose-950"] {
+  background-image: linear-gradient(to right, #fff1f2, #ffffff, #fff1f2) !important;
+}
+
+/* Form Controls, Inputs & Sliders */
+.theme-light input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.theme-light select,
+.theme-light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.theme-light input[type="range"] {
+  background-color: #e2e8f0 !important;
+}
+
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.theme-light input:focus,
+.theme-light select:focus,
+.theme-light textarea:focus {
+  border-color: #0284c7 !important;
+  outline: 2px solid rgba(2, 132, 199, 0.2) !important;
+}
+
+/* Tables in Light Theme */
+.theme-light table thead tr {
+  border-bottom-color: #e2e8f0 !important;
+}
+.theme-light table th {
+  color: #475569 !important;
+}
+.theme-light table td {
+  color: #334155;
+}
+.theme-light table tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Cards & Elevated Containers Shadow */
+.theme-light .bg-slate-900.rounded-2xl,
+.theme-light .bg-slate-900.rounded-xl,
+.theme-light .bg-slate-900.border {
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+}
+
+/* Modals & Dialogs */
+.theme-light .fixed.inset-0.bg-slate-950\/80,
+.theme-light .fixed.inset-0.bg-black\/60,
+.theme-light .fixed.inset-0.bg-black\/70,
+.theme-light [class*="bg-slate-950/80"] {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(4px);
+}
+
+.theme-light .relative.bg-slate-900.rounded-2xl.shadow-2xl,
+.theme-light .relative.bg-slate-900.shadow-2xl {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Recharts & Charts */
+.theme-light .recharts-cartesian-grid line,
+.theme-light .recharts-cartesian-grid-line {
+  stroke: #e2e8f0 !important;
+}
+
+.theme-light .recharts-text,
+.theme-light .recharts-cartesian-axis-tick text {
+  fill: #64748b !important;
+}
+
+.theme-light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.05) !important;
+}
+
+.theme-light .recharts-tooltip-item,
+.theme-light .recharts-tooltip-label,
+.theme-light .recharts-tooltip-item-name,
+.theme-light .recharts-tooltip-item-value {
+  color: #0f172a !important;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.theme-light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.theme-light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ========================================================
+   PLUS JAKARTA SANS / INTER TYPOGRAPHY & SCENIC HERO STYLES
+   Inspired by Open-Meteo & Flowless second image
+   ======================================================== */
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.scenic-text-shadow {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.scenic-subtext-shadow {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* Clean, modern typography & card styling for light theme */
+.hero-light-theme {
+  background: linear-gradient(180deg, #edf4fb 0%, #f4f8fc 60%, #f8fafc 100%);
+  border-color: #dbeafe;
+}
+
+.hero-light-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+}
+
+.hero-light-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.08);
+}
+
+

@@ -1,0 +1,17 @@
+# Node
+**/node_modules
+frontend/node_modules
+frontend/dist
+
+# Python
+**/__pycache__
+*.py[cod]
+backend/venv
+backend/.venv
+water_system.db
+water_system.db*
+
+# Git
+.git
+.github
+

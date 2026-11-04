@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+backend/venv/
+backend/.venv/
+ml_pipeline/venv/
+env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Environment and databases
+.env
+.env.local
+*.env
+water_system.db
+water_system.db-journal
+*.sqlite
+*.sqlite3
+
+# Build outputs
+frontend/dist/
+dist/
+build/
+
+# Logs & temp
+*.log
+.DS_Store
+Thumbs.db
+live_render.png
+*.png.tmp
+screenshot.png
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo

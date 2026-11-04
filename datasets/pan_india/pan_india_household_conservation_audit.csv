@@ -1,0 +1,99 @@
+meter_id,city_id,property_type,occupants,audit_period_days,total_consumed_litres,target_budget_litres,variance_litres,avg_actual_lpcd,compliance_status,has_known_fault
+MTR-BLR-0001,BLR,Row House,4,90,48512.6,48600.0,-87.4,134.8,Efficient (<135 LPCD),False
+MTR-BLR-0002,BLR,Independent House,4,90,48563.4,48600.0,-36.6,134.9,Efficient (<135 LPCD),False
+MTR-BLR-0003,BLR,Row House,4,90,48393.0,48600.0,-207.0,134.4,Efficient (<135 LPCD),False
+MTR-BLR-0004,BLR,2BHK Apartment,3,90,36590.9,36450.0,140.9,135.5,Normal (+/-10%),False
+MTR-BLR-0005,BLR,Independent House,6,90,126476.6,72900.0,53576.6,234.2,High Wastage / Deficit Risk,True
+MTR-BLR-0006,BLR,2BHK Apartment,4,90,48532.8,48600.0,-67.2,134.8,Efficient (<135 LPCD),False
+MTR-BLR-0007,BLR,3BHK Gated Society,3,90,36510.1,36450.0,60.1,135.2,Normal (+/-10%),False
+MTR-BLR-0008,BLR,Independent Villa,4,90,48443.9,48600.0,-156.1,134.6,Efficient (<135 LPCD),False
+MTR-BLR-0009,BLR,2BHK Apartment,3,90,36413.9,36450.0,-36.1,134.9,Efficient (<135 LPCD),False
+MTR-BLR-0010,BLR,2BHK Apartment,3,90,36566.2,36450.0,116.2,135.4,Normal (+/-10%),False
+MTR-BLR-0011,BLR,Independent Villa,6,90,72876.9,72900.0,-23.1,135.0,Efficient (<135 LPCD),False
+MTR-BLR-0012,BLR,Independent House,2,90,16398.9,24300.0,-7901.1,91.1,Efficient (<135 LPCD),True
+MTR-BLR-0013,BLR,Row House,5,90,60863.0,60750.0,113.0,135.3,Normal (+/-10%),False
+MTR-BLR-0014,BLR,Row House,3,90,36440.6,36450.0,-9.4,135.0,Efficient (<135 LPCD),False
+MTR-BOM-0015,BOM,3BHK Gated Society,4,90,48503.3,48600.0,-96.7,134.7,Efficient (<135 LPCD),False
+MTR-BOM-0016,BOM,2BHK Apartment,4,90,48545.0,48600.0,-55.0,134.8,Efficient (<135 LPCD),False
+MTR-BOM-0017,BOM,3BHK Gated Society,4,90,48577.2,48600.0,-22.8,134.9,Efficient (<135 LPCD),False
+MTR-BOM-0018,BOM,Independent Villa,6,90,127879.1,72900.0,54979.1,236.8,High Wastage / Deficit Risk,True
+MTR-BOM-0019,BOM,3BHK Gated Society,4,90,48643.0,48600.0,43.0,135.1,Normal (+/-10%),False
+MTR-BOM-0020,BOM,3BHK Gated Society,5,90,60828.1,60750.0,78.1,135.2,Normal (+/-10%),False
+MTR-BOM-0021,BOM,Independent House,2,90,24295.2,24300.0,-4.8,135.0,Efficient (<135 LPCD),False
+MTR-BOM-0022,BOM,2BHK Apartment,2,90,24272.8,24300.0,-27.2,134.8,Efficient (<135 LPCD),False
+MTR-BOM-0023,BOM,Row House,3,90,36293.7,36450.0,-156.3,134.4,Efficient (<135 LPCD),False
+MTR-BOM-0024,BOM,3BHK Gated Society,4,90,48763.2,48600.0,163.2,135.5,Normal (+/-10%),False
+MTR-BOM-0025,BOM,Independent House,4,90,83176.2,48600.0,34576.2,231.0,High Wastage / Deficit Risk,True
+MTR-BOM-0026,BOM,Independent House,4,90,48684.2,48600.0,84.2,135.2,Normal (+/-10%),False
+MTR-BOM-0027,BOM,Row House,4,90,48604.5,48600.0,4.5,135.0,Normal (+/-10%),False
+MTR-BOM-0028,BOM,Independent House,4,90,48740.6,48600.0,140.6,135.4,Normal (+/-10%),False
+MTR-DEL-0029,DEL,3BHK Gated Society,4,90,48693.3,48600.0,93.3,135.3,Normal (+/-10%),False
+MTR-DEL-0030,DEL,2BHK Apartment,4,90,48868.6,48600.0,268.6,135.7,Normal (+/-10%),False
+MTR-DEL-0031,DEL,2BHK Apartment,3,90,36441.1,36450.0,-8.9,135.0,Efficient (<135 LPCD),False
+MTR-DEL-0032,DEL,3BHK Gated Society,4,90,32987.9,48600.0,-15612.1,91.6,Efficient (<135 LPCD),True
+MTR-DEL-0033,DEL,Independent Villa,3,90,36288.5,36450.0,-161.5,134.4,Efficient (<135 LPCD),False
+MTR-DEL-0034,DEL,Independent Villa,3,90,36469.6,36450.0,19.6,135.1,Normal (+/-10%),False
+MTR-DEL-0035,DEL,Independent House,4,90,48580.5,48600.0,-19.5,134.9,Efficient (<135 LPCD),False
+MTR-DEL-0036,DEL,Independent Villa,4,90,48651.4,48600.0,51.4,135.1,Normal (+/-10%),False
+MTR-DEL-0037,DEL,3BHK Gated Society,5,90,60734.2,60750.0,-15.8,135.0,Efficient (<135 LPCD),False
+MTR-DEL-0038,DEL,2BHK Apartment,5,90,60704.2,60750.0,-45.8,134.9,Efficient (<135 LPCD),False
+MTR-DEL-0039,DEL,Independent Villa,6,90,73020.1,72900.0,120.1,135.2,Normal (+/-10%),False
+MTR-DEL-0040,DEL,3BHK Gated Society,5,90,132089.5,60750.0,71339.5,293.5,High Wastage / Deficit Risk,True
+MTR-DEL-0041,DEL,2BHK Apartment,6,90,72677.5,72900.0,-222.5,134.6,Efficient (<135 LPCD),False
+MTR-DEL-0042,DEL,Independent Villa,5,90,60661.7,60750.0,-88.3,134.8,Efficient (<135 LPCD),False
+MTR-IDR-0043,IDR,Independent House,5,90,60790.1,60750.0,40.1,135.1,Normal (+/-10%),False
+MTR-IDR-0044,IDR,Independent Villa,6,90,72820.4,72900.0,-79.6,134.9,Efficient (<135 LPCD),False
+MTR-IDR-0045,IDR,Independent Villa,3,90,36495.8,36450.0,45.8,135.2,Normal (+/-10%),False
+MTR-IDR-0046,IDR,Independent House,4,90,48482.4,48600.0,-117.6,134.7,Efficient (<135 LPCD),False
+MTR-IDR-0047,IDR,2BHK Apartment,6,90,72748.4,72900.0,-151.6,134.7,Efficient (<135 LPCD),False
+MTR-IDR-0048,IDR,3BHK Gated Society,4,90,102768.2,48600.0,54168.2,285.5,High Wastage / Deficit Risk,True
+MTR-IDR-0049,IDR,Independent House,6,90,72941.6,72900.0,41.6,135.1,Normal (+/-10%),False
+MTR-IDR-0050,IDR,2BHK Apartment,3,90,36384.7,36450.0,-65.3,134.8,Efficient (<135 LPCD),False
+MTR-IDR-0051,IDR,2BHK Apartment,3,90,36394.7,36450.0,-55.3,134.8,Efficient (<135 LPCD),False
+MTR-IDR-0052,IDR,Independent House,4,90,48557.0,48600.0,-43.0,134.9,Efficient (<135 LPCD),False
+MTR-IDR-0053,IDR,Row House,3,90,36536.8,36450.0,86.8,135.3,Normal (+/-10%),False
+MTR-IDR-0054,IDR,3BHK Gated Society,5,90,60619.8,60750.0,-130.2,134.7,Efficient (<135 LPCD),False
+MTR-IDR-0055,IDR,Independent House,4,90,48448.8,48600.0,-151.2,134.6,Efficient (<135 LPCD),False
+MTR-IDR-0056,IDR,Independent Villa,4,90,48779.7,48600.0,179.7,135.5,Normal (+/-10%),False
+MTR-CCU-0057,CCU,Independent House,5,90,60429.6,60750.0,-320.4,134.3,Efficient (<135 LPCD),False
+MTR-CCU-0058,CCU,Independent Villa,6,90,72656.4,72900.0,-243.6,134.5,Efficient (<135 LPCD),False
+MTR-CCU-0059,CCU,Row House,3,90,36518.1,36450.0,68.1,135.3,Normal (+/-10%),False
+MTR-CCU-0060,CCU,Row House,4,90,48529.8,48600.0,-70.2,134.8,Efficient (<135 LPCD),False
+MTR-CCU-0061,CCU,Independent Villa,2,90,24250.9,24300.0,-49.1,134.7,Efficient (<135 LPCD),False
+MTR-CCU-0062,CCU,3BHK Gated Society,4,90,48598.9,48600.0,-1.1,135.0,Efficient (<135 LPCD),False
+MTR-CCU-0063,CCU,2BHK Apartment,6,90,72885.8,72900.0,-14.2,135.0,Efficient (<135 LPCD),False
+MTR-CCU-0064,CCU,Independent Villa,4,90,48755.0,48600.0,155.0,135.4,Normal (+/-10%),False
+MTR-CCU-0065,CCU,Independent Villa,3,90,24714.5,36450.0,-11735.5,91.5,Efficient (<135 LPCD),True
+MTR-CCU-0066,CCU,Independent Villa,4,90,48777.0,48600.0,177.0,135.5,Normal (+/-10%),False
+MTR-CCU-0067,CCU,3BHK Gated Society,5,90,60848.2,60750.0,98.2,135.2,Normal (+/-10%),False
+MTR-CCU-0068,CCU,Row House,5,90,60847.6,60750.0,97.6,135.2,Normal (+/-10%),False
+MTR-CCU-0069,CCU,Independent Villa,5,90,60703.8,60750.0,-46.2,134.9,Efficient (<135 LPCD),False
+MTR-CCU-0070,CCU,Row House,5,90,60809.0,60750.0,59.0,135.1,Normal (+/-10%),False
+MTR-GAU-0071,GAU,Independent House,6,90,72843.4,72900.0,-56.6,134.9,Efficient (<135 LPCD),False
+MTR-GAU-0072,GAU,Row House,4,90,103210.9,48600.0,54610.9,286.7,High Wastage / Deficit Risk,True
+MTR-GAU-0073,GAU,2BHK Apartment,4,90,48657.3,48600.0,57.3,135.2,Normal (+/-10%),False
+MTR-GAU-0074,GAU,3BHK Gated Society,4,90,48695.2,48600.0,95.2,135.3,Normal (+/-10%),False
+MTR-GAU-0075,GAU,3BHK Gated Society,3,90,36443.6,36450.0,-6.4,135.0,Efficient (<135 LPCD),False
+MTR-GAU-0076,GAU,2BHK Apartment,6,90,73115.8,72900.0,215.8,135.4,Normal (+/-10%),False
+MTR-GAU-0077,GAU,Independent House,6,90,72887.2,72900.0,-12.8,135.0,Efficient (<135 LPCD),False
+MTR-GAU-0078,GAU,2BHK Apartment,3,90,36608.9,36450.0,158.9,135.6,Normal (+/-10%),False
+MTR-GAU-0079,GAU,3BHK Gated Society,3,90,36434.1,36450.0,-15.9,134.9,Efficient (<135 LPCD),False
+MTR-GAU-0080,GAU,Row House,4,90,83973.2,48600.0,35373.2,233.3,High Wastage / Deficit Risk,True
+MTR-GAU-0081,GAU,Independent Villa,4,90,48580.0,48600.0,-20.0,134.9,Efficient (<135 LPCD),False
+MTR-GAU-0082,GAU,Independent Villa,5,90,60903.2,60750.0,153.2,135.3,Normal (+/-10%),False
+MTR-GAU-0083,GAU,2BHK Apartment,4,90,48778.0,48600.0,178.0,135.5,Normal (+/-10%),False
+MTR-GAU-0084,GAU,Independent House,3,90,36463.8,36450.0,13.8,135.1,Normal (+/-10%),False
+MTR-DED-0085,DED,Independent Villa,3,90,36369.0,36450.0,-81.0,134.7,Efficient (<135 LPCD),False
+MTR-DED-0086,DED,2BHK Apartment,4,90,48514.9,48600.0,-85.1,134.8,Efficient (<135 LPCD),False
+MTR-DED-0087,DED,3BHK Gated Society,4,90,48559.8,48600.0,-40.2,134.9,Efficient (<135 LPCD),False
+MTR-DED-0088,DED,Independent House,4,90,48576.2,48600.0,-23.8,134.9,Efficient (<135 LPCD),False
+MTR-DED-0089,DED,Independent Villa,3,90,90149.8,36450.0,53699.8,333.9,High Wastage / Deficit Risk,True
+MTR-DED-0090,DED,3BHK Gated Society,4,90,48516.1,48600.0,-83.9,134.8,Efficient (<135 LPCD),False
+MTR-DED-0091,DED,2BHK Apartment,4,90,48455.8,48600.0,-144.2,134.6,Efficient (<135 LPCD),False
+MTR-DED-0092,DED,Row House,4,90,118146.7,48600.0,69546.7,328.2,High Wastage / Deficit Risk,True
+MTR-DED-0093,DED,Independent House,3,90,36446.5,36450.0,-3.5,135.0,Efficient (<135 LPCD),False
+MTR-DED-0094,DED,Row House,4,90,48513.6,48600.0,-86.4,134.8,Efficient (<135 LPCD),False
+MTR-DED-0095,DED,Independent House,3,90,36462.3,36450.0,12.3,135.0,Normal (+/-10%),False
+MTR-DED-0096,DED,3BHK Gated Society,4,90,48713.0,48600.0,113.0,135.3,Normal (+/-10%),False
+MTR-DED-0097,DED,Independent Villa,4,90,48519.6,48600.0,-80.4,134.8,Efficient (<135 LPCD),False
+MTR-DED-0098,DED,2BHK Apartment,5,90,60903.4,60750.0,153.4,135.3,Normal (+/-10%),False
