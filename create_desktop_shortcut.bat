@@ -20,3 +20,4 @@ echo.
 echo You can now double-click 'AquaPulse Water Platform' on your Desktop anytime!
 echo.
 pause
+
