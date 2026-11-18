@@ -110,7 +110,6 @@ export const DashboardView: React.FC<Props> = ({
 
   const activeLeaks = anomalies.filter((a) => a.status === 'active' || a.status === 'investigating');
   const recentTrends = trends.slice(-7);
-  const selectedCity = cities.find((c) => c.city_id === selectedZoneId);
 
   // Form-1A Benchmark comparison for current flat
   const benchmarkDiffL = Math.round(selectedFlat.daily_liters - selectedFlat.form1a_target_liters);
