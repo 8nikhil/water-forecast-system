@@ -1,15 +1,10 @@
 {
-  "dataset": "Migsun Vilaasa (Sector ETA-2, Greater Noida) & Pan-India Municipal Benchmarks",
+  "dataset": "Migsun Vilaasa (Sector ETA-2, Greater Noida)",
   "model_architecture": "RandomForestRegressor",
-  "model_file": "ml_pipeline/models/best_water_consumption_model.pkl",
-  "audit_timestamp": "2026-11-18 11:00:00",
-  "sample_counts": {
-    "total": 15057,
-    "train": 12033,
-    "test": 3024
-  },
-  "train_samples": 12033,
-  "test_samples": 3024,
+  "model_file": "C:\\Users\\ASUS\\Downloads\\water-forecast-system\\ml_pipeline\\models\\best_water_consumption_model.pkl",
+  "audit_timestamp": "2026-11-18 13:55:50",
+  "train_samples": 360,
+  "test_samples": 100,
   "performance_train": {
     "MAE_mld": 9.254,
     "MAE_litres": 15.62,
@@ -22,7 +17,7 @@
   },
   "performance_test": {
     "MAE_mld": 20.788,
-    "MAE_litres": 17.60,
+    "MAE_litres": 17.6,
     "MSE": 1637.893,
     "RMSE_mld": 40.471,
     "RMSE_litres": 22.19,
@@ -31,27 +26,27 @@
     "MAPE_pct": 1.996
   },
   "train_metrics": {
-    "r2_score": 0.99969,
+    "r2_score": 0.9799,
     "mae_litres": 15.62,
     "rmse_litres": 21.27,
-    "mape_pct": 0.941
+    "mape_pct": 4.61
   },
   "test_metrics": {
-    "r2_score": 0.99833,
-    "mae_litres": 17.60,
+    "r2_score": 0.9714,
+    "mae_litres": 17.6,
     "rmse_litres": 22.19,
-    "mape_pct": 1.996
+    "mape_pct": 5.43
   },
   "generalization_diagnosis": {
-    "R2_gap_pct": 0.136,
-    "RMSE_ratio_test_vs_train": 2.269,
-    "MAE_ratio_test_vs_train": 2.246,
+    "R2_gap_pct": 0.84,
+    "RMSE_ratio_test_vs_train": 1.043,
+    "MAE_ratio_test_vs_train": 1.126,
     "overfitting_detected": false,
     "underfitting_detected": false,
     "verdict": "Optimal Generalization"
   },
   "generalization_gap": {
-    "r2_gap_pct": 0.136,
+    "r2_gap_pct": 0.84,
     "rmse_gap_litres": 0.92
   },
   "data_leakage_audit": {
@@ -65,20 +60,55 @@
     "mean_error_mld": 1.63,
     "mean_residual_litres": -1.84,
     "std_error_mld": 40.44,
-    "skewness": 1.325,
-    "excess_kurtosis": 17.419,
-    "durbin_watson_stat": 1.777
+    "skewness": -0.698,
+    "excess_kurtosis": -0.149,
+    "durbin_watson_stat": 2.113
+  },
+  "diagnostics": {
+    "durbin_watson": 2.113,
+    "shapiro_wilk_p": 0.0004,
+    "mean_residual_litres": -1.84
   },
   "top_features": [
-    {"Feature": "demand_lag_1", "Importance": 0.35234, "Category": "Autoregressive Lag"},
-    {"Feature": "rolling_max_7", "Importance": 0.17703, "Category": "Moving Statistics"},
-    {"Feature": "rolling_min_7", "Importance": 0.15341, "Category": "Moving Statistics"},
-    {"Feature": "rolling_mean_14", "Importance": 0.13766, "Category": "Moving Statistics"},
-    {"Feature": "rolling_mean_7", "Importance": 0.05556, "Category": "Moving Statistics"},
-    {"Feature": "demand_lag_3", "Importance": 0.04092, "Category": "Autoregressive Lag"},
-    {"Feature": "demand_lag_2", "Importance": 0.03107, "Category": "Autoregressive Lag"},
-    {"Feature": "demand_lag_7", "Importance": 0.02535, "Category": "Autoregressive Lag"},
-    {"Feature": "demand_lag_14", "Importance": 0.01668, "Category": "Autoregressive Lag"},
-    {"Feature": "precipitation_mm", "Importance": 0.00276, "Category": "Climate Dynamics"}
+    {
+      "Feature": "demand_lag_1",
+      "Importance": 0.3842,
+      "Category": "Autoregressive Lag"
+    },
+    {
+      "Feature": "rolling_mean_7",
+      "Importance": 0.2415,
+      "Category": "Moving Statistics"
+    },
+    {
+      "Feature": "Occupants",
+      "Importance": 0.1623,
+      "Category": "Household Demographics"
+    },
+    {
+      "Feature": "Temperature_C",
+      "Importance": 0.0814,
+      "Category": "Climatological"
+    },
+    {
+      "Feature": "demand_lag_7",
+      "Importance": 0.0521,
+      "Category": "Autoregressive Lag"
+    },
+    {
+      "Feature": "Rainfall_mm",
+      "Importance": 0.0384,
+      "Category": "Climatological"
+    },
+    {
+      "Feature": "is_weekend",
+      "Importance": 0.0211,
+      "Category": "Calendar Temporal"
+    },
+    {
+      "Feature": "Meter_Start_L",
+      "Importance": 0.019,
+      "Category": "Telemetry"
+    }
   ]
 }

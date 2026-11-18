@@ -159,13 +159,24 @@ def run_pipeline():
         mape = float(np.mean(np.abs((y_test - preds) / y_test)) * 100.0)
 
         results[name] = {
+            "algorithm": name,
             "MAE_litres": round(float(mae), 2),
             "RMSE_litres": round(float(rmse), 2),
+            "mae_mld": round(float(mae) / 1000.0, 5),
+            "rmse_mld": round(float(rmse) / 1000.0, 5),
+            "MAE_mld": round(float(mae) / 1000.0, 5),
+            "RMSE_mld": round(float(rmse) / 1000.0, 5),
             "MSE": round(float(mse), 2),
+            "mse": round(float(mse), 2),
             "R2_Score": round(float(r2), 4),
+            "r2_score": round(float(r2), 4),
             "R2_Percentage": round(float(r2 * 100.0), 2),
+            "r2_percentage": round(float(r2 * 100.0), 2),
             "MAPE_pct": round(mape, 2),
-            "Training_Time_sec": round(float(fit_time), 3)
+            "mape_pct": round(mape, 2),
+            "Training_Time_sec": round(float(fit_time), 3),
+            "training_time_sec": round(float(fit_time), 3),
+            "is_champion": False
         }
         
         mod_filename = os.path.join(models_dir, f"{name.lower().replace(' ', '_')}.pkl")
@@ -173,6 +184,7 @@ def run_pipeline():
 
     # Determine best champion model (highest R2)
     best_name = max(results, key=lambda k: results[k]["R2_Score"])
+    results[best_name]["is_champion"] = True
     
     best_bundle = {
         "model_name": best_name,
