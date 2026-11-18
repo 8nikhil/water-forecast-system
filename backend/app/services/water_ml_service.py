@@ -101,6 +101,24 @@ class WaterMLService:
             except Exception as e:
                 print(f"[WaterMLService] Error loading benchmark JSON: {e}")
 
+        # 5. Load Migsun Vilaasa Household Datasets (Baseline & Timeseries)
+        self.flats_baseline_path = os.path.join(self.base_dir, "datasets", "processed", "migsun_vilaasa_baseline_end_use.csv")
+        self.flats_timeseries_path = os.path.join(self.base_dir, "datasets", "processed", "migsun_vilaasa_daily_timeseries.csv")
+
+        self.flats_baseline_df: Optional[pd.DataFrame] = None
+        if os.path.exists(self.flats_baseline_path):
+            try:
+                self.flats_baseline_df = pd.read_csv(self.flats_baseline_path)
+            except Exception as e:
+                print(f"[WaterMLService] Error loading flats baseline: {e}")
+
+        self.flats_timeseries_df: Optional[pd.DataFrame] = None
+        if os.path.exists(self.flats_timeseries_path):
+            try:
+                self.flats_timeseries_df = pd.read_csv(self.flats_timeseries_path)
+            except Exception as e:
+                print(f"[WaterMLService] Error loading flats timeseries: {e}")
+
     # =====================================================================
     # PREDICTION METHODS
     # =====================================================================
@@ -201,6 +219,97 @@ class WaterMLService:
                 "mean_min_temp_c": meta["tmin_mean"]
             })
         return results
+
+    def get_all_flats(self) -> List[Dict[str, Any]]:
+        """Returns metadata and baseline end-use audit for all 20 Migsun Vilaasa flats."""
+        if self.flats_baseline_df is None:
+            return []
+        results = []
+        for _, row in self.flats_baseline_df.iterrows():
+            fid = str(row["Flat_ID"])
+            occ = int(row["Occupants"])
+            results.append({
+                "flat_id": fid,
+                "occupants": occ,
+                "tier": str(row["Usage_Category"]),
+                "daily_liters": float(row["Total_House_Daily_L"]),
+                "lpcd": float(row["Per_Head_Daily_L (LPCD)"]),
+                "monthly_liters": float(row["Total_House_Monthly_L (30d)"]),
+                "annual_liters": float(row["Total_House_Annual_L (365d)"]),
+                "form1a_target_lpcd": 86.0,
+                "form1a_target_liters": float(occ * 86.0),
+                "end_use": {
+                    "bathing_l": float(row["Bathing_L"]),
+                    "toilet_flushing_l": float(row["Toilet_Flushing_L"]),
+                    "washing_clothes_l": float(row["Washing_Clothes_L"]),
+                    "washing_utensils_l": float(row["Washing_Utensils_L"]),
+                    "house_cleaning_l": float(row["House_Cleaning_L"]),
+                    "drinking_l": float(row["Drinking_L"]),
+                    "cooking_l": float(row["Cooking_L"]),
+                }
+            })
+        return results
+
+    def get_flat_detail(self, flat_id: str) -> Optional[Dict[str, Any]]:
+        all_flats = self.get_all_flats()
+        norm_id = flat_id.strip().upper()
+        for f in all_flats:
+            if f["flat_id"].upper() == norm_id:
+                return f
+        return None
+
+    def get_flat_timeseries(self, flat_id: str) -> List[Dict[str, Any]]:
+        if self.flats_timeseries_df is None:
+            return []
+        norm_id = flat_id.strip().upper()
+        df = self.flats_timeseries_df
+        if norm_id in ["ALL", "ALL_VILAASA"]:
+            agg = df.groupby("Date").agg({
+                "House_Daily_Consumption_L": "sum",
+                "Occupants": "sum",
+                "Temperature_C": "mean",
+                "Rainfall_mm": "max",
+                "Leak_Flag": "sum"
+            }).reset_index()
+            res = []
+            for _, r in agg.iterrows():
+                total_l = float(r["House_Daily_Consumption_L"])
+                occ = int(r["Occupants"])
+                res.append({
+                    "date": str(r["Date"]),
+                    "day_of_week": pd.to_datetime(r["Date"]).strftime("%A"),
+                    "actual_liters": round(total_l, 1),
+                    "lpcd": round(total_l / occ, 1),
+                    "form1a_target_liters": round(float(occ * 86.0), 1),
+                    "temperature_c": round(float(r["Temperature_C"]), 1),
+                    "rainfall_mm": round(float(r["Rainfall_mm"]), 1),
+                    "leak_flag": int(r["Leak_Flag"]),
+                    "notes": "20 Flats Aggregate"
+                })
+            return res
+
+        filtered = df[df["Flat_ID"].str.upper() == norm_id].sort_values("Date")
+        if filtered.empty:
+            return []
+        
+        occ = int(filtered["Occupants"].iloc[0])
+        res = []
+        for _, r in filtered.iterrows():
+            res.append({
+                "date": str(r["Date"]),
+                "day_of_week": str(r["Day_of_Week"]),
+                "actual_liters": float(r["House_Daily_Consumption_L"]),
+                "lpcd": float(r["Per_Head_Consumption_L (LPCD)"]),
+                "form1a_target_liters": float(occ * 86.0),
+                "meter_start_l": float(r["Meter_Start_L"]),
+                "meter_end_l": float(r["Meter_End_L"]),
+                "temperature_c": float(r["Temperature_C"]),
+                "rainfall_mm": float(r["Rainfall_mm"]),
+                "supply_source": str(r["Supply_Source"]),
+                "leak_flag": int(r["Leak_Flag"]),
+                "notes": str(r["Notes"])
+            })
+        return res
 
     def get_historical_records(
         self,
