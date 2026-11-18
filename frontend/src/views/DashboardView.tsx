@@ -172,11 +172,11 @@ export const DashboardView: React.FC<Props> = ({
             <Award className="w-4 h-4 text-sky-400" />
           </div>
           <div className="text-2xl font-black text-cyan-400">
-            99.83% <span className="text-xs font-semibold text-slate-400">R² Score</span>
+            97.14% <span className="text-xs font-semibold text-slate-400">R² Score</span>
           </div>
           <div className="text-[11px] text-emerald-400 font-semibold mt-2 flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>MAE: 20.78 MLD (±2.0% MAPE)</span>
+            <span>MAE: 17.60 L (±5.4% MAPE)</span>
           </div>
         </div>
 

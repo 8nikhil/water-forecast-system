@@ -139,23 +139,23 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
             {/* Card 1 */}
             <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs hover:shadow-sm transition">
-              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">99.8%</p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">97.14%</p>
               <h4 className="text-sm font-bold text-slate-900 mt-1.5">Forecast accuracy</h4>
               <p className="text-xs text-slate-500 mt-0.5">R² holdout benchmark</p>
             </div>
 
             {/* Card 2 */}
             <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs hover:shadow-sm transition">
-              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">21 metros</p>
-              <h4 className="text-sm font-bold text-slate-900 mt-1.5">Cities monitored</h4>
-              <p className="text-xs text-slate-500 mt-0.5">Municipal distribution</p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">20 flats</p>
+              <h4 className="text-sm font-bold text-slate-900 mt-1.5">Houses monitored</h4>
+              <p className="text-xs text-slate-500 mt-0.5">Migsun Vilaasa baseline</p>
             </div>
 
             {/* Card 3 */}
             <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs hover:shadow-sm transition">
-              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">Up to 35%</p>
-              <h4 className="text-sm font-bold text-slate-900 mt-1.5">Water loss cut</h4>
-              <p className="text-xs text-slate-500 mt-0.5">NRW leak recovery</p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">86 LPCD</p>
+              <h4 className="text-sm font-bold text-slate-900 mt-1.5">Design target</h4>
+              <p className="text-xs text-slate-500 mt-0.5">Form-1A baseline target</p>
             </div>
 
             {/* Card 4 */}
@@ -606,10 +606,10 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
                 2. AI Analyzes & Predicts
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Our Random Forest model evaluates 52 causal dimensions—including autoregressive lag patterns, seasonal heatwaves, humidity, and calendar festivals—to forecast water demand with 99.8% precision.
+                Our Ridge Regression champion and machine learning ensemble evaluate autoregressive lag patterns, rolling 7-day moving averages, household occupancy, and climatic conditions to forecast water consumption with 97.14% R² precision.
               </p>
               <div className="pt-2 border-t border-slate-100 text-[11px] text-blue-600 font-semibold">
-                Holds a verifiable 20.78 MLD MAE error bound.
+                Holds a verifiable 17.60 L/day MAE error bound.
               </div>
             </div>
 
@@ -956,10 +956,10 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
                 <span>8 Min Read</span>
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2 leading-snug">
-                Machine Learning vs. Traditional ARIMA: 99.8% Accuracy Benchmark
+                Machine Learning vs. Traditional ARIMA: 97.14% Accuracy Benchmark
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Deep dive into our 5-model benchmark across 15,057 daily records. Why 200-tree Random Forest ensembles outperform classical time-series models on real municipal data.
+                Deep dive into our 5-model benchmark across Migsun Vilaasa 20 Households dataset. Why Ridge and ensemble regressors deliver precision on real residential telemetry.
               </p>
             </div>
             <button

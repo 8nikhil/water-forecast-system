@@ -211,7 +211,7 @@ export const ForecastingView: React.FC<Props> = () => {
               <h1 className="text-xl font-bold text-white flex items-center gap-2">
                 Water Demand Forecasting Engine
                 <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                  ML-Powered (99.83% R²)
+                  ML-Powered (97.14% R²)
                 </span>
               </h1>
               <p className="text-xs text-slate-400 mt-1">
