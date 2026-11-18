@@ -17,6 +17,12 @@ for /f "tokens=5" %%a in ('netstat -ano ^| findstr :5173 ^| findstr LISTENING 2^
     set FOUND=1
 )
 
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr :5174 ^| findstr LISTENING 2^>nul') do (
+    echo Stopping Frontend on Port 5174 [PID %%a]
+    taskkill /F /PID %%a >nul 2>&1
+    set FOUND=1
+)
+
 if %FOUND% EQU 1 (
     echo [OK] All AquaPulse services stopped successfully.
 ) else (
