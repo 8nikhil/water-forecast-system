@@ -22,6 +22,7 @@ import {
   AdminDataset,
   DatasetUploadResult
 } from '../types';
+import { VILAASA_FLATS_LIST, VILAASA_FLAT_TIMESERIES } from '../data/migsunVilaasaData';
 
 const API_BASE = '/api';
 
@@ -332,7 +333,6 @@ export const api = {
       const res = await client.get('/flats');
       return res.data;
     } catch {
-      const { VILAASA_FLATS_LIST } = await import('../data/migsunVilaasaData');
       return VILAASA_FLATS_LIST;
     }
   },
@@ -342,7 +342,6 @@ export const api = {
       const res = await client.get(`/flats/${flatId}`);
       return res.data;
     } catch {
-      const { VILAASA_FLATS_LIST } = await import('../data/migsunVilaasaData');
       return VILAASA_FLATS_LIST.find((f: any) => f.flat_id.toUpperCase() === flatId.toUpperCase()) || null;
     }
   },
@@ -352,7 +351,6 @@ export const api = {
       const res = await client.get(`/flats/${flatId}/timeseries`);
       return res.data;
     } catch {
-      const { VILAASA_FLAT_TIMESERIES } = await import('../data/migsunVilaasaData');
       return VILAASA_FLAT_TIMESERIES[flatId] || VILAASA_FLAT_TIMESERIES['A-101'] || [];
     }
   },
