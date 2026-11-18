@@ -15,8 +15,8 @@
     "r2_percentage": 97.14,
     "MAPE_pct": 5.43,
     "mape_pct": 5.43,
-    "Training_Time_sec": 0.029,
-    "training_time_sec": 0.029,
+    "Training_Time_sec": 0.069,
+    "training_time_sec": 0.069,
     "is_champion": true
   },
   "Linear Regression": {
@@ -35,8 +35,8 @@
     "r2_percentage": 96.63,
     "MAPE_pct": 5.52,
     "mape_pct": 5.52,
-    "Training_Time_sec": 0.004,
-    "training_time_sec": 0.004,
+    "Training_Time_sec": 0.003,
+    "training_time_sec": 0.003,
     "is_champion": false
   },
   "Random Forest": {
@@ -55,8 +55,8 @@
     "r2_percentage": 94.28,
     "MAPE_pct": 6.38,
     "mape_pct": 6.38,
-    "Training_Time_sec": 0.273,
-    "training_time_sec": 0.273,
+    "Training_Time_sec": 0.27,
+    "training_time_sec": 0.27,
     "is_champion": false
   },
   "Gradient Boosting": {
@@ -75,8 +75,8 @@
     "r2_percentage": 94.99,
     "MAPE_pct": 6.25,
     "mape_pct": 6.25,
-    "Training_Time_sec": 0.38,
-    "training_time_sec": 0.38,
+    "Training_Time_sec": 0.204,
+    "training_time_sec": 0.204,
     "is_champion": false
   },
   "XGBoost Regressor": {
@@ -95,8 +95,8 @@
     "r2_percentage": 96.33,
     "MAPE_pct": 6.22,
     "mape_pct": 6.22,
-    "Training_Time_sec": 0.383,
-    "training_time_sec": 0.383,
+    "Training_Time_sec": 1.428,
+    "training_time_sec": 1.428,
     "is_champion": false
   }
 }

@@ -141,7 +141,7 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
             <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs hover:shadow-sm transition">
               <p className="text-2xl sm:text-3xl font-extrabold text-sky-600 font-mono">97.14%</p>
               <h4 className="text-sm font-bold text-slate-900 mt-1.5">Forecast accuracy</h4>
-              <p className="text-xs text-slate-500 mt-0.5">R² holdout benchmark</p>
+              <p className="text-xs text-slate-500 mt-0.5">Migsun Vilaasa holdout (±17.6L MAE)</p>
             </div>
 
             {/* Card 2 */}
@@ -678,26 +678,26 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
           </div>
 
           <div className="p-6 rounded-2xl bg-white border border-slate-200/90 text-center shadow-xs hover:shadow-md transition">
-            <p className="text-4xl font-extrabold text-emerald-600 font-mono mb-2">15,057+</p>
-            <h3 className="text-sm font-bold text-slate-900 mb-1">Municipal Telemetry Records</h3>
+            <p className="text-4xl font-extrabold text-emerald-600 font-mono mb-2">600</p>
+            <h3 className="text-sm font-bold text-slate-900 mb-1">Daily Telemetry Records</h3>
             <p className="text-xs text-slate-500">
-              Rigorous empirical training across years of climate and seasonal shifts.
+              20 Migsun Vilaasa flats monitored continuously across 30 days.
             </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white border border-slate-200/90 text-center shadow-xs hover:shadow-md transition">
-            <p className="text-4xl font-extrabold text-blue-600 font-mono mb-2">21</p>
-            <h3 className="text-sm font-bold text-slate-900 mb-1">Metropolitan Grids Monitored</h3>
+            <p className="text-4xl font-extrabold text-blue-600 font-mono mb-2">20</p>
+            <h3 className="text-sm font-bold text-slate-900 mb-1">Residential Flats Monitored</h3>
             <p className="text-xs text-slate-500">
-              From Delhi and Mumbai to Bengaluru, Chennai, and Kolkata.
+              Across Towers A, B, C, and D in Sector ETA-2, Greater Noida.
             </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white border border-slate-200/90 text-center shadow-xs hover:shadow-md transition">
-            <p className="text-4xl font-extrabold text-purple-600 font-mono mb-2">$2.4M+</p>
+            <p className="text-4xl font-extrabold text-purple-600 font-mono mb-2">₹1.8L+</p>
             <h3 className="text-sm font-bold text-slate-900 mb-1">Potential Annual Savings</h3>
             <p className="text-xs text-slate-500">
-              In recovered water revenues, reduced chemical treatment, and pump power.
+              In recovered domestic water bills, leak prevention, and pump power.
             </p>
           </div>
 
