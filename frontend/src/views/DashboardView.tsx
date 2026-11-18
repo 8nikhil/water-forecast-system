@@ -58,10 +58,8 @@ export const DashboardView: React.FC<Props> = ({
   onOpenManualReading,
   onOpenSimulator,
 }) => {
-  const [cities, setCities] = useState<CityMetadataItem[]>([]);
   // Default to the first Migsun Vilaasa Flat A-101
   const [selectedZoneId, setSelectedZoneId] = useState<string>('A-101');
-  const [cityForecast, setCityForecast] = useState<PanIndiaDailyPrediction | null>(null);
   const [timeRange, setTimeRange] = useState<'7d' | '14d' | '30d'>('30d');
   const [selectedFlat, setSelectedFlat] = useState<VilaasaFlat>(VILAASA_FLATS_LIST[0]);
 
@@ -92,35 +90,13 @@ export const DashboardView: React.FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const list = await api.getSupportedCities();
-        setCities(list);
-      } catch (e) {
-        console.error('Failed to load municipal cities', e);
-      }
-    };
-    init();
-  }, []);
-
-  const isFlat = selectedZoneId.includes('-') || selectedZoneId === 'ALL_VILAASA';
-
-  const handleZoneChange = async (zoneId: string) => {
+  const handleZoneChange = (zoneId: string) => {
     setSelectedZoneId(zoneId);
     if (zoneId === 'ALL_VILAASA') {
       setSelectedFlat(complexAggregateFlat);
-    } else if (zoneId.includes('-')) {
+    } else {
       const found = VILAASA_FLATS_LIST.find((f) => f.flat_id === zoneId);
       if (found) setSelectedFlat(found);
-    } else {
-      // Municipal city selected
-      try {
-        const res = await api.predictDaily({ city_id: zoneId });
-        setCityForecast(res);
-      } catch (e) {
-        console.error('Forecast fetch failed for city', e);
-      }
     }
   };
 
@@ -167,9 +143,7 @@ export const DashboardView: React.FC<Props> = ({
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-0.5">
-            {isFlat
-              ? `Real-time smart meter telemetry for ${selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex (20 Flats)' : `Flat ${selectedZoneId} (${selectedFlat.occupants} Occupants)`} with Form-1A design benchmarks and AI Ridge predictions.`
-              : 'Real-time municipal telemetry, smart meter telemetry, and high-precision machine learning forecasts.'}
+            Real-time smart meter telemetry for {selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex (20 Flats)' : `Flat ${selectedZoneId} (${selectedFlat.occupants} Occupants)`} with Form-1A design benchmarks and AI Ridge predictions.
           </p>
         </div>
 
@@ -181,23 +155,14 @@ export const DashboardView: React.FC<Props> = ({
             onChange={(e) => handleZoneChange(e.target.value)}
             className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-xl border border-slate-700 focus:outline-none focus:border-cyan-500"
           >
-            <optgroup label="Migsun Vilaasa Flats (20 Households - Smart Sub-Meters)">
-              <option value="ALL_VILAASA">
-                Migsun Vilaasa (Total Complex - 78 Occupants)
+            <option value="ALL_VILAASA">
+              Migsun Vilaasa (Total Complex - 78 Occupants)
+            </option>
+            {VILAASA_FLATS_LIST.map((f) => (
+              <option key={f.flat_id} value={f.flat_id}>
+                Flat {f.flat_id} ({f.occupants} Occ - {f.tier})
               </option>
-              {VILAASA_FLATS_LIST.map((f) => (
-                <option key={f.flat_id} value={f.flat_id}>
-                  Flat {f.flat_id} ({f.occupants} Occ - {f.tier})
-                </option>
-              ))}
-            </optgroup>
-            <optgroup label="Pan-India Municipal Zones (21 Cities)">
-              {cities.map((c) => (
-                <option key={c.city_id} value={c.city_id}>
-                  {c.city_name} ({c.city_id})
-                </option>
-              ))}
-            </optgroup>
+            ))}
           </select>
         </div>
       </div>
@@ -239,35 +204,17 @@ export const DashboardView: React.FC<Props> = ({
         <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm hover:border-cyan-500/30 transition">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
             <span className="font-semibold uppercase tracking-wider">
-              {isFlat ? `${selectedZoneId === 'ALL_VILAASA' ? 'Complex' : `Flat ${selectedZoneId}`} Monitored Demand` : `${selectedCity?.city_name || 'Municipal'} Demand`}
+              {selectedZoneId === 'ALL_VILAASA' ? 'Complex Monitored Demand' : `Flat ${selectedZoneId} Demand`}
             </span>
             <Droplets className="w-4 h-4 text-cyan-400" />
           </div>
           <div className="text-2xl font-black text-white">
-            {isFlat ? (
-              <>
-                {selectedFlat.daily_liters.toLocaleString()}{' '}
-                <span className="text-xs font-semibold text-slate-400">Litres/day</span>
-              </>
-            ) : (
-              <>
-                {cityForecast?.predicted_demand_mld.toFixed(1) || '1,492.3'}{' '}
-                <span className="text-xs font-semibold text-slate-400">MLD</span>
-              </>
-            )}
+            {selectedFlat.daily_liters.toLocaleString()}{' '}
+            <span className="text-xs font-semibold text-slate-400">Litres/day</span>
           </div>
           <div className="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
-            {isFlat ? (
-              <>
-                <span>30-Day: {selectedFlat.monthly_liters.toLocaleString()} L</span>
-                <span className="text-emerald-400 font-semibold">{selectedFlat.lpcd} LPCD</span>
-              </>
-            ) : (
-              <>
-                <span>Vol: {cityForecast?.equivalent_million_cubic_meters.toFixed(2) || '1.49'} MCM</span>
-                <span className="text-emerald-400 font-semibold">{selectedCity?.cpheeo_target_lpcd || 135} LPCD</span>
-              </>
-            )}
+            <span>30-Day: {selectedFlat.monthly_liters.toLocaleString()} L</span>
+            <span className="text-emerald-400 font-semibold">{selectedFlat.lpcd} LPCD</span>
           </div>
         </div>
 
@@ -290,29 +237,16 @@ export const DashboardView: React.FC<Props> = ({
         <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm hover:border-amber-500/30 transition">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
             <span className="font-semibold uppercase tracking-wider">
-              {isFlat ? 'Flat Occupancy & Tier' : 'Water Stress Score'}
+              Flat Occupancy & Tier
             </span>
             <Flame className="w-4 h-4 text-amber-400" />
           </div>
           <div className="text-2xl font-black text-amber-400">
-            {isFlat ? (
-              `${selectedFlat.occupants} Occupants`
-            ) : (
-              `${selectedCity?.water_stress_score.toFixed(0) || 100} / 100`
-            )}
+            {selectedFlat.occupants} Occupants
           </div>
           <div className="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
-            {isFlat ? (
-              <>
-                <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">{selectedFlat.tier} Usage Tier</span>
-                <span className="text-slate-300 font-semibold">Tmax: 30.4°C</span>
-              </>
-            ) : (
-              <>
-                <span>Zone: {selectedCity?.zone || 'South'}</span>
-                <span className="text-slate-300 font-semibold">Tmax: {selectedCity?.mean_max_temp_c || 30.0}°C</span>
-              </>
-            )}
+            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">{selectedFlat.tier} Usage Tier</span>
+            <span className="text-slate-300 font-semibold">Tmax: 30.4°C</span>
           </div>
         </div>
 
@@ -320,28 +254,20 @@ export const DashboardView: React.FC<Props> = ({
         <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm hover:border-emerald-500/30 transition">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
             <span className="font-semibold uppercase tracking-wider">
-              {isFlat ? 'Form-1A Design Baseline' : 'Conservation Potential'}
+              Form-1A Design Baseline
             </span>
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
           </div>
           <div className="text-2xl font-black text-emerald-400">
-            {isFlat ? (
-              <span className={isWithinBenchmark ? 'text-emerald-400' : 'text-amber-400'}>
-                {benchmarkDiffPct > 0 ? `+${benchmarkDiffPct}%` : `${benchmarkDiffPct}%`}
-              </span>
-            ) : (
-              '~15%'
-            )}
+            <span className={isWithinBenchmark ? 'text-emerald-400' : 'text-amber-400'}>
+              {benchmarkDiffPct > 0 ? `+${benchmarkDiffPct}%` : `${benchmarkDiffPct}%`}
+            </span>
             <span className="text-xs font-semibold text-slate-400 ml-1">
-              {isFlat ? (isWithinBenchmark ? 'Within Design' : 'Above Target') : 'Reduction'}
+              {isWithinBenchmark ? 'Within Design' : 'Above Target'}
             </span>
           </div>
           <div className="text-[11px] text-slate-400 mt-2 truncate">
-            {isFlat ? (
-              <span>Target: {selectedFlat.form1a_target_liters.toLocaleString()} L/day ({selectedFlat.occupants} × 86 LPCD)</span>
-            ) : (
-              <span>Via NRW leak remediation and low-flow retrofits</span>
-            )}
+            <span>Target: {selectedFlat.form1a_target_liters.toLocaleString()} L/day ({selectedFlat.occupants} × 86 LPCD)</span>
           </div>
         </div>
 
@@ -356,131 +282,111 @@ export const DashboardView: React.FC<Props> = ({
             <div>
               <h2 className="text-sm font-bold text-white flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-cyan-400" />
-                {isFlat
-                  ? `${selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex' : `Flat ${selectedZoneId}`} Daily Consumption vs Form-1A Design Benchmark (86 LPCD)`
-                  : 'Municipal Consumption Trend vs Conservation Baseline'}
+                {selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex' : `Flat ${selectedZoneId}`} Daily Consumption vs Form-1A Design Benchmark (86 LPCD)
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
-                {isFlat
-                  ? `Telemetry for Oct 01–30, 2026: Solid line is actual consumption, dashed green is Form-1A design limit (${selectedFlat.form1a_target_liters} L), purple is Ridge AI forecast.`
-                  : 'Past monitored consumption with AI-interpolated efficiency targets.'}
+                Telemetry for Oct 01–30, 2026: Solid line is actual consumption, dashed green is Form-1A design limit ({selectedFlat.form1a_target_liters} L), purple is Ridge AI forecast.
               </p>
             </div>
 
             {/* Time Span Filter for Flat */}
-            {isFlat && (
-              <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
-                {(['7d', '14d', '30d'] as const).map((r) => (
-                  <button
-                    key={r}
-                    onClick={() => setTimeRange(r)}
-                    className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition ${
-                      timeRange === r
-                        ? 'bg-cyan-500 text-white shadow-xs'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    {r === '7d' ? '7 Days' : r === '14d' ? '14 Days' : '30 Days'}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
+              {(['7d', '14d', '30d'] as const).map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setTimeRange(r)}
+                  className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition ${
+                    timeRange === r
+                      ? 'bg-cyan-500 text-white shadow-xs'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {r === '7d' ? '7 Days' : r === '14d' ? '14 Days' : '30 Days'}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              {isFlat ? (
-                <AreaChart data={timeseriesData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="dashUsageGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="short_date" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#0f172a',
-                      borderColor: '#334155',
-                      borderRadius: '0.75rem',
-                      color: '#f8fafc',
-                      fontSize: '12px',
-                      padding: '10px'
-                    }}
-                    formatter={(val: any, name: string) => {
-                      if (name === 'actual_liters') return [`${val} Litres`, 'Actual Consumption'];
-                      if (name === 'predicted_liters') return [`${val} Litres`, 'Ridge AI Prediction'];
-                      if (name === 'form1a_target_liters') return [`${val} Litres`, 'Form-1A Design Limit (86 LPCD)'];
-                      return [val, name];
-                    }}
-                    labelFormatter={(label, payload) => {
-                      const item = payload?.[0]?.payload;
-                      return item ? `${item.date} (${item.day_of_week}) | ${item.notes}` : label;
-                    }}
-                  />
-                  {/* Actual Consumption Area */}
-                  <Area
-                    type="monotone"
-                    dataKey="actual_liters"
-                    stroke="#06b6d4"
-                    strokeWidth={2.5}
-                    fill="url(#dashUsageGrad)"
-                    name="actual_liters"
-                  />
-                  {/* Ridge AI Forecast Line */}
-                  <Line
-                    type="monotone"
-                    dataKey="predicted_liters"
-                    stroke="#a78bfa"
-                    strokeWidth={2}
-                    strokeDasharray="4 4"
-                    dot={false}
-                    name="predicted_liters"
-                  />
-                  {/* Form-1A Clearance Design Baseline */}
-                  <Line
-                    type="monotone"
-                    dataKey="form1a_target_liters"
-                    stroke="#10b981"
-                    strokeWidth={2}
-                    strokeDasharray="3 3"
-                    dot={false}
-                    name="form1a_target_liters"
-                  />
-                </AreaChart>
-              ) : (
-                <AreaChart data={recentTrends} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="dashUsageGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="date" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#0f172a',
-                      borderColor: '#334155',
-                      borderRadius: '0.75rem',
-                      color: '#f8fafc',
-                      fontSize: '12px'
-                    }}
-                    formatter={(val: any) => [`${val} L`, 'Usage']}
-                  />
-                  <Area type="monotone" dataKey="total_liters" stroke="#06b6d4" strokeWidth={2.5} fill="url(#dashUsageGrad)" />
-                </AreaChart>
-              )}
+              <AreaChart data={timeseriesData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="dashUsageGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                <XAxis dataKey="short_date" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                <YAxis unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#0f172a',
+                    borderColor: '#334155',
+                    borderRadius: '0.75rem',
+                    color: '#f8fafc',
+                    fontSize: '12px',
+                    padding: '10px'
+                  }}
+                  formatter={(val: any, name: string) => {
+                    if (name === 'actual_liters') return [`${val} Litres`, 'Actual Consumption'];
+                    if (name === 'predicted_liters') return [`${val} Litres`, 'Ridge AI Prediction'];
+                    if (name === 'form1a_target_liters') return [`${val} Litres`, 'Form-1A Design Limit (86 LPCD)'];
+                    return [val, name];
+                  }}
+                  labelFormatter={(label, payload) => {
+                    const item = payload?.[0]?.payload;
+                    return item ? `${item.date} (${item.day_of_week}) | ${item.notes}` : label;
+                  }}
+                />
+                {/* Actual Consumption Area */}
+                <Area
+                  type="monotone"
+                  dataKey="actual_liters"
+                  stroke="#06b6d4"
+                  strokeWidth={2.5}
+                  fill="url(#dashUsageGrad)"
+                  name="actual_liters"
+                />
+                {/* Ridge AI Forecast Line */}
+                <Line
+                  type="monotone"
+                  dataKey="predicted_liters"
+                  stroke="#a78bfa"
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                  dot={false}
+                  name="predicted_liters"
+                />
+                {/* Form-1A Clearance Design Baseline */}
+                <Line
+                  type="monotone"
+                  dataKey="form1a_target_liters"
+                  stroke="#10b981"
+                  strokeWidth={2}
+                  strokeDasharray="3 3"
+                  dot={false}
+                  name="form1a_target_liters"
+                />
+              </AreaChart>
             </ResponsiveContainer>
           </div>
 
           {/* Visual Legend */}
-          {isFlat && (
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-2 border-t border-slate-800 text-xs">
-              <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-2 border-t border-slate-800 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-cyan-400 inline-block" />
+              <span className="text-slate-300 font-medium">Actual Smart Meter Reading (L)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-0.5 border-t-2 border-dashed border-purple-400 inline-block" />
+              <span className="text-slate-300 font-medium">Ridge AI Model Prediction (97.14% R²)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-0.5 border-t-2 border-dashed border-emerald-400 inline-block" />
+              <span className="text-slate-300 font-medium">Form-1A Clearance Design Target ({selectedFlat.form1a_target_liters} L / 86 LPCD)</span>
+            </div>
+          </div>
                 <span className="w-3 h-3 rounded-full bg-cyan-400 inline-block" />
                 <span className="text-slate-300 font-medium">Actual Smart Meter Reading (L)</span>
               </div>
