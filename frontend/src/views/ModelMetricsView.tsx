@@ -65,7 +65,7 @@ export const ModelMetricsView: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      
+
       {/* Top Banner */}
       <div className="p-6 bg-slate-900 border border-slate-800 rounded-3xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -99,7 +99,7 @@ export const ModelMetricsView: React.FC = () => {
 
       {/* KPI 4-Card Performance Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
+
         {/* R2 Score */}
         <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm hover:border-cyan-500/30 transition">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
@@ -172,7 +172,7 @@ export const ModelMetricsView: React.FC = () => {
 
       {/* Feature Importance & Generalization Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Top Feature Importance Bar Chart */}
         <div className="lg:col-span-2 p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -325,9 +325,8 @@ export const ModelMetricsView: React.FC = () => {
               {benchmarks.map((b, idx) => (
                 <tr
                   key={idx}
-                  className={`hover:bg-slate-800/40 transition ${
-                    b.is_champion ? 'bg-cyan-500/5 font-semibold text-white' : 'text-slate-300'
-                  }`}
+                  className={`hover:bg-slate-800/40 transition ${b.is_champion ? 'bg-cyan-500/5 font-semibold text-white' : 'text-slate-300'
+                    }`}
                 >
                   <td className="py-3 px-4 flex items-center gap-2">
                     {b.is_champion && <Award className="w-3.5 h-3.5 text-cyan-400 inline" />}
