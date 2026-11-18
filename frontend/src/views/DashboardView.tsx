@@ -26,7 +26,7 @@ import {
   Info
 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
-import { DashboardSummary, TrendPoint, AnomalyEvent, Recommendation, User, CityMetadataItem, PanIndiaDailyPrediction } from '../types';
+import { DashboardSummary, TrendPoint, AnomalyEvent, Recommendation, User } from '../types';
 import { api } from '../services/api';
 import {
   VILAASA_FLATS_LIST,
@@ -387,19 +387,6 @@ export const DashboardView: React.FC<Props> = ({
               <span className="text-slate-300 font-medium">Form-1A Clearance Design Target ({selectedFlat.form1a_target_liters} L / 86 LPCD)</span>
             </div>
           </div>
-                <span className="w-3 h-3 rounded-full bg-cyan-400 inline-block" />
-                <span className="text-slate-300 font-medium">Actual Smart Meter Reading (L)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-0.5 border-t-2 border-dashed border-purple-400 inline-block" />
-                <span className="text-slate-300 font-medium">Ridge AI Model Prediction (97.14% R²)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-0.5 border-t-2 border-dashed border-emerald-400 inline-block" />
-                <span className="text-slate-300 font-medium">Form-1A Clearance Design Target ({selectedFlat.form1a_target_liters} L / 86 LPCD)</span>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Action Shortcuts & Module Navigation */}
@@ -486,67 +473,65 @@ export const DashboardView: React.FC<Props> = ({
 
       </div>
 
-      {/* Sub-Metered End-Use Breakdown (Displayed for Migsun Vilaasa Flats) */}
-      {isFlat && (
-        <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <h2 className="text-sm font-bold text-white flex items-center gap-2">
-                <PieChart className="w-4 h-4 text-cyan-400" />
-                {selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex' : `Flat ${selectedZoneId}`} Sub-Metered End-Use Breakdown
-              </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                MoEFCC Form-1A empirical sub-metered water distribution across 7 household consumption channels.
-              </p>
-            </div>
-            <span className="text-xs font-bold px-3 py-1 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 self-start sm:self-auto">
-              Total: {selectedFlat.daily_liters.toLocaleString()} Litres / Day ({selectedFlat.lpcd} LPCD)
-            </span>
+      {/* Sub-Metered End-Use Breakdown (Migsun Vilaasa Flats) */}
+      <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-sm font-bold text-white flex items-center gap-2">
+              <PieChart className="w-4 h-4 text-cyan-400" />
+              {selectedZoneId === 'ALL_VILAASA' ? 'Migsun Vilaasa Complex' : `Flat ${selectedZoneId}`} Sub-Metered End-Use Breakdown
+            </h2>
+            <p className="text-xs text-slate-400 mt-0.5">
+              MoEFCC Form-1A empirical sub-metered water distribution across 7 household consumption channels.
+            </p>
           </div>
+          <span className="text-xs font-bold px-3 py-1 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 self-start sm:self-auto">
+            Total: {selectedFlat.daily_liters.toLocaleString()} Litres / Day ({selectedFlat.lpcd} LPCD)
+          </span>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
-            {endUseCategories.map((cat) => {
-              const pct = ((cat.val / selectedFlat.daily_liters) * 100).toFixed(1);
-              return (
-                <div key={cat.label} className="p-3 bg-slate-950 border border-slate-800/80 rounded-xl space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-300 font-medium">{cat.label}</span>
-                    <span className="text-white font-bold">{cat.val} L</span>
-                  </div>
-                  <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${cat.color}`}
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between text-[10px] text-slate-400">
-                    <span>{pct}% of household</span>
-                    <span>{(cat.val / selectedFlat.occupants).toFixed(1)} LPCD</span>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          {endUseCategories.map((cat) => {
+            const pct = ((cat.val / selectedFlat.daily_liters) * 100).toFixed(1);
+            return (
+              <div key={cat.label} className="p-3 bg-slate-950 border border-slate-800/80 rounded-xl space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-300 font-medium">{cat.label}</span>
+                  <span className="text-white font-bold">{cat.val} L</span>
                 </div>
-              );
-            })}
-
-            {/* Form-1A Design Benchmark Card */}
-            <div className="p-3 bg-gradient-to-br from-emerald-950/30 to-slate-950 border border-emerald-500/30 rounded-xl space-y-1.5 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-emerald-400 block tracking-wider">
-                  MoEFCC Form-1A Clearance
-                </span>
-                <span className="text-xs font-bold text-white block mt-0.5">
-                  Design Target: 86.0 LPCD
-                </span>
+                <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${cat.color}`}
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between text-[10px] text-slate-400">
+                  <span>{pct}% of household</span>
+                  <span>{(cat.val / selectedFlat.occupants).toFixed(1)} LPCD</span>
+                </div>
               </div>
-              <p className="text-[10px] text-slate-400 leading-tight">
-                Benchmark budget for {selectedFlat.occupants} occupants is {selectedFlat.form1a_target_liters} L/day. 
-                {isWithinBenchmark
-                  ? ' Current usage is 100% compliant with environmental clearance limits.'
-                  : ` Usage exceeds design baseline by ${benchmarkDiffL} L/day.`}
-              </p>
+            );
+          })}
+
+          {/* Form-1A Design Benchmark Card */}
+          <div className="p-3 bg-gradient-to-br from-emerald-950/30 to-slate-950 border border-emerald-500/30 rounded-xl space-y-1.5 flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-emerald-400 block tracking-wider">
+                MoEFCC Form-1A Clearance
+              </span>
+              <span className="text-xs font-bold text-white block mt-0.5">
+                Design Target: 86.0 LPCD
+              </span>
             </div>
+            <p className="text-[10px] text-slate-400 leading-tight">
+              Benchmark budget for {selectedFlat.occupants} occupants is {selectedFlat.form1a_target_liters} L/day. 
+              {isWithinBenchmark
+                ? ' Current usage is 100% compliant with environmental clearance limits.'
+                : ` Usage exceeds design baseline by ${benchmarkDiffL} L/day.`}
+            </p>
           </div>
         </div>
-      )}
+      </div>
 
     </div>
   );
