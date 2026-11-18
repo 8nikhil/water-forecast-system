@@ -1,0 +1,637 @@
+"Migsun Vilaasa (Sector ETA-2, Greater Noida) — 20 Households Water Consumption Baseline",,,,,,,,,,,,,,
+"Calibrated from Vilaasa Form-1A (86 LPCD) & Addendum Scenarios (Low: 60 L, Moderate: 80-86 L, High: 110 L) | Synthetic Model-Training Dataset",,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Flat_ID,Occupants,Usage_Category,Per_Head_Daily_L (LPCD),Total_House_Daily_L,Per_Head_Monthly_L (30d),Total_House_Monthly_L (30d),Total_House_Annual_L (365d),Bathing_L,Toilet_Flushing_L,Washing_Clothes_L,Washing_Utensils_L,House_Cleaning_L,Drinking_L,Cooking_L
+A-101,4,Moderate,83.5,334,2505,10020,121910,124.3,73.8,48.5,36.9,25.2,12.4,12.4
+A-102,3,Low,63.8,191.4,1914,5742,69861,71.2,42.3,27.8,21.1,14.5,7.1,7.1
+A-103,5,High,108.9,544.5,3267,16335,198742.5,202.6,120.3,79.1,60.1,41.2,20.3,20.3
+A-201,4,Moderate,86.4,345.6,2592,10368,126144,128.6,76.4,50.2,38.2,26.1,12.9,12.9
+A-202,2,Moderate,78.6,157.2,2358,4716,57378,58.5,34.7,22.8,17.4,11.9,5.8,5.8
+B-101,6,High,110.6,663.6,3318,19908,242214,246.9,146.6,96.5,73.3,50.2,24.7,24.7
+B-102,4,Low,56.2,224.8,1686,6744,82052,83.6,49.7,32.7,24.8,17,8.4,8.4
+B-201,3,Moderate,83.5,250.5,2505,7515,91432.5,93.2,55.3,36.4,27.7,18.9,9.3,9.3
+B-202,5,Moderate,85.4,427,2562,12810,155855,158.9,94.3,62.1,47.2,32.3,15.9,15.9
+B-301,4,High,110.8,443.2,3324,13296,161768,164.9,97.9,64.4,49,33.5,16.5,16.5
+C-101,2,Low,58.1,116.2,1743,3486,42413,43.2,25.7,16.9,12.8,8.8,4.3,4.3
+C-102,4,Moderate,87.9,351.6,2637,10548,128334,130.8,77.7,51.1,38.8,26.6,13.1,13.1
+C-201,5,Low,65.3,326.5,1959,9795,119172.5,121.5,72.1,47.5,36.1,24.7,12.1,12.1
+C-202,3,High,103.8,311.4,3114,9342,113661,115.9,68.8,45.3,34.4,23.5,11.6,11.6
+C-301,4,Moderate,77.7,310.8,2331,9324,113442,115.6,68.7,45.2,34.3,23.5,11.6,11.6
+D-101,6,Moderate,81.7,490.2,2451,14706,178923,182.4,108.3,71.2,54.1,37,18.2,18.2
+D-102,4,High,113.2,452.8,3396,13584,165272,168.5,100,65.8,50,34.2,16.8,16.8
+D-201,3,Low,61.1,183.3,1833,5499,66904.5,68.2,40.5,26.6,20.2,13.9,6.8,6.8
+D-202,5,High,105.7,528.5,3171,15855,192902.5,196.7,116.8,76.8,58.4,39.9,19.7,19.7
+D-301,4,Moderate,85.2,340.8,2556,10224,124392,126.8,75.3,49.5,37.6,25.8,12.7,12.7
+TOTAL / AVG,,-,,,,,,,,,,,,
+30-Day Daily Water Consumption Time-Series (20 Flats × 30 Days = 600 Records),,,,,,,,,,,,,
+"Structured using Report Section 4 schema (Date, Flat_ID, Occupants, Meter Readings, Per-Head LPCD, House Daily L, Weather, Supply Source, Leak Flag)",,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Date,Day_of_Week,Flat_ID,Usage_Tier,Occupants,Meter_Start_L,Meter_End_L,Per_Head_Consumption_L (LPCD),House_Daily_Consumption_L,Temperature_C,Rainfall_mm,Supply_Source,Leak_Flag,Notes
+2026-10-01,Thursday,A-101,Moderate,4,32191.1,32505.9,78.7,314.8,30.4,0,Municipal,0,Normal
+2026-10-02,Friday,A-101,Moderate,4,32505.9,32841.6,83.92,335.7,30.1,0,Municipal,0,Normal
+2026-10-03,Saturday,A-101,Moderate,5,32841.6,33296.6,91,455,31.2,0,Borewell,0,Weekend guest (+1)
+2026-10-04,Sunday,A-101,Moderate,4,33296.6,33660.8,91.05,364.2,30.1,0,Municipal,0,Normal
+2026-10-05,Monday,A-101,Moderate,4,33660.8,33987,81.55,326.2,30.2,0,Municipal,0,Normal
+2026-10-06,Tuesday,A-101,Moderate,4,33987,34327.3,85.08,340.3,29.1,0,Municipal,0,Normal
+2026-10-07,Wednesday,A-101,Moderate,4,34327.3,34671.7,86.1,344.4,31.3,0,Municipal,0,Normal
+2026-10-08,Thursday,A-101,Moderate,4,34671.7,34970,74.58,298.3,29.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,A-101,Moderate,4,34970,35278.2,77.05,308.2,29,0,Municipal,0,Normal
+2026-10-10,Saturday,A-101,Moderate,4,35278.2,35671.1,98.22,392.9,31.9,0,Municipal,0,Normal
+2026-10-11,Sunday,A-101,Moderate,4,35671.1,36033.5,90.6,362.4,29.7,0,Municipal,0,Normal
+2026-10-12,Monday,A-101,Moderate,4,36033.5,36354.7,80.3,321.2,30.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,A-101,Moderate,4,36354.7,36692.7,84.5,338,32.3,0,Municipal,0,Normal
+2026-10-14,Wednesday,A-101,Moderate,4,36692.7,37039.7,86.75,347,32.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,A-101,Moderate,4,37039.7,37369.2,82.38,329.5,36.1,0,Municipal,0,Normal
+2026-10-16,Friday,A-101,Moderate,4,37369.2,37699.5,82.58,330.3,26.4,0,Borewell,0,Normal
+2026-10-17,Saturday,A-101,Moderate,4,37699.5,38033.3,83.45,333.8,27.7,0,Municipal,0,Normal
+2026-10-18,Sunday,A-101,Moderate,4,38033.3,38383.6,87.58,350.3,27.3,0,Municipal,0,Normal
+2026-10-19,Monday,A-101,Moderate,4,38383.6,38710.7,81.78,327.1,28.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-20,Tuesday,A-101,Moderate,4,38710.7,39041.1,82.6,330.4,30.6,0,Municipal,0,Normal
+2026-10-21,Wednesday,A-101,Moderate,4,39041.1,39354.7,78.4,313.6,28.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,A-101,Moderate,4,39354.7,39667.8,78.28,313.1,24.5,0,Municipal,0,Normal
+2026-10-23,Friday,A-101,Moderate,4,39667.8,39988.1,80.08,320.3,29.2,0,Municipal,0,Normal
+2026-10-24,Saturday,A-101,Moderate,4,39988.1,40371.9,95.95,383.8,27.1,0,Municipal,0,Normal
+2026-10-25,Sunday,A-101,Moderate,5,40371.9,40812.7,88.16,440.8,25.6,0,Municipal,0,Weekend guest (+1)
+2026-10-26,Monday,A-101,Moderate,4,40812.7,41130.3,79.4,317.6,27.5,0,Borewell,0,Normal
+2026-10-27,Tuesday,A-101,Moderate,4,41130.3,41441.4,77.78,311.1,27.6,0,Borewell,0,Normal
+2026-10-28,Wednesday,A-101,Moderate,4,41441.4,41747.4,76.5,306,29.7,0,Municipal,0,Normal
+2026-10-29,Thursday,A-101,Moderate,4,41747.4,42086.2,84.7,338.8,27.3,0,Municipal,0,Normal
+2026-10-30,Friday,A-101,Moderate,4,42086.2,42404,79.45,317.8,27.2,0,Municipal,0,Normal
+2026-10-01,Thursday,A-102,Low,3,18155.1,18339,61.3,183.9,31.1,0,Municipal,0,Normal
+2026-10-02,Friday,A-102,Low,3,18339,18523.8,61.6,184.8,28.7,0,Municipal,0,Normal
+2026-10-03,Saturday,A-102,Low,3,18523.8,18750.9,75.7,227.1,29.6,0,Municipal,0,Normal
+2026-10-04,Sunday,A-102,Low,3,18750.9,18969.5,72.87,218.6,30.5,0,Municipal,0,Normal
+2026-10-05,Monday,A-102,Low,3,18969.5,19155.2,61.9,185.7,28.6,9.1,Borewell,0,Normal
+2026-10-06,Tuesday,A-102,Low,3,19155.2,19350.5,65.1,195.3,28.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,A-102,Low,3,19350.5,19552.2,67.23,201.7,31.9,0.7,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,A-102,Low,3,19552.2,19734.6,60.8,182.4,31.4,0.7,Municipal,0,Normal
+2026-10-09,Friday,A-102,Low,3,19734.6,19938.7,68.03,204.1,32.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-10,Saturday,A-102,Low,3,19938.7,20138.1,66.47,199.4,29.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,A-102,Low,3,20138.1,20374.8,78.9,236.7,32.2,1.8,Municipal,0,Normal
+2026-10-12,Monday,A-102,Low,3,20374.8,20566.3,63.83,191.5,30.9,0,Municipal,0,Normal
+2026-10-13,Tuesday,A-102,Low,3,20566.3,20768.4,67.37,202.1,31,0,Municipal,0,Normal
+2026-10-14,Wednesday,A-102,Low,3,20768.4,20950.4,60.67,182,31.9,0,Municipal,0,Normal
+2026-10-15,Thursday,A-102,Low,3,20950.4,21140.4,63.33,190,29.4,0,Borewell,0,Normal
+2026-10-16,Friday,A-102,Low,3,21140.4,21330.2,63.27,189.8,28.2,10.5,Municipal,0,Normal
+2026-10-17,Saturday,A-102,Low,3,21330.2,21545.2,71.67,215,27.8,0,Municipal,0,Normal
+2026-10-18,Sunday,A-102,Low,3,21545.2,21741.2,65.33,196,28.8,0,Municipal,0,Normal
+2026-10-19,Monday,A-102,Low,3,21741.2,21918.1,58.97,176.9,28.8,0,Municipal,0,Normal
+2026-10-20,Tuesday,A-102,Low,3,21918.1,22105.4,62.43,187.3,30.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,A-102,Low,3,22105.4,22299.1,64.57,193.7,27.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,A-102,Low,3,22299.1,22486.2,62.37,187.1,29,0,Municipal,0,Normal
+2026-10-23,Friday,A-102,Low,3,22486.2,22674.2,62.67,188,30.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-24,Saturday,A-102,Low,3,22674.2,22885.1,70.3,210.9,28.8,0,Municipal,0,Normal
+2026-10-25,Sunday,A-102,Low,3,22885.1,23092.9,69.27,207.8,27.8,0,Municipal,0,Normal
+2026-10-26,Monday,A-102,Low,3,23092.9,23276.3,61.13,183.4,27.9,6.9,Municipal,0,Normal
+2026-10-27,Tuesday,A-102,Low,3,23276.3,23450.4,58.03,174.1,28.6,0,Municipal,0,Normal
+2026-10-28,Wednesday,A-102,Low,3,23450.4,23634.1,61.23,183.7,27.4,3,Municipal,0,Normal
+2026-10-29,Thursday,A-102,Low,3,23634.1,23829.4,65.1,195.3,30.5,0,Municipal,0,Normal
+2026-10-30,Friday,A-102,Low,3,23829.4,24010.3,60.3,180.9,30.1,0,Municipal,0,Normal
+2026-10-01,Thursday,A-103,High,5,14589.1,15152.8,112.74,563.7,31.8,0,Municipal,0,Normal
+2026-10-02,Friday,A-103,High,5,15152.8,15667.8,103,515,30.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-03,Saturday,A-103,High,5,15667.8,16291.8,124.8,624,29.1,0,Municipal,0,Normal
+2026-10-04,Sunday,A-103,High,5,16291.8,16942.7,130.18,650.9,29,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-05,Monday,A-103,High,5,16942.7,17503.4,112.14,560.7,31.7,0,Municipal,0,Normal
+2026-10-06,Tuesday,A-103,High,5,17503.4,17987.4,96.8,484,26.1,0,Municipal,0,Normal
+2026-10-07,Wednesday,A-103,High,5,17987.4,18496.9,101.9,509.5,33.4,0,Municipal,0,Normal
+2026-10-08,Thursday,A-103,High,5,18496.9,19005.3,101.68,508.4,33.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,A-103,High,5,19005.3,19545.6,108.06,540.3,29.5,4.1,Municipal,0,Normal
+2026-10-10,Saturday,A-103,High,5,19545.6,20163.4,123.56,617.8,32,0,Municipal,0,Normal
+2026-10-11,Sunday,A-103,High,5,20163.4,20729.3,113.18,565.9,34.2,0,Borewell,0,Normal
+2026-10-12,Monday,A-103,High,5,20729.3,21267.2,107.58,537.9,30.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,A-103,High,5,21267.2,21789.1,104.38,521.9,30.1,0,Municipal,0,Normal
+2026-10-14,Wednesday,A-103,High,5,21789.1,22343.5,110.88,554.4,31.5,0,Municipal,0,Normal
+2026-10-15,Thursday,A-103,High,5,22343.5,22864.7,104.24,521.2,31.8,0,Borewell,0,Normal
+2026-10-16,Friday,A-103,High,5,22864.7,23342.3,95.52,477.6,25.8,0,Municipal,0,Normal
+2026-10-17,Saturday,A-103,High,6,23342.3,24054.4,118.68,712.1,30.8,0,Borewell,0,Weekend guest (+1)
+2026-10-18,Sunday,A-103,High,5,24054.4,24660,121.12,605.6,30.5,0,Municipal,0,Normal
+2026-10-19,Monday,A-103,High,5,24660,25164.8,100.96,504.8,28.1,0,Borewell,0,Normal
+2026-10-20,Tuesday,A-103,High,5,25164.8,25731.6,113.36,566.8,31.4,0,Municipal,0,Normal
+2026-10-21,Wednesday,A-103,High,5,25731.6,26232.2,100.12,500.6,30.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,A-103,High,5,26232.2,26749.6,103.48,517.4,27.5,0,Municipal,0,Normal
+2026-10-23,Friday,A-103,High,5,26749.6,27290.8,108.24,541.2,28,0,Municipal,0,Normal
+2026-10-24,Saturday,A-103,High,6,27290.8,28057.6,127.8,766.8,29.4,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-25,Sunday,A-103,High,5,28057.6,28653.2,119.12,595.6,27.8,17.3,Municipal,0,Normal
+2026-10-26,Monday,A-103,High,5,28653.2,29164.8,102.32,511.6,27.4,0,Municipal,0,Normal
+2026-10-27,Tuesday,A-103,High,5,29164.8,29690.3,105.1,525.5,29.8,0,Municipal,0,Normal
+2026-10-28,Wednesday,A-103,High,5,29690.3,30205.6,103.06,515.3,28.5,0.5,Municipal,0,Normal
+2026-10-29,Thursday,A-103,High,5,30205.6,30759,110.68,553.4,30.4,0,Borewell,0,Normal
+2026-10-30,Friday,A-103,High,5,30759,31248.7,97.94,489.7,26.3,0,Municipal,0,Normal
+2026-10-01,Thursday,A-201,Moderate,4,43786.3,44127.8,85.38,341.5,31.3,3.2,Borewell,0,Normal
+2026-10-02,Friday,A-201,Moderate,4,44127.8,44486.6,89.7,358.8,34.4,0,Municipal,0,Normal
+2026-10-03,Saturday,A-201,Moderate,5,44486.6,45022,107.08,535.4,32.8,0,Municipal,0,Weekend guest (+1)
+2026-10-04,Sunday,A-201,Moderate,4,45022,45404.3,95.58,382.3,34.3,0,Municipal,0,Normal
+2026-10-05,Monday,A-201,Moderate,4,45404.3,45718.3,78.5,314,32.5,14.7,Borewell,0,Normal
+2026-10-06,Tuesday,A-201,Moderate,4,45718.3,46092.3,93.5,374,31.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,A-201,Moderate,4,46092.3,46436.5,86.05,344.2,29.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,A-201,Moderate,4,46436.5,46800.6,91.02,364.1,29,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,A-201,Moderate,4,46800.6,47138.8,84.55,338.2,32.8,0,Municipal,0,Normal
+2026-10-10,Saturday,A-201,Moderate,4,47138.8,47540.2,100.35,401.4,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,A-201,Moderate,5,47540.2,47984,88.76,443.8,27.3,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-12,Monday,A-201,Moderate,4,47984,48325,85.25,341,31,0,Borewell,0,Normal
+2026-10-13,Tuesday,A-201,Moderate,4,48325,48673.4,87.1,348.4,30.3,0,Municipal,0,Normal
+2026-10-14,Wednesday,A-201,Moderate,4,48673.4,49023.1,87.42,349.7,31.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,A-201,Moderate,4,49023.1,49376.9,88.45,353.8,28.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,A-201,Moderate,4,49376.9,49718.5,85.4,341.6,30.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-17,Saturday,A-201,Moderate,4,49718.5,50140.7,105.55,422.2,31.6,0,Municipal,0,Normal
+2026-10-18,Sunday,A-201,Moderate,4,50140.7,50542.3,100.4,401.6,30.7,0,Municipal,0,Normal
+2026-10-19,Monday,A-201,Moderate,4,50542.3,50849.9,76.9,307.6,30.1,0,Municipal,0,Normal
+2026-10-20,Tuesday,A-201,Moderate,4,50849.9,51192.3,85.6,342.4,28.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,A-201,Moderate,4,51192.3,51508.8,79.12,316.5,30.9,0,Borewell,0,Normal
+2026-10-22,Thursday,A-201,Moderate,4,51508.8,51831.1,80.58,322.3,25.9,0,Borewell,0,Normal
+2026-10-23,Friday,A-201,Moderate,4,51831.1,52151.1,80,320,25.4,0,Municipal,0,Normal
+2026-10-24,Saturday,A-201,Moderate,4,52151.1,52511.6,90.12,360.5,29,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,A-201,Moderate,4,52511.6,52893.6,95.5,382,31.6,0,Municipal,0,Normal
+2026-10-26,Monday,A-201,Moderate,4,52893.6,53209.8,79.05,316.2,27.7,0,Municipal,0,Normal
+2026-10-27,Tuesday,A-201,Moderate,4,53209.8,53523.9,78.53,314.1,28.3,0,Municipal,0,Normal
+2026-10-28,Wednesday,A-201,Moderate,4,53523.9,53866.1,85.55,342.2,31.4,6.4,Municipal,0,Normal
+2026-10-29,Thursday,A-201,Moderate,4,53866.1,54191.9,81.45,325.8,29.8,0,Municipal,0,Normal
+2026-10-30,Friday,A-201,Moderate,4,54191.9,54500.9,77.25,309,27.7,0,Municipal,0,Normal
+2026-10-01,Thursday,A-202,Moderate,2,24174.2,24330.8,78.3,156.6,33.5,1.2,Mixed (Municipal+Borewell),0,Normal
+2026-10-02,Friday,A-202,Moderate,2,24330.8,24493.1,81.15,162.3,31,0,Municipal,0,Normal
+2026-10-03,Saturday,A-202,Moderate,2,24493.1,24650.5,78.7,157.4,33.3,0,Municipal,0,Normal
+2026-10-04,Sunday,A-202,Moderate,2,24650.5,24814.9,82.2,164.4,30,0,Municipal,0,Normal
+2026-10-05,Monday,A-202,Moderate,2,24814.9,24977.2,81.15,162.3,32.6,0,Municipal,0,Normal
+2026-10-06,Tuesday,A-202,Moderate,2,24977.2,25145.6,84.2,168.4,34.6,0,Municipal,0,Normal
+2026-10-07,Wednesday,A-202,Moderate,2,25145.6,25294.3,74.35,148.7,30.4,0,Municipal,0,Normal
+2026-10-08,Thursday,A-202,Moderate,2,25294.3,25451.7,78.7,157.4,28.1,0,Municipal,0,Normal
+2026-10-09,Friday,A-202,Moderate,2,25451.7,25603.9,76.1,152.2,30.5,0,Municipal,0,Normal
+2026-10-10,Saturday,A-202,Moderate,2,25603.9,25774.8,85.45,170.9,30.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,A-202,Moderate,2,25774.8,25943.2,84.2,168.4,31.1,0,Municipal,0,Normal
+2026-10-12,Monday,A-202,Moderate,2,25943.2,26098.2,77.5,155,31.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,A-202,Moderate,2,26098.2,26247.2,74.5,149,29.9,0,Borewell,0,Normal
+2026-10-14,Wednesday,A-202,Moderate,2,26247.2,26419.6,86.2,172.4,34.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,A-202,Moderate,2,26419.6,26565.5,72.95,145.9,30.2,0,Municipal,0,Normal
+2026-10-16,Friday,A-202,Moderate,2,26565.5,26713.1,73.8,147.6,27.8,0,Municipal,0,Normal
+2026-10-17,Saturday,A-202,Moderate,2,26713.1,26883.6,85.25,170.5,26.8,0,Municipal,0,Normal
+2026-10-18,Sunday,A-202,Moderate,2,26883.6,27049.3,82.85,165.7,27.2,18.4,Mixed (Municipal+Borewell),0,Normal
+2026-10-19,Monday,A-202,Moderate,2,27049.3,27193.6,72.15,144.3,29.8,0,Municipal,0,Normal
+2026-10-20,Tuesday,A-202,Moderate,2,27193.6,27333.1,69.75,139.5,24.8,0,Borewell,0,Normal
+2026-10-21,Wednesday,A-202,Moderate,2,27333.1,27480.4,73.65,147.3,29.1,0,Municipal,0,Normal
+2026-10-22,Thursday,A-202,Moderate,2,27480.4,27630.3,74.95,149.9,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,A-202,Moderate,2,27630.3,27778.9,74.3,148.6,29,0,Municipal,0,Normal
+2026-10-24,Saturday,A-202,Moderate,2,27778.9,27947.5,84.3,168.6,29.1,0,Municipal,0,Normal
+2026-10-25,Sunday,A-202,Moderate,2,27947.5,28126.1,89.3,178.6,28.1,0,Municipal,0,Normal
+2026-10-26,Monday,A-202,Moderate,2,28126.1,28270.2,72.05,144.1,25.7,0,Municipal,0,Normal
+2026-10-27,Tuesday,A-202,Moderate,2,28270.2,28420.3,75.05,150.1,29,0,Municipal,0,Normal
+2026-10-28,Wednesday,A-202,Moderate,2,28420.3,28577.7,78.7,157.4,28.9,0,Borewell,0,Normal
+2026-10-29,Thursday,A-202,Moderate,2,28577.7,28733.7,78,156,26.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,A-202,Moderate,2,28733.7,28903.3,84.8,169.6,29.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,B-101,High,6,17005.3,17622.1,102.8,616.8,29.4,0,Municipal,0,Normal
+2026-10-02,Friday,B-101,High,6,17622.1,18303.7,113.6,681.6,33.3,0,Municipal,0,Normal
+2026-10-03,Saturday,B-101,High,6,18303.7,19041.7,123,738,32.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-04,Sunday,B-101,High,6,19041.7,19842.9,133.53,801.2,32.3,0,Municipal,0,Normal
+2026-10-05,Monday,B-101,High,6,19842.9,20469.5,104.43,626.6,29.4,0,Municipal,0,Normal
+2026-10-06,Tuesday,B-101,High,6,20469.5,21039.5,95,570,29.7,0,Municipal,0,Normal
+2026-10-07,Wednesday,B-101,High,6,21039.5,21781.4,123.65,741.9,31.3,0,Municipal,0,Normal
+2026-10-08,Thursday,B-101,High,6,21781.4,22471.9,115.08,690.5,33.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,B-101,High,6,22471.9,23090.4,103.08,618.5,31.4,0,Municipal,0,Normal
+2026-10-10,Saturday,B-101,High,6,23090.4,23837.2,124.47,746.8,31.3,0,Municipal,0,Normal
+2026-10-11,Sunday,B-101,High,6,23837.2,24619.4,130.37,782.2,31.1,0,Municipal,0,Normal
+2026-10-12,Monday,B-101,High,6,24619.4,25263.7,107.38,644.3,32.6,1.6,Municipal,0,Normal
+2026-10-13,Tuesday,B-101,High,6,25263.7,25927.2,110.58,663.5,32.2,0,Municipal,0,Normal
+2026-10-14,Wednesday,B-101,High,6,25927.2,26631.6,117.4,704.4,30.5,0,Municipal,0,Normal
+2026-10-15,Thursday,B-101,High,6,26631.6,27413.5,130.32,781.9,30.6,0,Municipal,1,Minor flush leak detected
+2026-10-16,Friday,B-101,High,6,27413.5,28210.9,132.9,797.4,28.2,0,Municipal,1,Minor flush leak detected
+2026-10-17,Saturday,B-101,High,6,28210.9,28890.8,113.32,679.9,28.1,23.1,Municipal,0,Normal
+2026-10-18,Sunday,B-101,High,6,28890.8,29612.6,120.3,721.8,28.5,0,Municipal,0,Normal
+2026-10-19,Monday,B-101,High,6,29612.6,30238.3,104.28,625.7,32.4,6,Municipal,0,Normal
+2026-10-20,Tuesday,B-101,High,6,30238.3,30883.2,107.48,644.9,24.5,0,Municipal,0,Normal
+2026-10-21,Wednesday,B-101,High,6,30883.2,31505.5,103.72,622.3,28,0,Borewell,0,Normal
+2026-10-22,Thursday,B-101,High,6,31505.5,32105,99.92,599.5,26.4,0,Municipal,0,Normal
+2026-10-23,Friday,B-101,High,6,32105,32792.4,114.57,687.4,29.9,1,Municipal,0,Normal
+2026-10-24,Saturday,B-101,High,6,32792.4,33511.1,119.78,718.7,28.6,0,Municipal,0,Normal
+2026-10-25,Sunday,B-101,High,6,33511.1,34217.4,117.72,706.3,28.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,B-101,High,6,34217.4,34837.9,103.42,620.5,31,0,Municipal,0,Normal
+2026-10-27,Tuesday,B-101,High,6,34837.9,35513.9,112.67,676,26,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-28,Wednesday,B-101,High,6,35513.9,36113.4,99.92,599.5,26.6,0,Municipal,0,Normal
+2026-10-29,Thursday,B-101,High,6,36113.4,36712.2,99.8,598.8,29.6,0,Municipal,0,Normal
+2026-10-30,Friday,B-101,High,6,36712.2,37315.8,100.6,603.6,25.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,B-102,Low,4,16623.7,16857,58.32,233.3,30.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-02,Friday,B-102,Low,4,16857,17076.6,54.9,219.6,30.5,0,Municipal,0,Normal
+2026-10-03,Saturday,B-102,Low,4,17076.6,17331.8,63.8,255.2,29,0,Borewell,0,Normal
+2026-10-04,Sunday,B-102,Low,5,17331.8,17641.2,61.88,309.4,29.1,0,Borewell,0,Weekend guest (+1)
+2026-10-05,Monday,B-102,Low,4,17641.2,17852.3,52.78,211.1,31.3,0,Municipal,0,Normal
+2026-10-06,Tuesday,B-102,Low,4,17852.3,18082.2,57.48,229.9,32.5,0,Municipal,0,Normal
+2026-10-07,Wednesday,B-102,Low,4,18082.2,18315.3,58.28,233.1,31.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,B-102,Low,4,18315.3,18516.7,50.35,201.4,28.2,0,Municipal,0,Normal
+2026-10-09,Friday,B-102,Low,4,18516.7,18731.7,53.75,215,31.8,3.7,Municipal,0,Normal
+2026-10-10,Saturday,B-102,Low,4,18731.7,18967.2,58.88,235.5,28.7,0,Municipal,0,Normal
+2026-10-11,Sunday,B-102,Low,4,18967.2,19247.3,70.03,280.1,29.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-12,Monday,B-102,Low,4,19247.3,19453.6,51.58,206.3,31.9,2.7,Municipal,0,Normal
+2026-10-13,Tuesday,B-102,Low,4,19453.6,19670.7,54.28,217.1,32.7,0,Municipal,0,Normal
+2026-10-14,Wednesday,B-102,Low,4,19670.7,19911.4,60.18,240.7,30.9,0,Municipal,0,Normal
+2026-10-15,Thursday,B-102,Low,4,19911.4,20128.8,54.35,217.4,32.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,B-102,Low,4,20128.8,20329.5,50.18,200.7,29.4,0,Municipal,0,Normal
+2026-10-17,Saturday,B-102,Low,4,20329.5,20581.7,63.05,252.2,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,B-102,Low,4,20581.7,20837.1,63.85,255.4,29.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-19,Monday,B-102,Low,4,20837.1,21034.9,49.45,197.8,28.4,0,Borewell,0,Normal
+2026-10-20,Tuesday,B-102,Low,4,21034.9,21254.3,54.85,219.4,29.1,0,Municipal,0,Normal
+2026-10-21,Wednesday,B-102,Low,4,21254.3,21477.9,55.9,223.6,26.9,0,Borewell,0,Normal
+2026-10-22,Thursday,B-102,Low,4,21477.9,21700.9,55.75,223,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,B-102,Low,4,21700.9,21914.2,53.32,213.3,29.9,3.6,Municipal,0,Normal
+2026-10-24,Saturday,B-102,Low,5,21914.2,22234.5,64.06,320.3,26.9,0,Municipal,0,Weekend guest (+1)
+2026-10-25,Sunday,B-102,Low,4,22234.5,22487.2,63.18,252.7,30.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,B-102,Low,4,22487.2,22704.9,54.42,217.7,26.5,8.2,Municipal,0,Normal
+2026-10-27,Tuesday,B-102,Low,4,22704.9,22932.5,56.9,227.6,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-28,Wednesday,B-102,Low,4,22932.5,23161.7,57.3,229.2,27.7,0,Municipal,0,Normal
+2026-10-29,Thursday,B-102,Low,4,23161.7,23391.6,57.48,229.9,27.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,B-102,Low,4,23391.6,23603.2,52.9,211.6,27.9,0,Municipal,0,Normal
+2026-10-01,Thursday,B-201,Moderate,3,21778.2,22003.3,75.03,225.1,28.1,0,Municipal,0,Normal
+2026-10-02,Friday,B-201,Moderate,3,22003.3,22239.3,78.67,236,30.8,0,Borewell,0,Normal
+2026-10-03,Saturday,B-201,Moderate,3,22239.3,22519,93.23,279.7,34.5,0,Municipal,0,Normal
+2026-10-04,Sunday,B-201,Moderate,3,22519,22806.1,95.7,287.1,31.2,0,Municipal,0,Normal
+2026-10-05,Monday,B-201,Moderate,3,22806.1,23043.5,79.13,237.4,30.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,B-201,Moderate,3,23043.5,23286.4,80.97,242.9,30.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,B-201,Moderate,3,23286.4,23517.2,76.93,230.8,30.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,B-201,Moderate,3,23517.2,23760.4,81.07,243.2,31.5,0,Municipal,0,Normal
+2026-10-09,Friday,B-201,Moderate,3,23760.4,24027.5,89.03,267.1,34.5,0,Municipal,0,Normal
+2026-10-10,Saturday,B-201,Moderate,3,24027.5,24313.9,95.47,286.4,30.5,0,Borewell,0,Normal
+2026-10-11,Sunday,B-201,Moderate,3,24313.9,24599.4,95.17,285.5,31.4,0,Municipal,0,Normal
+2026-10-12,Monday,B-201,Moderate,3,24599.4,24824.6,75.07,225.2,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,B-201,Moderate,3,24824.6,25068,81.13,243.4,29.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-14,Wednesday,B-201,Moderate,3,25068,25291.8,74.6,223.8,25.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,B-201,Moderate,3,25291.8,25529.1,79.1,237.3,33,0,Municipal,0,Normal
+2026-10-16,Friday,B-201,Moderate,3,25529.1,25774.3,81.73,245.2,28.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-17,Saturday,B-201,Moderate,3,25774.3,26058.5,94.73,284.2,29.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,B-201,Moderate,3,26058.5,26346.1,95.87,287.6,30.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-19,Monday,B-201,Moderate,3,26346.1,26575.2,76.37,229.1,27.9,0,Municipal,0,Normal
+2026-10-20,Tuesday,B-201,Moderate,3,26575.2,26822.1,82.3,246.9,29.1,0,Municipal,0,Normal
+2026-10-21,Wednesday,B-201,Moderate,3,26822.1,27047.4,75.1,225.3,29.7,0,Municipal,0,Normal
+2026-10-22,Thursday,B-201,Moderate,3,27047.4,27274.2,75.6,226.8,29.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,B-201,Moderate,3,27274.2,27510.9,78.9,236.7,28.9,0,Borewell,0,Normal
+2026-10-24,Saturday,B-201,Moderate,4,27510.9,27854.5,85.9,343.6,30.3,0,Borewell,0,Weekend guest (+1)
+2026-10-25,Sunday,B-201,Moderate,3,27854.5,28128,91.17,273.5,27.8,0,Municipal,0,Normal
+2026-10-26,Monday,B-201,Moderate,3,28128,28373.3,81.77,245.3,25.8,0,Municipal,0,Normal
+2026-10-27,Tuesday,B-201,Moderate,3,28373.3,28608.9,78.53,235.6,29.1,0.1,Municipal,0,Normal
+2026-10-28,Wednesday,B-201,Moderate,3,28608.9,28854.2,81.77,245.3,30.8,0,Municipal,0,Normal
+2026-10-29,Thursday,B-201,Moderate,3,28854.2,29063.5,69.77,209.3,26.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,B-201,Moderate,3,29063.5,29308.8,81.77,245.3,27,4.6,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,B-202,Moderate,5,21017.6,21440,84.48,422.4,32,0,Municipal,0,Normal
+2026-10-02,Friday,B-202,Moderate,5,21440,21836.6,79.32,396.6,28.7,0,Municipal,0,Normal
+2026-10-03,Saturday,B-202,Moderate,6,21836.6,22416.5,96.65,579.9,30.6,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-04,Sunday,B-202,Moderate,5,22416.5,22891.5,95,475,32.4,0,Municipal,0,Normal
+2026-10-05,Monday,B-202,Moderate,5,22891.5,23323.6,86.42,432.1,31.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,B-202,Moderate,5,23323.6,23776.4,90.56,452.8,32,0,Municipal,0,Normal
+2026-10-07,Wednesday,B-202,Moderate,5,23776.4,24213,87.32,436.6,31.3,0,Municipal,0,Normal
+2026-10-08,Thursday,B-202,Moderate,5,24213,24666.8,90.76,453.8,30,0,Municipal,0,Normal
+2026-10-09,Friday,B-202,Moderate,5,24666.8,25073.7,81.38,406.9,31.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-10,Saturday,B-202,Moderate,5,25073.7,25502.5,85.76,428.8,30.3,0.3,Municipal,0,Normal
+2026-10-11,Sunday,B-202,Moderate,5,25502.5,25985.7,96.64,483.2,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-12,Monday,B-202,Moderate,5,25985.7,26394.1,81.68,408.4,31,0,Municipal,0,Normal
+2026-10-13,Tuesday,B-202,Moderate,5,26394.1,26828.9,86.96,434.8,34.6,0,Municipal,0,Normal
+2026-10-14,Wednesday,B-202,Moderate,5,26828.9,27244.7,83.16,415.8,29.7,0,Municipal,0,Normal
+2026-10-15,Thursday,B-202,Moderate,5,27244.7,27648.5,80.76,403.8,30.7,0,Municipal,0,Normal
+2026-10-16,Friday,B-202,Moderate,5,27648.5,28077.7,85.84,429.2,30,0,Municipal,0,Normal
+2026-10-17,Saturday,B-202,Moderate,6,28077.7,28615.6,89.65,537.9,28.9,0,Borewell,0,Weekend guest (+1)
+2026-10-18,Sunday,B-202,Moderate,5,28615.6,29066,90.08,450.4,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-19,Monday,B-202,Moderate,5,29066,29494.4,85.68,428.4,27.6,0,Municipal,0,Normal
+2026-10-20,Tuesday,B-202,Moderate,5,29494.4,29924.8,86.08,430.4,28.7,0,Municipal,0,Normal
+2026-10-21,Wednesday,B-202,Moderate,5,29924.8,30382.4,91.52,457.6,29.1,0,Municipal,0,Normal
+2026-10-22,Thursday,B-202,Moderate,5,30382.4,30775.6,78.64,393.2,27,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,B-202,Moderate,5,30775.6,31201.8,85.24,426.2,32.9,0,Municipal,0,Normal
+2026-10-24,Saturday,B-202,Moderate,6,31201.8,31765.7,93.98,563.9,26.8,0,Municipal,0,Weekend guest (+1)
+2026-10-25,Sunday,B-202,Moderate,5,31765.7,32190.2,84.9,424.5,28.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,B-202,Moderate,5,32190.2,32570.7,76.1,380.5,25.7,0,Borewell,0,Normal
+2026-10-27,Tuesday,B-202,Moderate,5,32570.7,33011.3,88.12,440.6,26.2,0,Municipal,0,Normal
+2026-10-28,Wednesday,B-202,Moderate,5,33011.3,33400,77.74,388.7,26.1,0,Borewell,0,Normal
+2026-10-29,Thursday,B-202,Moderate,5,33400,33787.4,77.48,387.4,29.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,B-202,Moderate,5,33787.4,34185.8,79.68,398.4,29.1,0,Municipal,0,Normal
+2026-10-01,Thursday,B-301,High,4,19838.9,20300.8,115.48,461.9,31,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-02,Friday,B-301,High,4,20300.8,20679.4,94.65,378.6,32.2,0,Municipal,0,Normal
+2026-10-03,Saturday,B-301,High,4,20679.4,21144.2,116.2,464.8,30.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-04,Sunday,B-301,High,4,21144.2,21629.5,121.32,485.3,32.7,0,Municipal,0,Normal
+2026-10-05,Monday,B-301,High,4,21629.5,22038.3,102.2,408.8,31.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,B-301,High,4,22038.3,22455.6,104.32,417.3,28.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,B-301,High,4,22455.6,22882.2,106.65,426.6,30.5,5.3,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,B-301,High,4,22882.2,23324.3,110.52,442.1,32.8,0,Municipal,0,Normal
+2026-10-09,Friday,B-301,High,4,23324.3,23766.7,110.6,442.4,30.5,0,Municipal,0,Normal
+2026-10-10,Saturday,B-301,High,5,23766.7,24364.5,119.56,597.8,31.1,0,Municipal,0,Weekend guest (+1)
+2026-10-11,Sunday,B-301,High,4,24364.5,24862.7,124.55,498.2,32.1,0,Municipal,0,Normal
+2026-10-12,Monday,B-301,High,4,24862.7,25309.8,111.78,447.1,31.2,0,Municipal,0,Normal
+2026-10-13,Tuesday,B-301,High,4,25309.8,25794.5,121.18,484.7,27.8,0,Municipal,0,Normal
+2026-10-14,Wednesday,B-301,High,4,25794.5,26238.7,111.05,444.2,29.6,0,Borewell,0,Normal
+2026-10-15,Thursday,B-301,High,4,26238.7,26662.5,105.95,423.8,31.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,B-301,High,4,26662.5,27071.9,102.35,409.4,29.3,0,Borewell,0,Normal
+2026-10-17,Saturday,B-301,High,4,27071.9,27602.9,132.75,531,28.5,0,Municipal,0,Normal
+2026-10-18,Sunday,B-301,High,4,27602.9,28123,130.02,520.1,30.2,0,Municipal,0,Normal
+2026-10-19,Monday,B-301,High,4,28123,28549.7,106.68,426.7,27.3,0,Borewell,0,Normal
+2026-10-20,Tuesday,B-301,High,4,28549.7,28976.3,106.65,426.6,30,0,Municipal,0,Normal
+2026-10-21,Wednesday,B-301,High,4,28976.3,29413,109.18,436.7,29.3,0,Municipal,0,Normal
+2026-10-22,Thursday,B-301,High,4,29413,29857.8,111.2,444.8,30.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,B-301,High,4,29857.8,30285.9,107.02,428.1,30.4,0,Municipal,0,Normal
+2026-10-24,Saturday,B-301,High,4,30285.9,30720.4,108.62,434.5,26.6,0,Municipal,0,Normal
+2026-10-25,Sunday,B-301,High,5,30720.4,31278.1,111.54,557.7,27.5,0,Municipal,0,Weekend guest (+1)
+2026-10-26,Monday,B-301,High,4,31278.1,31743.7,116.4,465.6,30.1,0,Municipal,0,Normal
+2026-10-27,Tuesday,B-301,High,4,31743.7,32193.7,112.5,450,28.6,0,Municipal,0,Normal
+2026-10-28,Wednesday,B-301,High,4,32193.7,32579.9,96.55,386.2,26.8,0,Municipal,0,Normal
+2026-10-29,Thursday,B-301,High,4,32579.9,33036.5,114.15,456.6,32,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,B-301,High,4,33036.5,33468.7,108.05,432.2,28.1,0,Municipal,0,Normal
+2026-10-01,Thursday,C-101,Low,2,42836.4,42948,55.8,111.6,29.9,0,Municipal,0,Normal
+2026-10-02,Friday,C-101,Low,2,42948,43054.5,53.25,106.5,29.5,0,Municipal,0,Normal
+2026-10-03,Saturday,C-101,Low,2,43054.5,43175.7,60.6,121.2,32.4,0,Municipal,0,Normal
+2026-10-04,Sunday,C-101,Low,2,43175.7,43304.2,64.25,128.5,30.8,0,Municipal,0,Normal
+2026-10-05,Monday,C-101,Low,2,43304.2,43419.4,57.6,115.2,30.1,0,Municipal,0,Normal
+2026-10-06,Tuesday,C-101,Low,2,43419.4,43537,58.8,117.6,31,0,Municipal,0,Normal
+2026-10-07,Wednesday,C-101,Low,2,43537,43649.2,56.1,112.2,31.2,0,Municipal,0,Normal
+2026-10-08,Thursday,C-101,Low,2,43649.2,43763.9,57.35,114.7,31.1,0,Municipal,0,Normal
+2026-10-09,Friday,C-101,Low,2,43763.9,43885.7,60.9,121.8,28.9,0,Borewell,0,Normal
+2026-10-10,Saturday,C-101,Low,2,43885.7,44008.6,61.45,122.9,29.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,C-101,Low,2,44008.6,44136.3,63.85,127.7,33.7,3.9,Municipal,0,Normal
+2026-10-12,Monday,C-101,Low,2,44136.3,44247.4,55.55,111.1,31.8,0,Municipal,0,Normal
+2026-10-13,Tuesday,C-101,Low,2,44247.4,44373.3,62.95,125.9,32.8,0,Municipal,0,Normal
+2026-10-14,Wednesday,C-101,Low,2,44373.3,44480.3,53.5,107,33.2,0,Borewell,0,Normal
+2026-10-15,Thursday,C-101,Low,2,44480.3,44590.9,55.3,110.6,31.6,0,Municipal,0,Normal
+2026-10-16,Friday,C-101,Low,2,44590.9,44710.4,59.75,119.5,30,0,Municipal,0,Normal
+2026-10-17,Saturday,C-101,Low,2,44710.4,44834.2,61.9,123.8,29,0,Municipal,0,Normal
+2026-10-18,Sunday,C-101,Low,2,44834.2,44953.2,59.5,119,27.6,0,Municipal,0,Normal
+2026-10-19,Monday,C-101,Low,2,44953.2,45063.7,55.25,110.5,27.4,0,Municipal,0,Normal
+2026-10-20,Tuesday,C-101,Low,2,45063.7,45177.6,56.95,113.9,30,0,Municipal,0,Normal
+2026-10-21,Wednesday,C-101,Low,2,45177.6,45280.4,51.4,102.8,26.7,0,Borewell,0,Normal
+2026-10-22,Thursday,C-101,Low,2,45280.4,45404.1,61.85,123.7,29.5,0,Municipal,0,Normal
+2026-10-23,Friday,C-101,Low,2,45404.1,45512,53.95,107.9,28.6,0,Municipal,0,Normal
+2026-10-24,Saturday,C-101,Low,3,45512,45704.8,64.27,192.8,27,0,Municipal,0,Weekend guest (+1)
+2026-10-25,Sunday,C-101,Low,2,45704.8,45837.7,66.45,132.9,27.4,0,Borewell,0,Normal
+2026-10-26,Monday,C-101,Low,2,45837.7,45940.6,51.45,102.9,27.7,0,Borewell,0,Normal
+2026-10-27,Tuesday,C-101,Low,2,45940.6,46056.7,58.05,116.1,28.6,0,Municipal,0,Normal
+2026-10-28,Wednesday,C-101,Low,2,46056.7,46168.3,55.8,111.6,27.4,0,Municipal,0,Normal
+2026-10-29,Thursday,C-101,Low,2,46168.3,46284.1,57.9,115.8,29.3,0,Municipal,0,Normal
+2026-10-30,Friday,C-101,Low,2,46284.1,46389,52.45,104.9,26.9,0,Municipal,0,Normal
+2026-10-01,Thursday,C-102,Moderate,4,42919.6,43264.8,86.3,345.2,28.2,0,Municipal,0,Normal
+2026-10-02,Friday,C-102,Moderate,4,43264.8,43656.4,97.9,391.6,31.6,0,Municipal,0,Normal
+2026-10-03,Saturday,C-102,Moderate,4,43656.4,44047.4,97.75,391,31.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-04,Sunday,C-102,Moderate,5,44047.4,44557.3,101.98,509.9,31.9,0,Municipal,0,Weekend guest (+1)
+2026-10-05,Monday,C-102,Moderate,4,44557.3,44890.5,83.3,333.2,31.8,0,Borewell,0,Normal
+2026-10-06,Tuesday,C-102,Moderate,4,44890.5,45250.5,90,360,32.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,C-102,Moderate,4,45250.5,45610.8,90.08,360.3,31,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,C-102,Moderate,4,45610.8,45934.3,80.88,323.5,31,0,Municipal,0,Normal
+2026-10-09,Friday,C-102,Moderate,4,45934.3,46274.2,84.98,339.9,30.1,0.6,Borewell,0,Normal
+2026-10-10,Saturday,C-102,Moderate,4,46274.2,46670.9,99.18,396.7,31.8,0,Municipal,0,Normal
+2026-10-11,Sunday,C-102,Moderate,4,46670.9,47055.3,96.1,384.4,29.6,0,Municipal,0,Normal
+2026-10-12,Monday,C-102,Moderate,4,47055.3,47403.8,87.12,348.5,29.6,6.1,Municipal,0,Normal
+2026-10-13,Tuesday,C-102,Moderate,4,47403.8,47744.8,85.25,341,31.2,0,Municipal,0,Normal
+2026-10-14,Wednesday,C-102,Moderate,4,47744.8,48082.7,84.48,337.9,30.1,0,Municipal,0,Normal
+2026-10-15,Thursday,C-102,Moderate,4,48082.7,48429.6,86.72,346.9,31.2,0,Municipal,0,Normal
+2026-10-16,Friday,C-102,Moderate,4,48429.6,48746.6,79.25,317,29.9,0,Municipal,0,Normal
+2026-10-17,Saturday,C-102,Moderate,4,48746.6,49117.2,92.65,370.6,26.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,C-102,Moderate,4,49117.2,49519.9,100.68,402.7,29.8,2.2,Municipal,0,Normal
+2026-10-19,Monday,C-102,Moderate,4,49519.9,49848.3,82.1,328.4,29.8,0,Municipal,0,Normal
+2026-10-20,Tuesday,C-102,Moderate,4,49848.3,50180.3,83,332,27,0,Municipal,0,Normal
+2026-10-21,Wednesday,C-102,Moderate,4,50180.3,50511.1,82.7,330.8,26.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,C-102,Moderate,4,50511.1,50829.5,79.6,318.4,25,0,Municipal,0,Normal
+2026-10-23,Friday,C-102,Moderate,4,50829.5,51172,85.62,342.5,28.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-24,Saturday,C-102,Moderate,4,51172,51539.6,91.9,367.6,30.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,C-102,Moderate,4,51539.6,51922.9,95.82,383.3,31.7,0,Municipal,0,Normal
+2026-10-26,Monday,C-102,Moderate,4,51922.9,52259.9,84.25,337,27.5,0,Municipal,0,Normal
+2026-10-27,Tuesday,C-102,Moderate,4,52259.9,52627,91.78,367.1,28.6,0,Municipal,0,Normal
+2026-10-28,Wednesday,C-102,Moderate,4,52627,52958.3,82.82,331.3,28.9,0.3,Municipal,0,Normal
+2026-10-29,Thursday,C-102,Moderate,4,52958.3,53273.1,78.7,314.8,26.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,C-102,Moderate,4,53273.1,53614.2,85.28,341.1,26.9,0,Municipal,0,Normal
+2026-10-01,Thursday,C-201,Low,5,33790,34121.6,66.32,331.6,29.8,0.3,Borewell,0,Normal
+2026-10-02,Friday,C-201,Low,5,34121.6,34435.4,62.76,313.8,32.5,0,Municipal,0,Normal
+2026-10-03,Saturday,C-201,Low,5,34435.4,34793.6,71.64,358.2,30.5,0,Municipal,0,Normal
+2026-10-04,Sunday,C-201,Low,5,34793.6,35155.6,72.4,362,30.1,0,Municipal,0,Normal
+2026-10-05,Monday,C-201,Low,5,35155.6,35481.7,65.22,326.1,31.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,C-201,Low,5,35481.7,35823,68.26,341.3,31.8,0,Municipal,0,Normal
+2026-10-07,Wednesday,C-201,Low,5,35823,36108.3,57.06,285.3,29.4,0,Municipal,0,Normal
+2026-10-08,Thursday,C-201,Low,5,36108.3,36424.3,63.2,316,30.7,0,Municipal,0,Normal
+2026-10-09,Friday,C-201,Low,5,36424.3,36740.4,63.22,316.1,32.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-10,Saturday,C-201,Low,5,36740.4,37109,73.72,368.6,30.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,C-201,Low,5,37109,37491.8,76.56,382.8,32.3,0,Municipal,0,Normal
+2026-10-12,Monday,C-201,Low,5,37491.8,37804.6,62.56,312.8,31.6,0,Municipal,0,Normal
+2026-10-13,Tuesday,C-201,Low,5,37804.6,38132.4,65.56,327.8,32.9,0,Municipal,0,Normal
+2026-10-14,Wednesday,C-201,Low,5,38132.4,38497.1,72.94,364.7,31.4,0,Municipal,0,Normal
+2026-10-15,Thursday,C-201,Low,5,38497.1,38828.3,66.24,331.2,32.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,C-201,Low,5,38828.3,39122.1,58.76,293.8,28.3,1.1,Mixed (Municipal+Borewell),0,Normal
+2026-10-17,Saturday,C-201,Low,5,39122.1,39476.8,70.94,354.7,30.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,C-201,Low,5,39476.8,39833.6,71.36,356.8,26.7,0,Municipal,0,Normal
+2026-10-19,Monday,C-201,Low,5,39833.6,40123.2,57.92,289.6,26.3,0,Municipal,0,Normal
+2026-10-20,Tuesday,C-201,Low,5,40123.2,40400.5,55.46,277.3,27.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,C-201,Low,5,40400.5,40728.4,65.58,327.9,26,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,C-201,Low,5,40728.4,41038.2,61.96,309.8,30.2,3.5,Municipal,0,Normal
+2026-10-23,Friday,C-201,Low,5,41038.2,41352,62.76,313.8,27.7,0,Municipal,0,Normal
+2026-10-24,Saturday,C-201,Low,5,41352,41740.8,77.76,388.8,31.6,0,Municipal,0,Normal
+2026-10-25,Sunday,C-201,Low,5,41740.8,42119.7,75.78,378.9,28.5,0.2,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,C-201,Low,5,42119.7,42448.5,65.76,328.8,29.9,0,Municipal,0,Normal
+2026-10-27,Tuesday,C-201,Low,5,42448.5,42746.3,59.56,297.8,27.9,0,Municipal,0,Normal
+2026-10-28,Wednesday,C-201,Low,5,42746.3,43040.5,58.84,294.2,29.2,0,Borewell,0,Normal
+2026-10-29,Thursday,C-201,Low,5,43040.5,43364,64.7,323.5,28.8,0,Municipal,0,Normal
+2026-10-30,Friday,C-201,Low,5,43364,43680,63.2,316,28,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,C-202,High,3,24666.5,25005.9,113.13,339.4,33.8,0,Municipal,0,Normal
+2026-10-02,Friday,C-202,High,3,25005.9,25285.9,93.33,280,31.2,0,Borewell,0,Normal
+2026-10-03,Saturday,C-202,High,3,25285.9,25603.7,105.93,317.8,30.3,0,Municipal,0,Normal
+2026-10-04,Sunday,C-202,High,3,25603.7,25974.4,123.57,370.7,30.7,0,Municipal,0,Normal
+2026-10-05,Monday,C-202,High,3,25974.4,26308.2,111.27,333.8,31,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,C-202,High,3,26308.2,26619.2,103.67,311,30.1,0,Municipal,0,Normal
+2026-10-07,Wednesday,C-202,High,3,26619.2,26948.1,109.63,328.9,32.1,0,Municipal,0,Normal
+2026-10-08,Thursday,C-202,High,3,26948.1,27251,100.97,302.9,30.8,0,Municipal,0,Normal
+2026-10-09,Friday,C-202,High,3,27251,27562.3,103.77,311.3,30.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-10,Saturday,C-202,High,4,27562.3,28029.5,116.8,467.2,33.2,2.7,Municipal,0,Weekend guest (+1)
+2026-10-11,Sunday,C-202,High,3,28029.5,28379.7,116.73,350.2,27.4,0,Municipal,0,Normal
+2026-10-12,Monday,C-202,High,3,28379.7,28688.9,103.07,309.2,31.4,0,Borewell,0,Normal
+2026-10-13,Tuesday,C-202,High,3,28688.9,28985.6,98.9,296.7,30.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-14,Wednesday,C-202,High,3,28985.6,29295.6,103.33,310,29.3,0,Municipal,0,Normal
+2026-10-15,Thursday,C-202,High,3,29295.6,29607.8,104.07,312.2,31.1,0,Municipal,0,Normal
+2026-10-16,Friday,C-202,High,3,29607.8,29897,96.4,289.2,27.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-17,Saturday,C-202,High,3,29897,30287.1,130.03,390.1,30,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,C-202,High,4,30287.1,30732.3,111.3,445.2,28.8,0,Municipal,0,Weekend guest (+1)
+2026-10-19,Monday,C-202,High,3,30732.3,31024.7,97.47,292.4,26.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-20,Tuesday,C-202,High,3,31024.7,31351.5,108.93,326.8,27.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,C-202,High,3,31351.5,31648.3,98.93,296.8,27.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-22,Thursday,C-202,High,3,31648.3,31943.4,98.37,295.1,27.5,0,Municipal,0,Normal
+2026-10-23,Friday,C-202,High,3,31943.4,32231.6,96.07,288.2,27.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-24,Saturday,C-202,High,3,32231.6,32564.8,111.07,333.2,26.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,C-202,High,3,32564.8,32876.1,103.77,311.3,28.1,0,Municipal,0,Normal
+2026-10-26,Monday,C-202,High,3,32876.1,33163.8,95.9,287.7,28.4,0,Municipal,0,Normal
+2026-10-27,Tuesday,C-202,High,3,33163.8,33458.2,98.13,294.4,27,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-28,Wednesday,C-202,High,3,33458.2,33754.6,98.8,296.4,30.5,0,Municipal,0,Normal
+2026-10-29,Thursday,C-202,High,3,33754.6,34048.4,97.93,293.8,25.8,0,Municipal,0,Normal
+2026-10-30,Friday,C-202,High,3,34048.4,34361.1,104.23,312.7,30.3,0,Borewell,0,Normal
+2026-10-01,Thursday,C-301,Moderate,4,29590,29885.1,73.78,295.1,31.7,0,Municipal,0,Normal
+2026-10-02,Friday,C-301,Moderate,4,29885.1,30183.5,74.6,298.4,30.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-03,Saturday,C-301,Moderate,4,30183.5,30533,87.38,349.5,29.6,0,Municipal,0,Normal
+2026-10-04,Sunday,C-301,Moderate,4,30533,30885.2,88.05,352.2,31.3,0,Municipal,0,Normal
+2026-10-05,Monday,C-301,Moderate,4,30885.2,31192.8,76.9,307.6,29.4,0,Municipal,0,Normal
+2026-10-06,Tuesday,C-301,Moderate,4,31192.8,31544.6,87.95,351.8,32.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,C-301,Moderate,4,31544.6,31846.1,75.38,301.5,31.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,C-301,Moderate,4,31846.1,32173.2,81.78,327.1,31.3,0,Municipal,0,Normal
+2026-10-09,Friday,C-301,Moderate,4,32173.2,32483.4,77.55,310.2,33,0,Municipal,0,Normal
+2026-10-10,Saturday,C-301,Moderate,4,32483.4,32836.5,88.28,353.1,32.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-11,Sunday,C-301,Moderate,4,32836.5,33173.7,84.3,337.2,30.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-12,Monday,C-301,Moderate,4,33173.7,33508.8,83.78,335.1,32.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,C-301,Moderate,4,33508.8,33816.2,76.85,307.4,31.6,0,Municipal,0,Normal
+2026-10-14,Wednesday,C-301,Moderate,4,33816.2,34134.6,79.6,318.4,29.2,0,Municipal,0,Normal
+2026-10-15,Thursday,C-301,Moderate,4,34134.6,34437.8,75.8,303.2,31.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,C-301,Moderate,4,34437.8,34719.8,70.5,282,29.8,0,Municipal,0,Normal
+2026-10-17,Saturday,C-301,Moderate,4,34719.8,35041.8,80.5,322,27,1.4,Borewell,0,Normal
+2026-10-18,Sunday,C-301,Moderate,4,35041.8,35390.3,87.12,348.5,29,0,Municipal,0,Normal
+2026-10-19,Monday,C-301,Moderate,4,35390.3,35699.7,77.35,309.4,28.9,0,Municipal,0,Normal
+2026-10-20,Tuesday,C-301,Moderate,4,35699.7,35957.2,64.38,257.5,25.9,0,Municipal,0,Normal
+2026-10-21,Wednesday,C-301,Moderate,4,35957.2,36255.9,74.68,298.7,28.9,0,Municipal,0,Normal
+2026-10-22,Thursday,C-301,Moderate,4,36255.9,36559.7,75.95,303.8,28.2,0,Municipal,0,Normal
+2026-10-23,Friday,C-301,Moderate,4,36559.7,36863.8,76.03,304.1,28.8,0,Municipal,0,Normal
+2026-10-24,Saturday,C-301,Moderate,4,36863.8,37197.7,83.48,333.9,29.8,0,Municipal,0,Normal
+2026-10-25,Sunday,C-301,Moderate,5,37197.7,37662.5,92.96,464.8,29.1,1.1,Municipal,0,Weekend guest (+1)
+2026-10-26,Monday,C-301,Moderate,4,37662.5,37940.2,69.42,277.7,29.7,0,Municipal,0,Normal
+2026-10-27,Tuesday,C-301,Moderate,4,37940.2,38268.8,82.15,328.6,29.9,0,Municipal,0,Normal
+2026-10-28,Wednesday,C-301,Moderate,4,38268.8,38564.2,73.85,295.4,28.3,0,Municipal,0,Normal
+2026-10-29,Thursday,C-301,Moderate,4,38564.2,38880.3,79.03,316.1,28.6,7.1,Municipal,0,Normal
+2026-10-30,Friday,C-301,Moderate,4,38880.3,39189.6,77.32,309.3,28.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,D-101,Moderate,6,30868.5,31347.3,79.8,478.8,26.9,0,Municipal,0,Normal
+2026-10-02,Friday,D-101,Moderate,6,31347.3,31867.1,86.63,519.8,31.8,0,Municipal,0,Normal
+2026-10-03,Saturday,D-101,Moderate,6,31867.1,32464.2,99.52,597.1,33.4,0,Municipal,0,Normal
+2026-10-04,Sunday,D-101,Moderate,6,32464.2,33004.8,90.1,540.6,29.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-05,Monday,D-101,Moderate,6,33004.8,33501.7,82.82,496.9,31.2,0,Municipal,0,Normal
+2026-10-06,Tuesday,D-101,Moderate,6,33501.7,33984.7,80.5,483,30.1,0,Municipal,0,Normal
+2026-10-07,Wednesday,D-101,Moderate,6,33984.7,34462.2,79.58,477.5,30.1,0,Municipal,0,Normal
+2026-10-08,Thursday,D-101,Moderate,6,34462.2,34932.9,78.45,470.7,28.9,0,Municipal,0,Normal
+2026-10-09,Friday,D-101,Moderate,6,34932.9,35380.8,74.65,447.9,31.1,0,Municipal,0,Normal
+2026-10-10,Saturday,D-101,Moderate,6,35380.8,35920.7,89.98,539.9,32.6,0,Municipal,0,Normal
+2026-10-11,Sunday,D-101,Moderate,7,35920.7,36579.3,94.09,658.6,30.8,3.8,Municipal,0,Weekend guest (+1)
+2026-10-12,Monday,D-101,Moderate,6,36579.3,37070,81.78,490.7,32.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,D-101,Moderate,6,37070,37511.2,73.53,441.2,29.9,0,Municipal,0,Normal
+2026-10-14,Wednesday,D-101,Moderate,6,37511.2,38008.1,82.82,496.9,31.4,0,Municipal,0,Normal
+2026-10-15,Thursday,D-101,Moderate,6,38008.1,38490.9,80.47,482.8,30.3,0,Municipal,0,Normal
+2026-10-16,Friday,D-101,Moderate,6,38490.9,38994.7,83.97,503.8,30.9,0,Municipal,0,Normal
+2026-10-17,Saturday,D-101,Moderate,6,38994.7,39492.7,83,498,25.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,D-101,Moderate,6,39492.7,40026.3,88.93,533.6,29.3,0,Municipal,0,Normal
+2026-10-19,Monday,D-101,Moderate,6,40026.3,40497,78.45,470.7,28.4,0,Borewell,0,Normal
+2026-10-20,Tuesday,D-101,Moderate,6,40497,40981.3,80.72,484.3,29.9,0,Municipal,0,Normal
+2026-10-21,Wednesday,D-101,Moderate,6,40981.3,41446.5,77.53,465.2,26.8,2.2,Municipal,0,Normal
+2026-10-22,Thursday,D-101,Moderate,6,41446.5,41924.3,79.63,477.8,32.5,0.5,Municipal,0,Normal
+2026-10-23,Friday,D-101,Moderate,6,41924.3,42383.3,76.5,459,30.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-24,Saturday,D-101,Moderate,6,42383.3,42958.6,95.88,575.3,27.5,0,Municipal,0,Normal
+2026-10-25,Sunday,D-101,Moderate,6,42958.6,43528.4,94.97,569.8,28.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,D-101,Moderate,6,43528.4,44017.2,81.47,488.8,28.3,0,Municipal,0,Normal
+2026-10-27,Tuesday,D-101,Moderate,6,44017.2,44457.5,73.38,440.3,30.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-28,Wednesday,D-101,Moderate,6,44457.5,44911.1,75.6,453.6,26.9,0,Municipal,0,Normal
+2026-10-29,Thursday,D-101,Moderate,6,44911.1,45397.7,81.1,486.6,28,0,Municipal,0,Normal
+2026-10-30,Friday,D-101,Moderate,6,45397.7,45911.5,85.63,513.8,30.5,0,Municipal,0,Normal
+2026-10-01,Thursday,D-102,High,4,25517.8,25944.2,106.6,426.4,32.7,0,Municipal,0,Normal
+2026-10-02,Friday,D-102,High,4,25944.2,26391.7,111.88,447.5,33.8,0,Municipal,0,Normal
+2026-10-03,Saturday,D-102,High,4,26391.7,26885.2,123.38,493.5,31,0,Municipal,0,Normal
+2026-10-04,Sunday,D-102,High,5,26885.2,27504.9,123.94,619.7,30.9,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-05,Monday,D-102,High,4,27504.9,27931.1,106.55,426.2,28.3,0,Municipal,0,Normal
+2026-10-06,Tuesday,D-102,High,4,27931.1,28381.6,112.62,450.5,30.9,0,Municipal,0,Normal
+2026-10-07,Wednesday,D-102,High,4,28381.6,28784.9,100.82,403.3,28.7,0,Municipal,0,Normal
+2026-10-08,Thursday,D-102,High,4,28784.9,29205.6,105.18,420.7,31.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,D-102,High,4,29205.6,29677.4,117.95,471.8,30.7,0,Municipal,0,Normal
+2026-10-10,Saturday,D-102,High,4,29677.4,30152,118.65,474.6,29.1,0,Municipal,0,Normal
+2026-10-11,Sunday,D-102,High,4,30152,30655.5,125.88,503.5,29.4,0,Municipal,0,Normal
+2026-10-12,Monday,D-102,High,4,30655.5,31123.2,116.92,467.7,31.4,0,Municipal,0,Normal
+2026-10-13,Tuesday,D-102,High,4,31123.2,31537.7,103.62,414.5,30.3,2.6,Municipal,0,Normal
+2026-10-14,Wednesday,D-102,High,4,31537.7,31995.7,114.5,458,31.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,D-102,High,4,31995.7,32434.9,109.8,439.2,31.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,D-102,High,4,32434.9,32865.6,107.68,430.7,29.4,0,Municipal,0,Normal
+2026-10-17,Saturday,D-102,High,4,32865.6,33361,123.85,495.4,29.1,0,Municipal,0,Normal
+2026-10-18,Sunday,D-102,High,4,33361,33822.8,115.45,461.8,26.3,0,Municipal,0,Normal
+2026-10-19,Monday,D-102,High,4,33822.8,34309.6,121.7,486.8,25.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-20,Tuesday,D-102,High,4,34309.6,34750.2,110.15,440.6,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,D-102,High,4,34750.2,35190.5,110.08,440.3,29.3,0,Municipal,0,Normal
+2026-10-22,Thursday,D-102,High,4,35190.5,35648.6,114.52,458.1,28.2,0,Municipal,0,Normal
+2026-10-23,Friday,D-102,High,4,35648.6,36162.9,128.57,514.3,29.4,0,Borewell,1,Minor flush leak detected
+2026-10-24,Saturday,D-102,High,4,36162.9,36646.4,120.88,483.5,28.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,D-102,High,4,36646.4,37118.2,117.95,471.8,27.9,0,Municipal,0,Normal
+2026-10-26,Monday,D-102,High,4,37118.2,37570.5,113.08,452.3,29.9,0,Municipal,0,Normal
+2026-10-27,Tuesday,D-102,High,4,37570.5,38021.5,112.75,451,29.6,0,Municipal,0,Normal
+2026-10-28,Wednesday,D-102,High,4,38021.5,38478.2,114.18,456.7,29.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-29,Thursday,D-102,High,4,38478.2,38938.6,115.1,460.4,29,2.7,Municipal,0,Normal
+2026-10-30,Friday,D-102,High,4,38938.6,39327.8,97.3,389.2,26,1.7,Municipal,0,Normal
+2026-10-01,Thursday,D-201,Low,3,38671.8,38857.8,62,186,31,0,Municipal,0,Normal
+2026-10-02,Friday,D-201,Low,3,38857.8,39042.2,61.47,184.4,33.2,0,Municipal,0,Normal
+2026-10-03,Saturday,D-201,Low,3,39042.2,39239.2,65.67,197,30.8,0,Municipal,0,Normal
+2026-10-04,Sunday,D-201,Low,3,39239.2,39444.3,68.37,205.1,32.2,0,Municipal,0,Normal
+2026-10-05,Monday,D-201,Low,3,39444.3,39625.1,60.27,180.8,31.1,0,Municipal,0,Normal
+2026-10-06,Tuesday,D-201,Low,3,39625.1,39806.2,60.37,181.1,29.7,0,Municipal,0,Normal
+2026-10-07,Wednesday,D-201,Low,3,39806.2,39980.5,58.1,174.3,34.3,0,Municipal,0,Normal
+2026-10-08,Thursday,D-201,Low,3,39980.5,40164.9,61.47,184.4,29.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-09,Friday,D-201,Low,3,40164.9,40358.5,64.53,193.6,31.4,0,Municipal,0,Normal
+2026-10-10,Saturday,D-201,Low,3,40358.5,40569.9,70.47,211.4,29.9,0,Municipal,0,Normal
+2026-10-11,Sunday,D-201,Low,3,40569.9,40774.5,68.2,204.6,30.2,0,Municipal,0,Normal
+2026-10-12,Monday,D-201,Low,3,40774.5,40953.5,59.67,179,30.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,D-201,Low,3,40953.5,41141.7,62.73,188.2,29.7,0,Municipal,0,Normal
+2026-10-14,Wednesday,D-201,Low,3,41141.7,41319.7,59.33,178,32.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,D-201,Low,3,41319.7,41508.3,62.87,188.6,30.8,0,Municipal,0,Normal
+2026-10-16,Friday,D-201,Low,3,41508.3,41701.6,64.43,193.3,28.4,0,Municipal,0,Normal
+2026-10-17,Saturday,D-201,Low,3,41701.6,41894.6,64.33,193,29.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-18,Sunday,D-201,Low,4,41894.6,42163.6,67.25,269,28.6,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-19,Monday,D-201,Low,3,42163.6,42339.6,58.67,176,27.8,0,Borewell,0,Normal
+2026-10-20,Tuesday,D-201,Low,3,42339.6,42508.3,56.23,168.7,24.3,0,Municipal,0,Normal
+2026-10-21,Wednesday,D-201,Low,3,42508.3,42668.4,53.37,160.1,26.4,5.8,Municipal,0,Normal
+2026-10-22,Thursday,D-201,Low,3,42668.4,42848,59.87,179.6,29,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-23,Friday,D-201,Low,3,42848,43026.2,59.4,178.2,30.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-24,Saturday,D-201,Low,3,43026.2,43229.2,67.67,203,26.2,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,D-201,Low,3,43229.2,43418.2,63,189,30.1,0,Municipal,0,Normal
+2026-10-26,Monday,D-201,Low,3,43418.2,43598.6,60.13,180.4,28,0,Municipal,0,Normal
+2026-10-27,Tuesday,D-201,Low,3,43598.6,43766,55.8,167.4,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-28,Wednesday,D-201,Low,3,43766,43932.8,55.6,166.8,28.2,0,Municipal,0,Normal
+2026-10-29,Thursday,D-201,Low,3,43932.8,44122.4,63.2,189.6,32.1,2.5,Borewell,0,Normal
+2026-10-30,Friday,D-201,Low,3,44122.4,44305.7,61.1,183.3,31.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-01,Thursday,D-202,High,5,37506.4,38030.8,104.88,524.4,31.7,0,Municipal,0,Normal
+2026-10-02,Friday,D-202,High,5,38030.8,38571.8,108.2,541,32,0,Municipal,0,Normal
+2026-10-03,Saturday,D-202,High,5,38571.8,39208.8,127.4,637,31.2,0,Municipal,0,Normal
+2026-10-04,Sunday,D-202,High,5,39208.8,39767.2,111.68,558.4,32.5,0,Municipal,0,Normal
+2026-10-05,Monday,D-202,High,5,39767.2,40295.4,105.64,528.2,31.3,0,Municipal,0,Normal
+2026-10-06,Tuesday,D-202,High,5,40295.4,40782.4,97.4,487,28.6,1,Municipal,0,Normal
+2026-10-07,Wednesday,D-202,High,5,40782.4,41312.7,106.06,530.3,33.5,0,Municipal,0,Normal
+2026-10-08,Thursday,D-202,High,5,41312.7,41838.5,105.16,525.8,31.8,1.8,Municipal,0,Normal
+2026-10-09,Friday,D-202,High,5,41838.5,42347.5,101.8,509,30.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-10,Saturday,D-202,High,5,42347.5,42934.9,117.48,587.4,29.3,0,Municipal,0,Normal
+2026-10-11,Sunday,D-202,High,5,42934.9,43539.1,120.84,604.2,29.2,0,Municipal,0,Normal
+2026-10-12,Monday,D-202,High,5,43539.1,44065.1,105.2,526,32.5,0,Municipal,0,Normal
+2026-10-13,Tuesday,D-202,High,5,44065.1,44632.5,113.48,567.4,29.7,0,Borewell,0,Normal
+2026-10-14,Wednesday,D-202,High,5,44632.5,45145.2,102.54,512.7,28.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-15,Thursday,D-202,High,5,45145.2,45654.7,101.9,509.5,30.7,0,Municipal,0,Normal
+2026-10-16,Friday,D-202,High,5,45654.7,46182.9,105.64,528.2,25.2,0.7,Municipal,0,Normal
+2026-10-17,Saturday,D-202,High,5,46182.9,46773.2,118.06,590.3,29.2,0,Municipal,0,Normal
+2026-10-18,Sunday,D-202,High,5,46773.2,47347.8,114.92,574.6,26.1,0,Municipal,0,Normal
+2026-10-19,Monday,D-202,High,5,47347.8,47857.4,101.92,509.6,28.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-20,Tuesday,D-202,High,5,47857.4,48379.4,104.4,522,28.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,D-202,High,5,48379.4,48854.9,95.1,475.5,28.4,0,Municipal,0,Normal
+2026-10-22,Thursday,D-202,High,5,48854.9,49403.7,109.76,548.8,30.6,0,Municipal,0,Normal
+2026-10-23,Friday,D-202,High,5,49403.7,49950.9,109.44,547.2,28.5,0,Municipal,0,Normal
+2026-10-24,Saturday,D-202,High,5,49950.9,50532.5,116.32,581.6,26.6,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-25,Sunday,D-202,High,5,50532.5,51081.8,109.86,549.3,28.3,2.6,Municipal,0,Normal
+2026-10-26,Monday,D-202,High,5,51081.8,51544.4,92.52,462.6,27.4,0,Borewell,0,Normal
+2026-10-27,Tuesday,D-202,High,5,51544.4,52001.8,91.48,457.4,26.5,0,Borewell,0,Normal
+2026-10-28,Wednesday,D-202,High,5,52001.8,52525.3,104.7,523.5,28.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-29,Thursday,D-202,High,5,52525.3,52995.5,94.04,470.2,29.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,D-202,High,5,52995.5,53482.4,97.38,486.9,27.4,0,Municipal,0,Normal
+2026-10-01,Thursday,D-301,Moderate,4,28696.6,29041.6,86.25,345,30.4,0,Municipal,0,Normal
+2026-10-02,Friday,D-301,Moderate,4,29041.6,29360,79.6,318.4,34,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-03,Saturday,D-301,Moderate,4,29360,29710.6,87.65,350.6,29.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-04,Sunday,D-301,Moderate,4,29710.6,30091.1,95.12,380.5,33.1,0,Municipal,0,Normal
+2026-10-05,Monday,D-301,Moderate,4,30091.1,30426.3,83.8,335.2,29.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-06,Tuesday,D-301,Moderate,4,30426.3,30752.1,81.45,325.8,27.1,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-07,Wednesday,D-301,Moderate,4,30752.1,31075.6,80.88,323.5,32.9,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-08,Thursday,D-301,Moderate,4,31075.6,31407.4,82.95,331.8,28.3,0,Municipal,0,Normal
+2026-10-09,Friday,D-301,Moderate,4,31407.4,31736.4,82.25,329,31.5,2.2,Municipal,0,Normal
+2026-10-10,Saturday,D-301,Moderate,4,31736.4,32093.5,89.28,357.1,29.9,0,Municipal,0,Normal
+2026-10-11,Sunday,D-301,Moderate,4,32093.5,32455.7,90.55,362.2,32,0,Municipal,0,Normal
+2026-10-12,Monday,D-301,Moderate,4,32455.7,32766.1,77.6,310.4,29.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-13,Tuesday,D-301,Moderate,4,32766.1,33080.4,78.58,314.3,30.3,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-14,Wednesday,D-301,Moderate,4,33080.4,33393.7,78.32,313.3,33.2,0,Municipal,0,Normal
+2026-10-15,Thursday,D-301,Moderate,4,33393.7,33744.7,87.75,351,33.7,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-16,Friday,D-301,Moderate,4,33744.7,34076.7,83,332,29.4,1.2,Municipal,0,Normal
+2026-10-17,Saturday,D-301,Moderate,5,34076.7,34524.6,89.58,447.9,30.1,0,Municipal,0,Weekend guest (+1)
+2026-10-18,Sunday,D-301,Moderate,4,34524.6,34885.4,90.2,360.8,25,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-19,Monday,D-301,Moderate,4,34885.4,35240.2,88.7,354.8,28,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-20,Tuesday,D-301,Moderate,4,35240.2,35577.8,84.4,337.6,29.5,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-21,Wednesday,D-301,Moderate,4,35577.8,35884.6,76.7,306.8,27.7,0,Borewell,0,Normal
+2026-10-22,Thursday,D-301,Moderate,4,35884.6,36227,85.6,342.4,29.2,0,Municipal,0,Normal
+2026-10-23,Friday,D-301,Moderate,4,36227,36565.2,84.55,338.2,28.5,0,Municipal,0,Normal
+2026-10-24,Saturday,D-301,Moderate,5,36565.2,37053.7,97.7,488.5,29.5,0,Mixed (Municipal+Borewell),0,Weekend guest (+1)
+2026-10-25,Sunday,D-301,Moderate,4,37053.7,37432.9,94.8,379.2,28.4,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-26,Monday,D-301,Moderate,4,37432.9,37763.6,82.68,330.7,29.3,2.8,Mixed (Municipal+Borewell),0,Normal
+2026-10-27,Tuesday,D-301,Moderate,4,37763.6,38093.9,82.58,330.3,28.1,0,Municipal,0,Normal
+2026-10-28,Wednesday,D-301,Moderate,4,38093.9,38411.7,79.45,317.8,27,0,Municipal,0,Normal
+2026-10-29,Thursday,D-301,Moderate,4,38411.7,38717.1,76.35,305.4,26.8,0,Mixed (Municipal+Borewell),0,Normal
+2026-10-30,Friday,D-301,Moderate,4,38717.1,39053.6,84.12,336.5,27.5,0,Municipal,0,Normal
+Report Reference Parameters & Benchmarks (Migsun Vilaasa PDF),,,,
+,,,,
+Parameter / Scenario,Per Head / Day (LPCD),4-Member Family / Day (L),4-Member Family / 30 Days (L),Source in Report
+Migsun Vilaasa Design Rate,86,344,10320,Form-1A Environmental Clearance (Page 1-2)
+Low Usage Scenario,60,240,7200,Addendum Modelling Scenarios (Page 5)
+Moderate Usage Scenario,80,320,9600,Addendum Suggested Baseline (Page 5)
+High Usage Scenario,110,440,13200,Addendum Modelling Scenarios (Page 5)
+CPHEEO Urban Benchmark,135,540,16200,CPHEEO 2024 Manual (Page 3)

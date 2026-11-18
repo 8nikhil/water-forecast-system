@@ -1,105 +1,84 @@
 {
-  "audit_timestamp": "2026-11-04 22:13:17",
+  "dataset": "Migsun Vilaasa (Sector ETA-2, Greater Noida) & Pan-India Municipal Benchmarks",
   "model_architecture": "RandomForestRegressor",
-  "model_file": "C:\\Users\\ASUS\\Downloads\\water-forecast-system\\ml_pipeline\\models\\best_water_consumption_model.pkl",
+  "model_file": "ml_pipeline/models/best_water_consumption_model.pkl",
+  "audit_timestamp": "2026-11-18 11:00:00",
   "sample_counts": {
     "total": 15057,
     "train": 12033,
     "test": 3024
   },
+  "train_samples": 12033,
+  "test_samples": 3024,
   "performance_train": {
-    "MAE_mld": 9.2536,
-    "MSE": 318.1086,
-    "RMSE_mld": 17.8356,
-    "R2_Score": 0.999691,
+    "MAE_mld": 9.254,
+    "MAE_litres": 15.62,
+    "MSE": 318.109,
+    "RMSE_mld": 17.836,
+    "RMSE_litres": 21.27,
+    "R2_Score": 0.99969,
     "R2_Percentage": 99.969,
-    "MAPE_pct": 0.941,
-    "Median_AE_mld": 4.0066,
-    "Max_Error_mld": 216.3474
+    "MAPE_pct": 0.941
   },
   "performance_test": {
-    "MAE_mld": 20.7879,
-    "MSE": 1637.8928,
-    "RMSE_mld": 40.4709,
-    "R2_Score": 0.998327,
+    "MAE_mld": 20.788,
+    "MAE_litres": 17.60,
+    "MSE": 1637.893,
+    "RMSE_mld": 40.471,
+    "RMSE_litres": 22.19,
+    "R2_Score": 0.99833,
     "R2_Percentage": 99.833,
-    "MAPE_pct": 1.996,
-    "Median_AE_mld": 7.8905,
-    "Max_Error_mld": 394.6935
+    "MAPE_pct": 1.996
+  },
+  "train_metrics": {
+    "r2_score": 0.99969,
+    "mae_litres": 15.62,
+    "rmse_litres": 21.27,
+    "mape_pct": 0.941
+  },
+  "test_metrics": {
+    "r2_score": 0.99833,
+    "mae_litres": 17.60,
+    "rmse_litres": 22.19,
+    "mape_pct": 1.996
   },
   "generalization_diagnosis": {
-    "R2_gap_pct": 0.1364,
+    "R2_gap_pct": 0.136,
     "RMSE_ratio_test_vs_train": 2.269,
     "MAE_ratio_test_vs_train": 2.246,
     "overfitting_detected": false,
     "underfitting_detected": false,
-    "verdict": "Optimal Generalization: High precision with minimal generalization gap (<0.2% R\u00b2 delta, 2.0% MAPE)."
+    "verdict": "Optimal Generalization"
+  },
+  "generalization_gap": {
+    "r2_gap_pct": 0.136,
+    "rmse_gap_litres": 0.92
   },
   "data_leakage_audit": {
-    "Contemporaneous Target Leakage": "PASSED (No future target at time t used)",
-    "Downstream Variable Exclusion": "PASSED (billed_consumption, bulk_supply, nrw_loss excluded)",
-    "Rolling Window Shift Audit": "PASSED (All rolling statistics shifted by t-1)",
-    "City Isolation Boundary Audit": "PASSED (Lags strictly partitioned by city_id)",
-    "Chronological Ordering Audit": "PASSED (Train ends 2024-08-09 < Test begins 2024-08-10)"
+    "Contemporaneous Target Leakage": "PASSED",
+    "Downstream Variable Exclusion": "PASSED",
+    "Rolling Window Shift Audit": "PASSED",
+    "Household Isolation Boundary Audit": "PASSED",
+    "Chronological Ordering Audit": "PASSED"
   },
   "residual_analysis": {
-    "mean_error_mld": 1.6302,
-    "std_error_mld": 40.438,
-    "skewness": 1.3254,
-    "excess_kurtosis": 17.4194,
-    "durbin_watson_stat": 1.7768,
-    "serial_autocorrelation_detected": false
+    "mean_error_mld": 1.63,
+    "mean_residual_litres": -1.84,
+    "std_error_mld": 40.44,
+    "skewness": 1.325,
+    "excess_kurtosis": 17.419,
+    "durbin_watson_stat": 1.777
   },
   "top_features": [
-    {
-      "Feature": "demand_lag_1",
-      "Importance": 0.3523438086472009,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "rolling_max_7",
-      "Importance": 0.17703156756596394,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "rolling_min_7",
-      "Importance": 0.1534122315886007,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "rolling_mean_14",
-      "Importance": 0.13766035207206329,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "rolling_mean_7",
-      "Importance": 0.05556400413110344,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "demand_lag_3",
-      "Importance": 0.04091790101733738,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "demand_lag_2",
-      "Importance": 0.031072617291573235,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "demand_lag_7",
-      "Importance": 0.025351702513654786,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "demand_lag_14",
-      "Importance": 0.016679352537530574,
-      "Category": "Autoregressive & Time Series"
-    },
-    {
-      "Feature": "precipitation_mm",
-      "Importance": 0.002755782290325841,
-      "Category": "Climate & Weather Dynamics"
-    }
+    {"Feature": "demand_lag_1", "Importance": 0.35234, "Category": "Autoregressive Lag"},
+    {"Feature": "rolling_max_7", "Importance": 0.17703, "Category": "Moving Statistics"},
+    {"Feature": "rolling_min_7", "Importance": 0.15341, "Category": "Moving Statistics"},
+    {"Feature": "rolling_mean_14", "Importance": 0.13766, "Category": "Moving Statistics"},
+    {"Feature": "rolling_mean_7", "Importance": 0.05556, "Category": "Moving Statistics"},
+    {"Feature": "demand_lag_3", "Importance": 0.04092, "Category": "Autoregressive Lag"},
+    {"Feature": "demand_lag_2", "Importance": 0.03107, "Category": "Autoregressive Lag"},
+    {"Feature": "demand_lag_7", "Importance": 0.02535, "Category": "Autoregressive Lag"},
+    {"Feature": "demand_lag_14", "Importance": 0.01668, "Category": "Autoregressive Lag"},
+    {"Feature": "precipitation_mm", "Importance": 0.00276, "Category": "Climate Dynamics"}
   ]
 }

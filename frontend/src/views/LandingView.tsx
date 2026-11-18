@@ -36,7 +36,8 @@ import {
   Compass,
   FileText,
   Search,
-  ExternalLink
+  ExternalLink,
+  Zap
 } from 'lucide-react';
 
 interface Props {
@@ -87,48 +88,50 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
         <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10 text-left">
           
           {/* Friendly pill badge with the user's core theme */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-semibold mb-5 shadow-xs">
-            <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50/90 border border-cyan-200/90 text-cyan-900 text-xs font-semibold mb-5 shadow-xs">
+            <span className="flex h-2 w-2 rounded-full bg-cyan-600 animate-pulse" />
             <span>Efficient water resource management requires accurate forecasting</span>
           </div>
 
-          {/* Heading matching screenshot: "Make every drop count." */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-            Make every drop count.
+          {/* Heading matching screenshot: "Make Every Drop Count." */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+            Make Every Drop Count.
           </h1>
 
-          {/* Subhead matching screenshot: "Simple, predictive water intelligence." */}
-          <p className="text-xl sm:text-2xl text-slate-700 font-medium tracking-tight mt-2.5">
-            Simple, predictive water intelligence.
+          {/* Subhead matching screenshot: "Simple, Predictive Water Intelligence." with vibrant cyan/teal gradient */}
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mt-1.5 bg-gradient-to-r from-sky-500 via-cyan-500 to-teal-400 bg-clip-text text-transparent">
+            Simple, Predictive Water Intelligence.
           </p>
 
-          {/* Paragraph matching screenshot */}
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed mt-4 mb-7">
+          {/* High-contrast readable description paragraph */}
+          <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed mt-4 mb-7 font-medium">
             AquaPulse helps municipal water authorities and agricultural managers forecast water demand, detect hidden leaks within hours, and stop water loss before it happens.
           </p>
 
-          {/* Two buttons matching screenshot */}
+          {/* Three buttons matching screenshot */}
           <div className="flex flex-wrap items-center gap-3.5">
             <button
               onClick={() => onExploreApp('resident')}
-              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow transition flex items-center gap-2"
+              className="px-6 py-3 rounded-xl text-sm font-bold bg-[#0284c7] hover:bg-[#0369a1] text-white shadow-sm hover:shadow transition flex items-center gap-2"
             >
-              <span>Explore the platform</span>
+              <span>Explore Live Platform</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => navigateTo('forecasting')}
-              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 shadow-sm transition flex items-center gap-2"
+              className="px-6 py-3 rounded-xl text-sm font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 shadow-sm transition flex items-center gap-2"
             >
-              <span>Try demand forecasting</span>
+              <TrendingUp className="w-4 h-4 text-cyan-600" />
+              <span>Try AI Demand Forecasting</span>
             </button>
 
             <button
               onClick={onOpenSimulator}
-              className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 transition flex items-center gap-2"
+              className="px-5 py-3 rounded-xl text-sm font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 transition flex items-center gap-2"
             >
-              <Play className="w-3.5 h-3.5 text-amber-600" />
-              <span>Test leak simulator</span>
+              <Play className="w-3.5 h-3.5 text-amber-600 fill-amber-600/30" />
+              <span>Test Leak Simulator</span>
             </button>
           </div>
 
@@ -468,6 +471,86 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
 
           </div>
         )}
+      </section>
+
+
+      {/* =========================================================================
+          WEATHER INTELLIGENCE & CLIMATE DYNAMICS (Open-Meteo Style Landscape Banner)
+          ========================================================================= */}
+      <section className="max-w-6xl mx-auto px-4">
+        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-md">
+          {/* Background image with overlay matching Image 2 */}
+          <div className="relative h-72 sm:h-80 w-full overflow-hidden">
+            <img
+              src="/images/water_sunset_hero.jpg"
+              alt="Global weather data over serene water landscape"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px]" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white z-10 space-y-3">
+              <CloudRain className="w-10 h-10 text-white/90 drop-shadow-sm stroke-[1.5]" />
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-md">
+                Features
+              </h2>
+              <p className="text-sm sm:text-base text-slate-100 max-w-xl font-normal leading-relaxed drop-shadow">
+                Global weather data from forecast to archive — free, no sign-up, one JSON API.
+              </p>
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  onClick={() => navigateTo('weather')}
+                  className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition"
+                >
+                  Available APIs
+                </button>
+                <button
+                  onClick={() => navigateTo('analytics')}
+                  className="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/30 text-xs sm:text-sm font-semibold backdrop-blur-sm transition"
+                >
+                  Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Dark Blue / Accent feature cards matching Image 2 */}
+          <div className="bg-[#0b1329] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 p-6 sm:p-8">
+            <div className="flex items-start gap-4 p-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center shrink-0">
+                <Globe2 className="w-6 h-6 text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-white">30+ Weather Models</h4>
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Open-Meteo integrates numerical weather prediction models from national weather services worldwide.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center shrink-0">
+                <Zap className="w-6 h-6 text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-white">Up to 1 km Resolution</h4>
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  High-resolution local models capture microclimatic fluctuations, valley breezes, and urban heat islands.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center shrink-0">
+                <Clock className="w-6 h-6 text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-white">Frequent Updates</h4>
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Most global models are updated every 6 hours, delivering near-real-time rainfall and temperature telemetry.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
 

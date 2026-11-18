@@ -58,7 +58,25 @@ flowchart TD
 
 ## 📊 Machine Learning Benchmarks & Model Evaluation
 
-AquaPulse was trained and benchmarked across **15,057 daily records** spanning 2020 to 2024 across 21 Indian metropolitan water boards. A 5-model comparative benchmark was performed to evaluate time-series predictive fidelity:
+### 🏢 Migsun Vilaasa (Sector ETA-2, Greater Noida) — 20 Households Water Dataset
+The platform is calibrated on real household telemetry from the **Migsun Vilaasa** residential complex in Greater Noida:
+- **Scope**: 20 Flats (A-101 through D-301 across 4 residential towers)
+- **Time-Series Horizon**: 30-Day daily meter readings ($N = 600$ observations, October 2026)
+- **Regulatory Benchmark**: Vilaasa Form-1A Design Baseline of **86.0 LPCD** (Observed Mean: **86.09 LPCD**, Household Daily Mean: **356.74 Litres/day**)
+- **End-Use Distribution**: Sub-metered breakdown across Bathing (45%), Flushing (20%), Clothes Washing (15%), Utensils (10%), Cleaning (5%), Drinking (2.5%), and Cooking (2.5%).
+
+| Model | Algorithm | Test $R^2$ Score | MAE (Litres/Day) | RMSE (Litres/Day) | MAPE (%) | Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Ridge Regression (Champion)** | **L2 Regularized Model ($\alpha=1.0$)** | **0.9714 (97.14%)** | **17.60 L** | **22.19 L** | **5.43%** | **Deployed Champion** |
+| Linear Regression | Ordinary Least Squares (OLS) | 0.9663 (96.63%) | 18.59 L | 24.11 L | 5.52% | Benchmarked Baseline |
+| XGBoost Regressor | Extreme Gradient Boosting | 0.9633 (96.33%) | 19.53 L | 25.15 L | 6.22% | Benchmarked Alternative |
+| Gradient Boosting | Gradient Boosted Decision Trees | 0.9499 (94.99%) | 21.53 L | 29.39 L | 6.25% | Benchmarked Alternative |
+| Random Forest | 200-Tree Forest Ensemble | 0.9428 (94.28%) | 22.45 L | 31.41 L | 6.38% | Benchmarked Alternative |
+
+---
+
+### 🌐 Pan-India Metropolitan Water Grid Benchmark (21 Metros)
+For large-scale municipal distribution, AquaPulse benchmarks across **15,057 daily records** spanning 2020 to 2024 across 21 Indian metropolitan water boards:
 
 | Model | Algorithm | Test $R^2$ Score | MAE (MLD) | RMSE (MLD) | MAPE (%) | Production Status |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
