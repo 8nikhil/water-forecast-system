@@ -92,19 +92,19 @@ For large-scale municipal distribution, AquaPulse benchmarks across **15,057 dai
 
 #### 1. Multi-Model Benchmark Comparison ($R^2$, MAE, RMSE, MAPE)
 ![Model Accuracy Metrics Comparison](ml_pipeline/plots/model_accuracy_metrics_comparison.png)
-*Figure 1: Benchmark comparison illustrating Random Forest outperforming classical linear regressions by reducing MAE by 76.5% and RMSE by 79.0%.*
+*Figure 1: Benchmark comparison on Migsun Vilaasa 20 Households dataset (October 2026), illustrating Ridge Regression champion achieving 97.14% $R^2$ with an MAE of 17.60 L/day and RMSE of 22.19 L/day.*
 
-#### 2. Actual vs. Predicted Daily Municipal Water Consumption
+#### 2. Actual vs. Predicted Daily Household Water Consumption
 ![Actual vs Predicted Consumption](ml_pipeline/plots/actual_vs_predicted_consumption.png)
-*Figure 2: Time-series holdout test tracking actual consumption against AquaPulse predictions across seasonal shifts, monsoons, and extreme summer peaks.*
+*Figure 2: Time-series holdout evaluation tracking actual aggregate household consumption across Migsun Vilaasa test flats against Ridge Regression model predictions across October 2026.*
 
-#### 3. Top Predictive Feature Importance Breakdown (52 Causal Dimensions)
+#### 3. Top Predictive Feature Importance Breakdown
 ![Feature Importance](ml_pipeline/plots/feature_importance.png)
-*Figure 3: Gini impurity reduction ranking top causal drivers: 30-day demand autoregression, 7-day moving averages, ambient temperature, population size, and precipitation.*
+*Figure 3: Gini impurity reduction ranking top causal drivers: 1-day demand autoregression (demand_lag_1), 7-day moving average (rolling_mean_7), household occupancy count, ambient temperature, and rainfall.*
 
 #### 4. Residual Distribution & Error Diagnostics
 ![Residual Distribution Analysis](ml_pipeline/plots/residual_distribution_analysis.png)
-*Figure 4: Gaussian bell curve of prediction residuals centered at $\mu = -0.12\text{ MLD}$ with zero heteroscedastic drift, proving unbiased model convergence.*
+*Figure 4: Gaussian bell curve of prediction residuals centered at $\mu = -1.84\text{ Litres}$ with zero heteroscedastic drift and tight variance ($\sigma = 22.19\text{ L}$), proving unbiased model convergence.*
 
 ---
 
@@ -115,12 +115,12 @@ AquaPulse underwent an empirical model audit to verify generalization without ov
 | 1. Parity Scatter Analysis | 2. Residual Quantile-Quantile (Q-Q) |
 | :---: | :---: |
 | ![Actual vs Predicted Train vs Test](ml_pipeline/audit_reports/plots/1_actual_vs_predicted_train_vs_test.png) | ![Residual Comprehensive Diagnostics](ml_pipeline/audit_reports/plots/2_residual_comprehensive_diagnostics.png) |
-| *Tight cluster along $y = x$ identity line across all 21 cities* | *Zero heavy-tailed divergence from theoretical normal distribution* |
+| *Tight cluster along $y = x$ identity line across all 20 Migsun Vilaasa flats* | *Residual vs. fitted, Q-Q normality, and Durbin-Watson statistic ($DW = 2.113$)* |
 
-| 3. Detailed 52-Feature Decomposition | 4. Overfitting / Underfitting Gap Analysis |
+| 3. Detailed Feature Decomposition | 4. Overfitting / Underfitting Gap Analysis |
 | :---: | :---: |
 | ![Feature Importance Breakdown](ml_pipeline/audit_reports/plots/3_feature_importance_breakdown.png) | ![Overfitting Underfitting Gap Analysis](ml_pipeline/audit_reports/plots/4_overfitting_underfitting_gap_analysis.png) |
-| *Macro climatic factors + micro calendar interactions* | *Train $R^2 = 99.91\%$ vs Test $R^2 = 99.83\%$ (Minimal 0.08% gap proves zero overfitting)* |
+| *Decomposition across autoregressive lags, occupants, and climate dynamics* | *Train $R^2 = 97.99\%$ vs Test $R^2 = 97.14\%$ (Minimal 0.84% gap proves zero overfitting)* |
 
 ---
 
