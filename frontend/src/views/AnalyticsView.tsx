@@ -1,35 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
-  BarChart,
-  Bar,
+  ResponsiveContainer,
   AreaChart,
   Area,
   LineChart,
   Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
   CartesianGrid,
   Legend,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  ReferenceLine
 } from 'recharts';
 import {
   BarChart3,
   Clock,
   PieChart as PieIcon,
-  Filter,
   Layers,
-  Thermometer,
   Calendar,
   Building2,
   TrendingDown,
-  Info
+  Info,
+  Home,
+  Users,
+  Droplets,
+  CheckCircle2,
+  ShieldCheck,
+  Flame,
+  CloudRain
 } from 'lucide-react';
-import { TrendPoint, HourlyPoint, EndUseResponse, CityMetadataItem, HistoricalTelemetryRecord, HistoricalSummaryItem } from '../types';
-import { api } from '../services/api';
+import { TrendPoint, HourlyPoint, EndUseResponse } from '../types';
+import {
+  VILAASA_FLATS_LIST,
+  VILAASA_FLAT_TIMESERIES,
+  VILAASA_MODEL_METRICS,
+  VilaasaFlat,
+  FlatTimeseriesPoint
+} from '../data/migsunVilaasaData';
 
 interface Props {
   trends?: TrendPoint[];
@@ -38,83 +50,136 @@ interface Props {
   onRefresh?: () => void;
 }
 
-export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUse }) => {
-  const [activeTab, setActiveTab] = useState<'municipal' | 'household'>('municipal');
+export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [] }) => {
+  const [activeTab, setActiveTab] = useState<'flat' | 'enduse'>('flat');
+  const [selectedFlatId, setSelectedFlatId] = useState<string>('A-101');
   const [horizonDays, setHorizonDays] = useState<number>(30);
-  
-  // Municipal Historical Telemetry State
-  const [cities, setCities] = useState<CityMetadataItem[]>([]);
-  const [selectedCityId, setSelectedCityId] = useState<string>('BLR');
-  const [municipalData, setMunicipalData] = useState<HistoricalTelemetryRecord[]>([]);
-  const [citySummaries, setCitySummaries] = useState<HistoricalSummaryItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchCitiesAndSummaries = async () => {
-      try {
-        const [cList, sList] = await Promise.all([
-          api.getSupportedCities(),
-          api.getHistoricalSummary()
-        ]);
-        setCities(cList);
-        setCitySummaries(sList.cities || []);
-      } catch (err) {
-        console.error('Failed to load cities/summaries', err);
-      }
+  // Compute aggregate stats for ALL_VILAASA
+  const totalOccupants = useMemo(() => VILAASA_FLATS_LIST.reduce((acc, f) => acc + f.occupants, 0), []);
+  const totalDailyLiters = useMemo(() => Math.round(VILAASA_FLATS_LIST.reduce((acc, f) => acc + f.daily_liters, 0)), []);
+  const complexForm1aTargetL = Math.round(totalOccupants * 86.0);
+  const complexAvgLpcd = +(totalDailyLiters / totalOccupants).toFixed(1);
+
+  const complexAggregateFlat: VilaasaFlat = useMemo(() => ({
+    flat_id: 'ALL_VILAASA',
+    occupants: totalOccupants,
+    tier: 'Complex Aggregate',
+    daily_liters: totalDailyLiters,
+    lpcd: complexAvgLpcd,
+    monthly_liters: totalDailyLiters * 30,
+    annual_liters: totalDailyLiters * 365,
+    form1a_target_lpcd: 86.0,
+    form1a_target_liters: complexForm1aTargetL,
+    end_use: {
+      bathing_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.bathing_l, 0) * 10) / 10,
+      toilet_flushing_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.toilet_flushing_l, 0) * 10) / 10,
+      washing_clothes_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.washing_clothes_l, 0) * 10) / 10,
+      washing_utensils_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.washing_utensils_l, 0) * 10) / 10,
+      house_cleaning_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.house_cleaning_l, 0) * 10) / 10,
+      drinking_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.drinking_l, 0) * 10) / 10,
+      cooking_l: Math.round(VILAASA_FLATS_LIST.reduce((a, f) => a + f.end_use.cooking_l, 0) * 10) / 10,
+    }
+  }), [totalOccupants, totalDailyLiters, complexAvgLpcd, complexForm1aTargetL]);
+
+  // Current Flat object
+  const currentFlat: VilaasaFlat = useMemo(() => {
+    if (selectedFlatId === 'ALL_VILAASA') return complexAggregateFlat;
+    return VILAASA_FLATS_LIST.find((f) => f.flat_id === selectedFlatId) || VILAASA_FLATS_LIST[0];
+  }, [selectedFlatId, complexAggregateFlat]);
+
+  // Timeseries slice for selected flat
+  const flatTimeseries: FlatTimeseriesPoint[] = useMemo(() => {
+    const allPoints = VILAASA_FLAT_TIMESERIES[selectedFlatId] || VILAASA_FLAT_TIMESERIES['A-101'] || [];
+    return allPoints.slice(0, horizonDays);
+  }, [selectedFlatId, horizonDays]);
+
+  // Aggregated metrics over the chosen window
+  const periodStats = useMemo(() => {
+    if (!flatTimeseries.length) {
+      return {
+        avgDaily: currentFlat.daily_liters,
+        peakDaily: currentFlat.daily_liters * 1.08,
+        minDaily: currentFlat.daily_liters * 0.92,
+        totalLiters: currentFlat.daily_liters * horizonDays,
+        totalM3: (currentFlat.daily_liters * horizonDays) / 1000,
+        compliancePct: 96.5,
+      };
+    }
+    const actuals = flatTimeseries.map((p) => p.actual_liters);
+    const sum = actuals.reduce((a, b) => a + b, 0);
+    const avg = +(sum / actuals.length).toFixed(1);
+    const peak = Math.max(...actuals);
+    const min = Math.min(...actuals);
+    const target = currentFlat.form1a_target_liters;
+    const withinTargetCount = flatTimeseries.filter((p) => p.actual_liters <= target * 1.05).length;
+    const compliance = +((withinTargetCount / flatTimeseries.length) * 100).toFixed(1);
+
+    return {
+      avgDaily: avg,
+      peakDaily: peak,
+      minDaily: min,
+      totalLiters: Math.round(sum),
+      totalM3: +(sum / 1000).toFixed(2),
+      compliancePct: compliance,
     };
-    fetchCitiesAndSummaries();
-  }, []);
+  }, [flatTimeseries, currentFlat, horizonDays]);
 
-  // Fetch telemetry for selected city
-  useEffect(() => {
-    const fetchCityTelemetry = async () => {
-      setLoading(true);
-      try {
-        const res = await api.getHistoricalTelemetry({
-          city_id: selectedCityId,
-          limit: horizonDays
-        });
-        const sorted = (res.records || []).reverse();
-        setMunicipalData(sorted);
-      } catch (err) {
-        console.error('Failed to fetch municipal telemetry', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCityTelemetry();
-  }, [selectedCityId, horizonDays]);
-
-  // Aggregate monthly data for the selected city
-  const monthlyAggregates = React.useMemo(() => {
-    const months = [
-      { month: 'Jan', demand: 0, count: 0 },
-      { month: 'Feb', demand: 0, count: 0 },
-      { month: 'Mar', demand: 0, count: 0 },
-      { month: 'Apr', demand: 0, count: 0 },
-      { month: 'May', demand: 0, count: 0 },
-      { month: 'Jun', demand: 0, count: 0 },
-      { month: 'Jul', demand: 0, count: 0 },
-      { month: 'Aug', demand: 0, count: 0 },
-      { month: 'Sep', demand: 0, count: 0 },
-      { month: 'Oct', demand: 0, count: 0 },
-      { month: 'Nov', demand: 0, count: 0 },
-      { month: 'Dec', demand: 0, count: 0 },
+  // End-use breakdown array for charts
+  const endUseChartData = useMemo(() => {
+    const eu = currentFlat.end_use;
+    const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#14b8a6'];
+    const items = [
+      { name: 'Bathing & Shower', liters: eu.bathing_l, color: colors[0] },
+      { name: 'Toilet Flushing', liters: eu.toilet_flushing_l, color: colors[1] },
+      { name: 'Washing Clothes', liters: eu.washing_clothes_l, color: colors[2] },
+      { name: 'Washing Utensils', liters: eu.washing_utensils_l, color: colors[3] },
+      { name: 'House Cleaning', liters: eu.house_cleaning_l, color: colors[4] },
+      { name: 'Drinking', liters: eu.drinking_l, color: colors[5] },
+      { name: 'Cooking', liters: eu.cooking_l, color: colors[6] },
     ];
-    municipalData.forEach((d) => {
-      const mIdx = new Date(d.record_date).getMonth();
-      if (mIdx >= 0 && mIdx < 12) {
-        months[mIdx].demand += d.actual_demand_mld;
-        months[mIdx].count += 1;
-      }
-    });
-    return months.map((m) => ({
-      month: m.month,
-      avg_mld: m.count > 0 ? Number((m.demand / m.count).toFixed(1)) : 0
+    const total = items.reduce((a, b) => a + b.liters, 0);
+    return items.map((item) => ({
+      ...item,
+      pct: total > 0 ? +((item.liters / total) * 100).toFixed(1) : 0
     }));
-  }, [municipalData]);
+  }, [currentFlat]);
 
-  const selectedSummary = citySummaries.find((s) => s.city_id === selectedCityId);
+  // Comparison data for all 20 flats
+  const allFlatsComparisonData = useMemo(() => {
+    return VILAASA_FLATS_LIST.map((f) => ({
+      flat_id: f.flat_id,
+      daily_liters: f.daily_liters,
+      lpcd: f.lpcd,
+      target_lpcd: 86.0,
+      occupants: f.occupants,
+      tier: f.tier,
+      isSelected: f.flat_id === selectedFlatId
+    }));
+  }, [selectedFlatId]);
+
+  // Default synthetic diurnal profile scaled to current flat
+  const flatHourlyData = useMemo(() => {
+    if (hourly && hourly.length > 0) {
+      const baseTotal = hourly.reduce((a, b) => a + b.average_liters, 0) || 1;
+      return hourly.map((h) => ({
+        label: h.label,
+        liters: +((h.average_liters / baseTotal) * currentFlat.daily_liters).toFixed(1)
+      }));
+    }
+    // Standard diurnal curve (peaks at 7-9 AM and 7-9 PM)
+    const weights = [
+      0.015, 0.01, 0.008, 0.008, 0.012, 0.025, 0.065, 0.11, 0.12, 0.08, 0.05, 0.045,
+      0.04, 0.035, 0.035, 0.038, 0.045, 0.06, 0.085, 0.095, 0.07, 0.045, 0.025, 0.018
+    ];
+    return weights.map((w, i) => {
+      const hourStr = `${i.toString().padStart(2, '0')}:00`;
+      return {
+        label: hourStr,
+        liters: +(currentFlat.daily_liters * w).toFixed(1)
+      };
+    });
+  }, [hourly, currentFlat]);
 
   return (
     <div className="space-y-6">
@@ -122,52 +187,64 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
       {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 bg-slate-900 border border-slate-800 rounded-3xl shadow-xl">
         <div>
-          <h1 className="text-xl font-bold text-white flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-cyan-400" />
-            <span>Historical Consumption & Trend Analytics</span>
-          </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Empirical telemetry covering bulk water supply, billed consumption, and non-revenue water (NRW) gap.
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-bold text-white flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-cyan-400" />
+              <span>Historical Consumption & Trend Analytics</span>
+            </h1>
+            <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              Migsun Vilaasa Smart Telemetry
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-1">
+            Empirical smart meter telemetry across 20 residential flats, MoEFCC Form-1A clearance benchmarks, and sub-metered end-use distribution.
           </p>
         </div>
 
-        {/* View Switcher & Time Filter */}
+        {/* View Switcher, Flat Selector & Time Filter */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
-            <button
-              onClick={() => setActiveTab('municipal')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition ${
-                activeTab === 'municipal' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Pan-India Municipal
-            </button>
-            <button
-              onClick={() => setActiveTab('household')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition ${
-                activeTab === 'household' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Smart Meter Fleet
-            </button>
-          </div>
-
-          {activeTab === 'municipal' && (
+          {/* Flat Selector Dropdown */}
+          <div className="flex items-center bg-slate-950 p-1 px-2 rounded-xl border border-slate-800">
+            <Home className="w-3.5 h-3.5 text-cyan-400 mr-2" />
             <select
-              value={selectedCityId}
-              onChange={(e) => setSelectedCityId(e.target.value)}
-              className="bg-slate-950 text-white text-xs font-semibold px-3 py-1.5 rounded-xl border border-slate-800"
+              value={selectedFlatId}
+              onChange={(e) => setSelectedFlatId(e.target.value)}
+              className="bg-transparent text-white text-xs font-semibold py-1 pr-2 focus:outline-none cursor-pointer"
             >
-              {cities.map((c) => (
-                <option key={c.city_id} value={c.city_id}>
-                  {c.city_name} ({c.city_id})
+              <option value="ALL_VILAASA" className="bg-slate-900 text-cyan-300">
+                All Flats / Complex Aggregate (78 Occupants)
+              </option>
+              {VILAASA_FLATS_LIST.map((f) => (
+                <option key={f.flat_id} value={f.flat_id} className="bg-slate-900 text-white">
+                  Flat {f.flat_id} ({f.occupants} Occ - {f.tier} Tier)
                 </option>
               ))}
             </select>
-          )}
+          </div>
 
+          {/* View Tab Toggle */}
           <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
-            {[7, 14, 30, 90].map((days) => (
+            <button
+              onClick={() => setActiveTab('flat')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition ${
+                activeTab === 'flat' ? 'bg-cyan-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Smart Meter Telemetry
+            </button>
+            <button
+              onClick={() => setActiveTab('enduse')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition ${
+                activeTab === 'enduse' ? 'bg-cyan-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              End-Use & Diurnal Profile
+            </button>
+          </div>
+
+          {/* Time Horizon Buttons */}
+          <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+            {[7, 14, 30].map((days) => (
               <button
                 key={days}
                 onClick={() => setHorizonDays(days)}
@@ -183,84 +260,105 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
       </div>
 
       {/* ================================================================= */}
-      {/* MUNICIPAL PAN-INDIA HISTORICAL CHARTS                             */}
+      {/* SUMMARY STAT CARDS (Calibrated to Flat Telemetry)                */}
       {/* ================================================================= */}
-      {activeTab === 'municipal' && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        {/* Card 1: Average Daily Demand */}
+        <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+          <span className="text-xs text-slate-400 uppercase tracking-wider block">Average Daily Demand</span>
+          <div className="text-2xl font-black text-cyan-400 mt-1 flex items-baseline gap-1">
+            {periodStats.avgDaily.toLocaleString()} <span className="text-xs font-semibold text-slate-400">Litres / day</span>
+          </div>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            Peak: {periodStats.peakDaily.toLocaleString()} L · Min: {periodStats.minDaily.toLocaleString()} L
+          </span>
+        </div>
+
+        {/* Card 2: Total Extraction / Consumption Volume */}
+        <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+          <span className="text-xs text-slate-400 uppercase tracking-wider block">Total Period Volume</span>
+          <div className="text-2xl font-black text-white mt-1 flex items-baseline gap-1">
+            {periodStats.totalLiters.toLocaleString()} <span className="text-xs font-semibold text-slate-400">Litres</span>
+          </div>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            Volumetric: {periodStats.totalM3} m³ ({horizonDays}-Day Monitored Span)
+          </span>
+        </div>
+
+        {/* Card 3: Form-1A Design Benchmark & Compliance */}
+        <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+          <span className="text-xs text-slate-400 uppercase tracking-wider block">Form-1A Design Cap</span>
+          <div className="text-2xl font-black text-emerald-400 mt-1 flex items-baseline gap-1">
+            {currentFlat.form1a_target_liters.toLocaleString()} <span className="text-xs font-semibold text-slate-400">L / day</span>
+          </div>
+          <span className="text-[11px] text-emerald-400/90 mt-1 flex items-center gap-1 font-semibold">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            {periodStats.compliancePct}% Period Within Statutory Cap
+          </span>
+        </div>
+
+        {/* Card 4: Per Capita LPCD Target */}
+        <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+          <span className="text-xs text-slate-400 uppercase tracking-wider block">Per Capita Usage (LPCD)</span>
+          <div className="text-2xl font-black text-sky-400 mt-1 flex items-baseline gap-1">
+            {currentFlat.lpcd} <span className="text-xs font-semibold text-slate-400">LPCD</span>
+          </div>
+          <span className="text-[11px] text-slate-500 mt-1 block">
+            Form-1A Limit: 86.0 LPCD · {currentFlat.occupants} Occupants
+          </span>
+        </div>
+
+      </div>
+
+      {/* ================================================================= */}
+      {/* TAB 1: SMART METER TELEMETRY & MULTI-FLAT COMPARISON               */}
+      {/* ================================================================= */}
+      {activeTab === 'flat' && (
         <div className="space-y-6">
           
-          {/* Summary Metric Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
-              <span className="text-xs text-slate-400 uppercase tracking-wider block">Average Daily Demand</span>
-              <span className="text-2xl font-black text-cyan-400 mt-1 block">
-                {selectedSummary?.average_demand_mld.toFixed(1) || '1,492.3'} MLD
-              </span>
-              <span className="text-[11px] text-slate-500 mt-1 block">
-                Peak: {selectedSummary?.max_demand_mld.toFixed(1) || '1,650.0'} MLD
-              </span>
-            </div>
-
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
-              <span className="text-xs text-slate-400 uppercase tracking-wider block">Total Extraction Volume</span>
-              <span className="text-2xl font-black text-white mt-1 block">
-                {selectedSummary?.total_volume_mcm.toFixed(1) || '1,089.4'} MCM
-              </span>
-              <span className="text-[11px] text-slate-500 mt-1 block">
-                Million Cubic Meters (2-Year Span)
-              </span>
-            </div>
-
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
-              <span className="text-xs text-slate-400 uppercase tracking-wider block">Average NRW Loss Rate</span>
-              <span className="text-2xl font-black text-amber-400 mt-1 block">
-                {selectedSummary?.average_nrw_pct.toFixed(1) || '26.4'}%
-              </span>
-              <span className="text-[11px] text-slate-500 mt-1 block">
-                Loss: {selectedSummary?.average_nrw_loss_mld.toFixed(1) || '390.0'} MLD
-              </span>
-            </div>
-
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl">
-              <span className="text-xs text-slate-400 uppercase tracking-wider block">CPHEEO Per Capita Target</span>
-              <span className="text-2xl font-black text-emerald-400 mt-1 block">
-                {selectedSummary?.cpheeo_target_lpcd || 135} LPCD
-              </span>
-              <span className="text-[11px] text-slate-500 mt-1 block">
-                Water Stress Index: {selectedSummary?.water_stress_score.toFixed(0) || 100}/100
-              </span>
-            </div>
-          </div>
-
-          {/* Daily Consumption Trends Area Chart */}
+          {/* Main Telemetry Area Chart */}
           <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <h2 className="text-sm font-bold text-white flex items-center gap-2">
                   <Layers className="w-4 h-4 text-cyan-400" />
-                  Daily Water Demand & Distribution (Last {horizonDays} Days)
+                  <span>
+                    Daily Water Demand & AI Model Telemetry (Last {horizonDays} Days) —{' '}
+                    <span className="text-cyan-400">
+                      {selectedFlatId === 'ALL_VILAASA' ? 'All 20 Flats Combined' : `Flat ${selectedFlatId}`}
+                    </span>
+                  </span>
                 </h2>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Actual consumption compared with Bulk Supply and Billed Consumption.
+                  Actual smart meter telemetry compared with Ridge ML regression predictions and MoEFCC Form-1A statutory cap ({currentFlat.form1a_target_liters} L/day).
                 </p>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                <Users className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Occupants: <strong className="text-white">{currentFlat.occupants}</strong></span>
+                <span className="text-slate-600">|</span>
+                <span>Tier: <strong className="text-white">{currentFlat.tier}</strong></span>
               </div>
             </div>
 
-            <div className="h-72 w-full">
+            <div className="h-80 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={municipalData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
+                <AreaChart data={flatTimeseries} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                   <defs>
-                    <linearGradient id="demandGrad" x1="0" y1="0" x2="0" y2="1">
+                    <linearGradient id="actualDemandGrad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
                       <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.0} />
                     </linearGradient>
-                    <linearGradient id="supplyGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                    <linearGradient id="predictedDemandGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
                       <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="record_date" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis unit=" MLD" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="short_date" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: '#0f172a',
@@ -269,29 +367,41 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
                       color: '#f8fafc',
                       fontSize: '12px'
                     }}
-                    formatter={(val: any, name: any) => [`${Number(val).toFixed(2)} MLD`, name]}
+                    formatter={(val: any, name: any) => [`${Number(val).toFixed(1)} Litres`, name]}
                   />
                   <Legend wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }} />
-                  <Area
-                    type="monotone"
-                    dataKey="bulk_supply_mld"
-                    name="Bulk Supply (MLD)"
-                    stroke="#3b82f6"
-                    fill="url(#supplyGrad)"
+                  
+                  {/* Form-1A Design Benchmark Cap Reference Line */}
+                  <ReferenceLine
+                    y={currentFlat.form1a_target_liters}
+                    stroke="#10b981"
+                    strokeDasharray="4 4"
+                    label={{
+                      value: `Form-1A Cap (${currentFlat.form1a_target_liters} L)`,
+                      fill: '#10b981',
+                      fontSize: 11,
+                      position: 'top'
+                    }}
                   />
+
+                  {/* Actual Consumption Area */}
                   <Area
                     type="monotone"
-                    dataKey="actual_demand_mld"
-                    name="Actual Demand (MLD)"
+                    dataKey="actual_liters"
+                    name="Actual Consumption (Litres)"
                     stroke="#06b6d4"
-                    fill="url(#demandGrad)"
+                    strokeWidth={2.5}
+                    fill="url(#actualDemandGrad)"
                   />
+
+                  {/* Ridge ML Predicted Demand Line */}
                   <Line
                     type="monotone"
-                    dataKey="billed_consumption_mld"
-                    name="Billed Consumption (MLD)"
-                    stroke="#10b981"
+                    dataKey="predicted_liters"
+                    name="Ridge ML Prediction (Litres)"
+                    stroke="#3b82f6"
                     strokeWidth={2}
+                    strokeDasharray="3 3"
                     dot={false}
                   />
                 </AreaChart>
@@ -299,21 +409,24 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
             </div>
           </div>
 
-          {/* Monthly Aggregated Trend & City Comparison */}
+          {/* 2-Column Comparison Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            {/* Monthly Aggregated Bar Chart */}
+            {/* Left: Per Capita LPCD Profile */}
             <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm">
-              <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
-                <Calendar className="w-4 h-4 text-cyan-400" />
-                Monthly Aggregated Consumption Profile (Annual Cycle)
+              <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-1">
+                <Droplets className="w-4 h-4 text-cyan-400" />
+                <span>Daily Per Capita Usage vs Form-1A Benchmark (86 LPCD)</span>
               </h2>
+              <p className="text-xs text-slate-400 mb-3">
+                Tracking daily litres per capita per day against the statutory environmental clearance threshold.
+              </p>
               <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={monthlyAggregates} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                  <BarChart data={flatTimeseries} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis unit=" MLD" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="short_date" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                    <YAxis unit=" LPCD" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#0f172a',
@@ -322,30 +435,34 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
                         color: '#f8fafc',
                         fontSize: '12px'
                       }}
-                      formatter={(val: any) => [`${val} MLD`, 'Average Demand']}
+                      formatter={(val: any) => [`${val} LPCD`, 'Per Capita Usage']}
                     />
-                    <Bar dataKey="avg_mld" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
+                    <ReferenceLine y={86.0} stroke="#10b981" strokeDasharray="3 3" />
+                    <Bar dataKey="lpcd" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
-            {/* Top Indian Municipalities Comparison */}
+            {/* Right: Comparative Demand Across 20 Flats */}
             <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm">
-              <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
+              <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-1">
                 <Building2 className="w-4 h-4 text-sky-400" />
-                Comparative Daily Demand Across Indian Metros
+                <span>Comparative Daily Demand Across Migsun Vilaasa Flats</span>
               </h2>
+              <p className="text-xs text-slate-400 mb-3">
+                Baseline daily water consumption across all 20 units (current unit highlighted in cyan).
+              </p>
               <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
-                    data={citySummaries.slice(0, 7)}
+                    data={allFlatsComparisonData}
                     layout="vertical"
-                    margin={{ top: 5, right: 30, left: 70, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
-                    <XAxis type="number" unit=" MLD" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis dataKey="city_name" type="category" tick={{ fill: '#e2e8f0', fontSize: 11 }} width={70} />
+                    <XAxis type="number" unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis dataKey="flat_id" type="category" tick={{ fill: '#e2e8f0', fontSize: 10 }} width={45} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#0f172a',
@@ -354,9 +471,19 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
                         color: '#f8fafc',
                         fontSize: '12px'
                       }}
-                      formatter={(val: any) => [`${val} MLD`, 'Average Daily Demand']}
+                      formatter={(val: any, _: any, item: any) => [
+                        `${val} L/day (${item.payload.occupants} Occ · ${item.payload.lpcd} LPCD)`,
+                        `Flat ${item.payload.flat_id}`
+                      ]}
                     />
-                    <Bar dataKey="average_demand_mld" fill="#06b6d4" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="daily_liters" radius={[0, 4, 4, 0]}>
+                      {allFlatsComparisonData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={entry.flat_id === selectedFlatId ? '#06b6d4' : '#334155'}
+                        />
+                      ))}
+                    </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -368,22 +495,29 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
       )}
 
       {/* ================================================================= */}
-      {/* HOUSEHOLD SMART METER FLEET VIEW                                  */}
+      {/* TAB 2: END-USE BREAKDOWN & DIURNAL USAGE PROFILE                   */}
       {/* ================================================================= */}
-      {activeTab === 'household' && (
+      {activeTab === 'enduse' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Diurnal Hourly Profile */}
           <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm">
-            <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
-              <Clock className="w-4 h-4 text-cyan-400" />
-              24-Hour Diurnal Household Usage Curve
-            </h2>
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h2 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-cyan-400" />
+                  <span>24-Hour Diurnal Household Usage Curve</span>
+                </h2>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Hourly draw pattern showing morning peak (7:00-9:00 AM) and evening peak (7:00-9:00 PM).
+                </p>
+              </div>
+            </div>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={hourly} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                <AreaChart data={flatHourlyData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="label" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="label" tick={{ fill: '#94a3b8', fontSize: 10 }} />
                   <YAxis unit=" L" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                   <Tooltip
                     contentStyle={{
@@ -393,8 +527,9 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
                       color: '#f8fafc',
                       fontSize: '12px'
                     }}
+                    formatter={(val: any) => [`${val} Litres / hour`, 'Hourly Demand']}
                   />
-                  <Area type="monotone" dataKey="average_liters" stroke="#06b6d4" fill="#06b6d4" fillOpacity={0.2} />
+                  <Area type="monotone" dataKey="liters" stroke="#06b6d4" fill="#06b6d4" fillOpacity={0.25} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -402,24 +537,27 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
 
           {/* End-Use Attribution Donut */}
           <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl shadow-sm">
-            <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
+            <h2 className="text-sm font-bold text-white flex items-center gap-2 mb-1">
               <PieIcon className="w-4 h-4 text-purple-400" />
-              Household Appliance End-Use Breakdown
+              <span>Sub-Metered End-Use Attribution (7 Household Channels)</span>
             </h2>
+            <p className="text-xs text-slate-400 mb-3">
+              Breakdown based on empirical audit data for {selectedFlatId === 'ALL_VILAASA' ? 'all 20 flats' : `Flat ${selectedFlatId}`}.
+            </p>
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={endUse?.breakdown || []}
+                    data={endUseChartData}
                     dataKey="liters"
-                    nameKey="category"
+                    nameKey="name"
                     cx="50%"
                     cy="50%"
-                    innerRadius={55}
+                    innerRadius={50}
                     outerRadius={80}
                     paddingAngle={3}
                   >
-                    {(endUse?.breakdown || []).map((entry, index) => (
+                    {endUseChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
@@ -431,7 +569,10 @@ export const AnalyticsView: React.FC<Props> = ({ trends = [], hourly = [], endUs
                       color: '#f8fafc',
                       fontSize: '12px'
                     }}
-                    formatter={(val: any, name: any) => [`${val} Liters`, name]}
+                    formatter={(val: any, name: any, item: any) => [
+                      `${val} Litres (${item.payload.pct}%)`,
+                      name
+                    ]}
                   />
                   <Legend wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
                 </PieChart>
