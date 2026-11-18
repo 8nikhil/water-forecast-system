@@ -96,6 +96,13 @@ class DailyPredictionResponse(BaseModel):
     equivalent_billion_litres: float = Field(..., description="Forecasted water volume in Billion Litres")
     expected_rmse_error_mld: float
     model_architecture: str
+    # Optional flat-specific metrics for household telemetry
+    predicted_demand_litres: Optional[float] = None
+    per_head_lpcd: Optional[float] = None
+    occupants: Optional[int] = None
+    form1a_target_lpcd: Optional[float] = None
+    form1a_target_liters: Optional[float] = None
+    usage_tier: Optional[str] = None
 
 
 class HorizonPredictionRequest(BaseModel):
