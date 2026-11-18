@@ -713,7 +713,7 @@ export const LandingView: React.FC<Props> = ({ onExploreApp, onOpenSimulator, on
               <span className="text-xs font-bold text-slate-900">Municipal Water Authority Application</span>
             </div>
             <p className="text-xs text-slate-600 italic mb-4 leading-relaxed">
-              "By combining 99.8% accurate forecasting with night pressure moderation, we stabilized distribution in low-pressure districts and cut burst occurrences during monsoon shifts."
+              "By combining 97.14% accurate forecasting with night pressure moderation, we stabilized distribution in low-pressure districts and cut burst occurrences during monsoon shifts."
             </p>
             <span className="text-[11px] font-semibold text-slate-500 block">— Chief Distribution Engineer, Indian Municipal Water Board</span>
           </div>

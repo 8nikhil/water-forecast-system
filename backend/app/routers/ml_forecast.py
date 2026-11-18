@@ -139,6 +139,46 @@ def get_supported_cities():
 
 
 # =====================================================================
+# MIGSUN VILAASA 20 HOUSEHOLDS SUB-METER & BASELINE ENDPOINTS
+# =====================================================================
+
+@router.get(
+    "/flats",
+    summary="List Migsun Vilaasa 20 Flats & Baseline Metadata",
+    description="Returns metadata, occupant counts, baseline consumption (LPCD & Total Litres), and Form-1A design targets for all 20 flats."
+)
+def get_all_flats():
+    """Returns baseline data for all 20 Migsun Vilaasa monitored flats."""
+    return ml_service.get_all_flats()
+
+
+@router.get(
+    "/flats/{flat_id}",
+    summary="Get Specific Flat Details & End-Use Breakdown",
+    description="Returns flat occupancy, usage tier, baseline end-use breakdown and Form-1A benchmark."
+)
+def get_flat_detail(flat_id: str):
+    """Returns details and end-use breakdown for a specific flat."""
+    res = ml_service.get_flat_detail(flat_id)
+    if not res:
+        raise HTTPException(status_code=404, detail=f"Flat '{flat_id}' not found.")
+    return res
+
+
+@router.get(
+    "/flats/{flat_id}/timeseries",
+    summary="Get 30-Day Daily Telemetry for Flat",
+    description="Returns 30-day smart meter telemetry (Oct 1 - Oct 30, 2026), Ridge AI predictions, and Form-1A design limit."
+)
+def get_flat_timeseries(flat_id: str):
+    """Returns 30-day daily telemetry time-series for a specific flat or ALL_VILAASA."""
+    res = ml_service.get_flat_timeseries(flat_id)
+    if not res:
+        raise HTTPException(status_code=404, detail=f"Timeseries for flat '{flat_id}' not found.")
+    return res
+
+
+# =====================================================================
 # HISTORICAL DATA RETRIEVAL ENDPOINTS
 # =====================================================================
 

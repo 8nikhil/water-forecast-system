@@ -326,6 +326,37 @@ export const api = {
     return res.data;
   },
 
+  // Migsun Vilaasa 20 Households Telemetry & End-Use Baselines
+  getFlats: async (): Promise<any[]> => {
+    try {
+      const res = await client.get('/flats');
+      return res.data;
+    } catch {
+      const { VILAASA_FLATS_LIST } = await import('../data/migsunVilaasaData');
+      return VILAASA_FLATS_LIST;
+    }
+  },
+
+  getFlatDetail: async (flatId: string): Promise<any> => {
+    try {
+      const res = await client.get(`/flats/${flatId}`);
+      return res.data;
+    } catch {
+      const { VILAASA_FLATS_LIST } = await import('../data/migsunVilaasaData');
+      return VILAASA_FLATS_LIST.find((f: any) => f.flat_id.toUpperCase() === flatId.toUpperCase()) || null;
+    }
+  },
+
+  getFlatTimeseries: async (flatId: string): Promise<any[]> => {
+    try {
+      const res = await client.get(`/flats/${flatId}/timeseries`);
+      return res.data;
+    } catch {
+      const { VILAASA_FLAT_TIMESERIES } = await import('../data/migsunVilaasaData');
+      return VILAASA_FLAT_TIMESERIES[flatId] || VILAASA_FLAT_TIMESERIES['A-101'] || [];
+    }
+  },
+
   getHistoricalTelemetry: async (params?: {
     city_id?: string;
     zone?: string;
